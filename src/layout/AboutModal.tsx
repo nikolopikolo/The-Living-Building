@@ -1,0 +1,111 @@
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Building2, Eye, Compass, BookOpen } from 'lucide-react';
+import type { Language } from '../types';
+
+interface AboutModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  language: Language;
+}
+
+export const AboutModal: React.FC<AboutModalProps> = ({
+  isOpen,
+  onClose,
+  language,
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-[#262B29]/65 backdrop-blur-[2px]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: 16 }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto bg-[#F7F3EB] border border-[#262B29] shadow-brutalist p-6 md:p-8 text-[#262B29]"
+          role="dialog"
+          aria-modal="true"
+        >
+          {/* Header */}
+          <div className="flex items-start justify-between border-b border-[#C4B7A2] pb-4 mb-6">
+            <div>
+              <div className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold mb-1">
+                GEOLAB RESEARCH PROJECT · ETHNOGRAPHIC CURATION
+              </div>
+              <h2 className="font-editorial text-3xl md:text-4xl font-bold uppercase text-[#262B29] leading-tight">
+                {language === 'KA' ? 'პროექტის შესახებ' : 'ABOUT THE LIVING BUILDING'}
+              </h2>
+              <div className="font-editorial text-base italic text-[#74826A] mt-0.5">
+                {language === 'KA'
+                  ? 'ცოცხალი შენობა: მულტისახეობრივი თანაცხოვრება თბილისში'
+                  : 'A Multispecies Exploration of Tbilisi\'s Residential Architecture'}
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-1.5 text-[#343B37] hover:text-[#965D45] hover:bg-[#E8E0D1] transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Exhibition Content */}
+          <div className="space-y-5 text-xs md:text-sm font-sans leading-relaxed text-[#343B37]">
+            <p>
+              {language === 'KA'
+                ? '„ცოცხალი შენობა“ არის GeoLab-ის ციფრული ეთნოგრაფიული პროექტი, რომელიც იკვლევს მულტისახეობრივ თანაცხოვრებას თბილისის საბჭოთა პერიოდის საცხოვრებელ კორპუსებსა და ეზოებში.'
+                : 'The Living Building is a digital ethnographic exhibition exploring multispecies coexistence inside Soviet-era residential apartment blocks and traditional courtyards in Tbilisi, Georgia.'}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-2">
+              <div className="bg-[#E8E0D1] border border-[#C4B7A2] p-3.5">
+                <div className="flex items-center gap-2 mb-1.5 font-mono text-[11px] font-bold text-[#262B29] uppercase">
+                  <Building2 className="w-4 h-4 text-[#965D45]" />
+                  <span>{language === 'KA' ? 'არქიტექტურა როგორც ეკოსისტემა' : 'Architecture as Ecosystem'}</span>
+                </div>
+                <p className="text-xs text-[#586450] leading-snug">
+                  {language === 'KA'
+                    ? 'შენობა არ არის იზოლირებული ბეტონის ობიექტი. ის არის ცოცხალი გარემო, სადაც ერთმანეთს ერწყმის ბეტონი, მცენარეები, ცხოველები და ადამიანები.'
+                    : 'The building is not an isolated concrete monument, but a porous metabolism woven together by precast panels, soil, roots, heating steam, and animal pathways.'}
+                </p>
+              </div>
+
+              <div className="bg-[#E8E0D1] border border-[#C4B7A2] p-3.5">
+                <div className="flex items-center gap-2 mb-1.5 font-mono text-[11px] font-bold text-[#262B29] uppercase">
+                  <Eye className="w-4 h-4 text-[#74826A]" />
+                  <span>{language === 'KA' ? 'მულტისახეობრივი ლინზა' : 'Multispecies Lens'}</span>
+                </div>
+                <p className="text-xs text-[#586450] leading-snug">
+                  {language === 'KA'
+                    ? 'ჩვენ ვაკვირდებით კატებს სადარბაზოებში, ნამგალებს სახურავებზე, ვაზს აივნებზე და მიწისქვეშა მილებს, როგორც ერთიან ეკოლოგიას.'
+                    : 'Attending to common swifts nesting beneath zinc hoods, community cats warming themselves on terrazzo stair landings, and grapevines shading summer concrete.'}
+                </p>
+              </div>
+            </div>
+
+            <p>
+              {language === 'KA'
+                ? 'ეს ინტერაქციული ჭრილი წარმოადგენს პირველ ეტაპს (Phase 1). შემდგომ ფაზებში დაემატება საველე აუდიო ჩანაწერები, ფოტოარქივები და ზეპირი ისტორიები.'
+                : 'This interactive architectural cutaway forms Phase 1: the spatial foundation and visual art direction. Future phases will introduce archival audio soundscapes, documentary photographs, and oral histories.'}
+            </p>
+
+            {/* Curatorial Attribution */}
+            <div className="border-t border-[#C4B7A2] pt-4 mt-6 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] text-[#586450]">
+              <div className="flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5 text-[#965D45]" />
+                <span>GEOLAB RESEARCH INITIATIVE · TBILISI</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Compass className="w-3.5 h-3.5 text-[#74826A]" />
+                <span>BRUTALIST ARCHITECTURE × DOCUMENTARY ETHNOGRAPHY</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+};
