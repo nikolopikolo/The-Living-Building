@@ -42,11 +42,9 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <g className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
             <line x1="285" y1="160" x2="285" y2="185" stroke="#343B37" strokeWidth="0.75" />
             <ellipse cx="285" cy="186" rx="6" ry="3" fill="#965D45" stroke="#262B29" strokeWidth="0.6" />
-            <g className="animate-leaves">
-              <path d="M 282,185 Q 272,192 268,205" fill="none" stroke="#74826A" strokeWidth="0.8" />
-              <path d="M 285,185 Q 280,195 282,210" fill="none" stroke="#8A997F" strokeWidth="0.8" />
-              <path d="M 288,185 Q 296,192 300,206" fill="none" stroke="#74826A" strokeWidth="0.8" />
-            </g>
+            <path d="M 282,185 Q 272,192 268,205" fill="none" stroke="#74826A" strokeWidth="0.8" />
+            <path d="M 285,185 Q 280,195 282,210" fill="none" stroke="#8A997F" strokeWidth="0.8" />
+            <path d="M 288,185 Q 296,192 300,206" fill="none" stroke="#74826A" strokeWidth="0.8" />
           </g>
 
           {/* Architectural Drafting Table / Easel (x=310 to 365) */}
@@ -105,8 +103,8 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <line x1="595" y1="175" x2="595" y2="240" stroke="#343B37" strokeWidth="1" />
           <line x1="565" y1="205" x2="625" y2="205" stroke="#343B37" strokeWidth="0.8" />
 
-          {/* Curtains with Gentle Breeze Animation */}
-          <g className="animate-curtain">
+          {/* Draped Curtains (Clean, Architectural Drape) */}
+          <g>
             <path d="M 565,175 Q 575,205 570,240 L 565,240 Z" fill="#965D45" fillOpacity="0.8" />
             <path d="M 625,175 Q 615,205 620,240 L 625,240 Z" fill="#965D45" fillOpacity="0.8" />
           </g>
@@ -124,13 +122,85 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           FLOOR 4 (y: 260 to 360) - Balcony Garden & Kitchen
           ======================================================== */}
       <g id="floor-4-rooms">
-        {/* Balcony Cat & Plants */}
-        <g id="balcony-cat" className={`perspective-transition ${isAnimalSubdued ? 'perspective-dimmed' : ''}`} transform="translate(182, 335)">
-          <ellipse cx="0" cy="0" rx="4.5" ry="3" fill="#AF7359" />
-          <circle cx="3.5" cy="-2.5" r="2" fill="#AF7359" />
-          <polygon points="2.5,-4 3.5,-5.5 4.5,-4" fill="#7D4732" />
-          {/* Animated cat tail over edge */}
-          <g className="animate-cat-tail">
+        {/* Cantilever Balcony (x=135 to 195, y=260 to 360) - INTERACTIVE BALCONY ZONE */}
+        <g id="balcony-exterior">
+          {/* Cantilever concrete floor */}
+          <rect x="135" y="258" width="60" height="10" fill="#C4B7A2" stroke="#262B29" strokeWidth="1.2" />
+          <line x1="135" y1="262" x2="195" y2="262" stroke="#AA9C86" strokeWidth="1" />
+          
+          {/* Metal Railing / Balustrade (Tbilisi welded iron pattern) */}
+          <rect x="135" y="285" width="58" height="65" fill="#343B37" fillOpacity="0.04" />
+          <line x1="135" y1="285" x2="195" y2="285" stroke="#262B29" strokeWidth="2" />
+          {/* Vertical Balusters */}
+          {[140, 150, 160, 170, 180, 190].map((bx) => (
+            <line key={bx} x1={bx} y1="285" x2={bx} y2="350" stroke="#262B29" strokeWidth="1.2" />
+          ))}
+          {/* Welded ornamental diamonds in railing */}
+          <polygon points="150,305 155,313 150,321 145,313" fill="none" stroke="#965D45" strokeWidth="1" />
+          <polygon points="170,305 175,313 170,321 165,313" fill="none" stroke="#965D45" strokeWidth="1" />
+
+          {/* Isabella Climbing Grapevine on Balcony */}
+          <g className={`balcony-grapevine perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
+            {/* Vine wooden stalk */}
+            <path d="M 137,348 Q 139,320 143,300 Q 146,288 152,284" fill="none" stroke="#7D4732" strokeWidth="2" />
+            <path d="M 143,300 Q 155,305 162,295" fill="none" stroke="#7D4732" strokeWidth="1.5" />
+            {/* Grape leaves (Lush green bunches) */}
+            <circle cx="140" cy="315" r="4.5" fill="#74826A" stroke="#586450" strokeWidth="0.5" />
+            <circle cx="145" cy="298" r="5" fill="#8A997F" stroke="#586450" strokeWidth="0.5" />
+            <circle cx="154" cy="286" r="4.5" fill="#74826A" stroke="#586450" strokeWidth="0.5" />
+            <circle cx="163" cy="294" r="5.5" fill="#8A997F" stroke="#586450" strokeWidth="0.5" />
+            <circle cx="172" cy="285" r="4" fill="#74826A" stroke="#586450" strokeWidth="0.5" />
+            {/* Hanging Purple Grape Clusters */}
+            <g transform="translate(158, 302)">
+              <circle cx="0" cy="0" r="1.6" fill="#343B37" />
+              <circle cx="3" cy="0" r="1.6" fill="#343B37" />
+              <circle cx="1.5" cy="3" r="1.6" fill="#7D4732" />
+              <circle cx="1.5" cy="5.5" r="1.4" fill="#343B37" />
+            </g>
+          </g>
+
+          {/* Planter boxes with Heirloom Tomatoes & Basil */}
+          <g className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
+            <rect x="142" y="340" width="30" height="9" fill="#965D45" stroke="#262B29" strokeWidth="0.8" />
+            <polygon points="175,349 188,349 187,338 176,338" fill="#AA9C86" stroke="#262B29" strokeWidth="0.8" />
+            {/* Tomato stalks and red fruits */}
+            <line x1="148" y1="340" x2="148" y2="328" stroke="#74826A" strokeWidth="1.2" />
+            <circle cx="147" cy="331" r="2" fill="#965D45" />
+            <line x1="156" y1="340" x2="158" y2="325" stroke="#74826A" strokeWidth="1.2" />
+            <circle cx="160" cy="328" r="2.2" fill="#AF7359" />
+          </g>
+
+          {/* Cantilever Clothesline with Hanging Laundry (Clean, Static) */}
+          <g className={`clothesline-group perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
+            {/* Extended Pulley Arm from Balcony Corner */}
+            <line x1="135" y1="290" x2="80" y2="280" stroke="#262B29" strokeWidth="1.2" />
+            <circle cx="80" cy="280" r="2.5" fill="#AA9C86" stroke="#262B29" strokeWidth="0.8" />
+            {/* Clothesline Cable Drooping */}
+            <path d="M 135,294 Q 105,302 82,282" fill="none" stroke="#343B37" strokeWidth="0.75" />
+            
+            {/* Hanging Laundry */}
+            <g transform="translate(112, 298)">
+              {/* White Bedsheet */}
+              <rect x="-10" y="0" width="18" height="28" fill="#F7F3EB" stroke="#DDD4C3" strokeWidth="0.8" />
+              {/* Clothespins */}
+              <rect x="-8" y="-1.5" width="2" height="3" fill="#965D45" />
+              <rect x="5" y="-1.5" width="2" height="3" fill="#965D45" />
+            </g>
+            <g transform="translate(93, 292)">
+              {/* Rust/Terracotta shirt */}
+              <polygon points="0,0 12,0 10,18 -2,18" fill="#AF7359" stroke="#7D4732" strokeWidth="0.8" />
+              <rect x="2" y="-1.5" width="1.8" height="3" fill="#343B37" />
+              <rect x="8" y="-1.5" width="1.8" height="3" fill="#343B37" />
+            </g>
+          </g>
+
+          {/* Resting Ginger Balcony Cat (Clean, Grounded on Balustrade) */}
+          <g id="balcony-cat" className={`perspective-transition ${isAnimalSubdued ? 'perspective-dimmed' : ''}`} transform="translate(182, 335)">
+            <ellipse cx="0" cy="0" rx="4.5" ry="3" fill="#AF7359" />
+            <circle cx="3.5" cy="-2.5" r="2" fill="#AF7359" />
+            {/* Ears */}
+            <polygon points="2.5,-4 3.5,-5.5 4.5,-4" fill="#7D4732" />
+            {/* Tail curled over balustrade edge */}
             <path d="M -4,1 Q -7,5 -6,8" fill="none" stroke="#AF7359" strokeWidth="1.2" />
           </g>
         </g>
@@ -177,18 +247,16 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <line x1="510" y1="275" x2="510" y2="340" stroke="#343B37" strokeWidth="1" />
           <line x1="480" y1="305" x2="540" y2="305" stroke="#343B37" strokeWidth="0.8" />
           
-          {/* Subtle lace curtain draft */}
-          <path d="M 480,275 Q 492,305 486,340 L 480,340 Z" fill="#F7F3EB" fillOpacity="0.6" className="animate-curtain" />
+          {/* Subtle lace curtain (Static) */}
+          <path d="M 480,275 Q 492,305 486,340 L 480,340 Z" fill="#F7F3EB" fillOpacity="0.6" />
 
-          {/* Monstera plant in corner */}
+          {/* Monstera plant in corner (Static Architectural Botany) */}
           <g transform="translate(465, 335)" className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
             <ellipse cx="0" cy="8" rx="6" ry="5" fill="#965D45" stroke="#262B29" strokeWidth="0.8" />
-            <g className="animate-leaves">
-              <path d="M 0,5 Q -8,-5 -10,-12" fill="none" stroke="#586450" strokeWidth="1.2" />
-              <path d="M 0,5 Q 6,-8 10,-14" fill="none" stroke="#586450" strokeWidth="1.2" />
-              <circle cx="-10" cy="-12" r="5" fill="#74826A" />
-              <circle cx="10" cy="-14" r="5" fill="#8A997F" />
-            </g>
+            <path d="M 0,5 Q -8,-5 -10,-12" fill="none" stroke="#586450" strokeWidth="1.2" />
+            <path d="M 0,5 Q 6,-8 10,-14" fill="none" stroke="#586450" strokeWidth="1.2" />
+            <circle cx="-10" cy="-12" r="5" fill="#74826A" />
+            <circle cx="10" cy="-14" r="5" fill="#8A997F" />
           </g>
 
           {/* Sofa with Cushions */}
@@ -225,9 +293,9 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <rect x="276" y="408" width="6" height="40" fill="#7D4732" stroke="#262B29" strokeWidth="1" />
           <rect x="285" y="426" width="68" height="22" fill="#74826A" fillOpacity="0.5" stroke="#586450" strokeWidth="0.8" />
 
-          {/* Window with Lace Sheers gently swaying */}
+          {/* Window with Lace Sheers (Static) */}
           <rect x="375" y="375" width="45" height="65" fill="#E8E0D1" stroke="#343B37" strokeWidth="1.2" />
-          <g className="animate-curtain">
+          <g>
             <path d="M 378,377 L 417,377 L 412,438 L 382,438 Z" fill="#F7F3EB" fillOpacity="0.75" stroke="#DDD4C3" strokeWidth="0.5" />
           </g>
         </g>
@@ -307,15 +375,13 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
             <line x1="-2" y1="10" x2="30" y2="10" stroke="#262B29" strokeWidth="1" />
           </g>
 
-          {/* Large Thriving Monstera in Ceramic Tub */}
+          {/* Large Thriving Monstera in Ceramic Tub (Static) */}
           <g transform="translate(650, 405)" className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
             <polygon points="-5,15 5,15 4,24 -4,24" fill="#965D45" stroke="#262B29" strokeWidth="0.8" />
-            <g className="animate-leaves">
-              <path d="M 0,15 Q -10,0 -16,-10" fill="none" stroke="#586450" strokeWidth="1.5" />
-              <path d="M 0,15 Q 10,2 14,-8" fill="none" stroke="#586450" strokeWidth="1.5" />
-              <ellipse cx="-16" cy="-10" rx="9" ry="7" fill="#74826A" stroke="#586450" strokeWidth="0.8" transform="rotate(-25 -16 -10)" />
-              <ellipse cx="14" cy="-8" rx="8" ry="6" fill="#8A997F" stroke="#586450" strokeWidth="0.8" transform="rotate(20 14 -8)" />
-            </g>
+            <path d="M 0,15 Q -10,0 -16,-10" fill="none" stroke="#586450" strokeWidth="1.5" />
+            <path d="M 0,15 Q 10,2 14,-8" fill="none" stroke="#586450" strokeWidth="1.5" />
+            <ellipse cx="-16" cy="-10" rx="9" ry="7" fill="#74826A" stroke="#586450" strokeWidth="0.8" transform="rotate(-25 -16 -10)" />
+            <ellipse cx="14" cy="-8" rx="8" ry="6" fill="#8A997F" stroke="#586450" strokeWidth="0.8" transform="rotate(20 14 -8)" />
           </g>
 
           {/* Vintage Brass Floor Lamp */}

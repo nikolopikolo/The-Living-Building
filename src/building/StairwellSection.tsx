@@ -130,8 +130,8 @@ export const StairwellSection: React.FC<StairwellSectionProps> = ({ selectedPers
         <circle cx="6.5" cy="-1.5" r="3.5" fill="#AF7359" stroke="#7D4732" strokeWidth="0.8" />
         <polygon points="5.5,-4.5 7,-7 8.5,-4.5" fill="#965D45" />
         
-        {/* Animated Curled Tail with gentle twitch */}
-        <g className="animate-cat-tail">
+        {/* Curled Tail (Clean, Static) */}
+        <g>
           <path d="M -6.5,1 Q -11,4 -9,7" fill="none" stroke="#AF7359" strokeWidth="1.8" />
           <path d="M -8,5 Q -10,7 -8.5,8" fill="none" stroke="#7D4732" strokeWidth="1.5" />
         </g>

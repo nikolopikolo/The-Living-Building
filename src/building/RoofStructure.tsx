@@ -103,10 +103,10 @@ export const RoofStructure: React.FC<RoofStructureProps> = ({ selectedPerspectiv
         </g>
       </g>
 
-      {/* Soviet Television Antenna Masts & Guy Wires with subtle micro-sway */}
+      {/* Soviet Television Antenna Masts & Guy Wires */}
       <g id="antenna-forest" className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
-        {/* Main Tall Central Antenna Mast (Subtle wind sway) */}
-        <g className="animate-antenna-sway">
+        {/* Main Tall Central Antenna Mast */}
+        <g id="antenna-main-mast">
           <line x1="560" y1="148" x2="560" y2="52" stroke="#262B29" strokeWidth="2" />
           {/* Horizontal Dipoles */}
           <line x1="535" y1="62" x2="585" y2="62" stroke="#262B29" strokeWidth="1.2" />
@@ -158,7 +158,7 @@ export const RoofStructure: React.FC<RoofStructureProps> = ({ selectedPerspectiv
           <ellipse cx="8" cy="2" rx="4" ry="2" fill="#F7F3EB" opacity="0.75" />
         </g>
 
-        {/* Perched Pigeon on Chimney Stack 1 with Occasional Head Turn */}
+        {/* Perched Pigeon on Chimney Stack 1 (Clean Architectural Silhouette) */}
         <g id="pigeon-chimney" transform="translate(345, 94)">
           {/* Body */}
           <ellipse cx="0" cy="0" rx="4" ry="2.5" fill="#48524D" />
@@ -166,29 +166,25 @@ export const RoofStructure: React.FC<RoofStructureProps> = ({ selectedPerspectiv
           <polygon points="-3,0 -7,1 -4,1.5" fill="#343B37" />
           {/* Wing feather line */}
           <path d="M -1,-1 Q 2,-2 1,1" fill="none" stroke="#343B37" strokeWidth="0.6" />
-          {/* Head & beak with subtle animated turning */}
-          <g className="animate-pigeon-head">
-            <circle cx="3.5" cy="-2" r="1.8" fill="#586450" />
-            <polygon points="5,-2 7,-1.5 5,-1" fill="#965D45" />
-            <circle cx="4" cy="-2.5" r="0.4" fill="#262B29" />
-          </g>
+          {/* Head & beak */}
+          <circle cx="3.5" cy="-2" r="1.8" fill="#586450" />
+          <polygon points="5,-2 7,-1.5 5,-1" fill="#965D45" />
+          <circle cx="4" cy="-2.5" r="0.4" fill="#262B29" />
         </g>
 
-        {/* Second Perched Pigeon on Parapet with Occasional Wing Flap */}
+        {/* Second Perched Pigeon on Parapet (Grounded on Concrete Coping) */}
         <g id="pigeon-parapet" transform="translate(186, 120)">
           {/* Body */}
           <ellipse cx="0" cy="0" rx="3.5" ry="2.2" fill="#586450" />
-          {/* Animated Wing */}
-          <g className="animate-bird-wings">
-            <ellipse cx="-0.5" cy="-0.5" rx="3" ry="1.6" fill="#48524D" stroke="#343B37" strokeWidth="0.4" />
-          </g>
-          {/* Head */}
+          {/* Wing */}
+          <ellipse cx="-0.5" cy="-0.5" rx="3" ry="1.6" fill="#48524D" stroke="#343B37" strokeWidth="0.4" />
+          {/* Head & beak */}
           <circle cx="-3" cy="-1.8" r="1.6" fill="#343B37" />
           <polygon points="-4,-1.8 -6,-1.4 -4.5,-1" fill="#965D45" />
         </g>
 
-        {/* Swooping Swifts in the Aerial Sky (Apus apus) */}
-        <g className="animate-flutter" transform="translate(585, 45)">
+        {/* Swooping Swifts in the Aerial Sky (Apus apus) - Static Architectural Silhouettes */}
+        <g id="aerial-swift-1" transform="translate(585, 45)">
           {/* Crescent curved wings of common swift */}
           <path
             d="M -14,-4 Q -5,2 0,0 Q 5,2 14,-4 Q 4,-1 0,-3 Q -4,-1 -14,-4 Z"
@@ -199,7 +195,7 @@ export const RoofStructure: React.FC<RoofStructureProps> = ({ selectedPerspectiv
         </g>
 
         {/* Second Swift Gliding Higher */}
-        <g className="animate-flutter" transform="translate(420, 35)">
+        <g id="aerial-swift-2" transform="translate(420, 35)">
           <path
             d="M -10,-3 Q -3,1.5 0,0 Q 3,1.5 10,-3 Q 3,-0.8 0,-2.5 Q -3,-0.8 -10,-3 Z"
             fill="#262B29"

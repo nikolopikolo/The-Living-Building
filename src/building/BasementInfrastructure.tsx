@@ -57,17 +57,11 @@ export const BasementInfrastructure: React.FC<BasementInfrastructureProps> = ({ 
           <ellipse cx="7" cy="-8" rx="10" ry="3.5" fill="#965D45" stroke="#262B29" strokeWidth="1.2" />
           <circle cx="7" cy="-8" r="1.5" fill="#262B29" />
 
-          {/* Slow Water Droplet falling from flange */}
-          <g transform="translate(7, 24)">
-            <ellipse cx="0" cy="0" rx="1" ry="1.4" fill="#DDD4C3" className="animate-droplet" />
-          </g>
-
-          {/* Catchment tin pan on ground with ripple */}
+          {/* Catchment tin pan on ground catching slow condensation */}
           <g transform="translate(7, 72)">
             <ellipse cx="0" cy="0" rx="9" ry="3" fill="#343B37" stroke="#262B29" strokeWidth="0.8" />
             <ellipse cx="0" cy="0" rx="7" ry="2.2" fill="#586450" opacity="0.4" />
-            {/* Animated droplet ripple ring */}
-            <circle cx="0" cy="0" r="1" fill="none" stroke="#E8E0D1" strokeWidth="0.6" className="animate-droplet-ripple" />
+            <circle cx="0" cy="0" r="2.5" fill="none" stroke="#E8E0D1" strokeWidth="0.6" opacity="0.6" />
           </g>
         </g>
 

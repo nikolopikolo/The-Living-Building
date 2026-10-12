@@ -49,8 +49,8 @@ export const CourtyardSection: React.FC<CourtyardSectionProps> = ({ selectedPers
           <path d="M 30,660 Q 32,620 28,590 Q 31,570 35,560" fill="none" stroke="#7D4732" strokeWidth="3" />
           <path d="M 35,560 Q 70,555 110,558 Q 145,555 180,562" fill="none" stroke="#7D4732" strokeWidth="2.5" />
 
-          {/* Cascading Grape Foliage with subtle breeze animation */}
-          <g className="animate-leaves">
+          {/* Cascading Grape Foliage */}
+          <g>
             {[
               { cx: 25, cy: 565, r: 7 },
               { cx: 38, cy: 558, r: 9 },
@@ -107,8 +107,8 @@ export const CourtyardSection: React.FC<CourtyardSectionProps> = ({ selectedPers
           stroke="#AA9C86"
           strokeWidth="4"
         />
-        {/* Characteristic broad lobed fig leaves */}
-        <g className="animate-leaves">
+        {/* Characteristic broad lobed fig leaves (Static Architectural Botany) */}
+        <g>
           <path d="M 18,552 Q 10,540 16,532 Q 26,538 22,550" fill="#74826A" stroke="#586450" strokeWidth="0.8" />
           <path d="M 24,555 Q 35,545 42,550 Q 38,562 26,558" fill="#8A997F" stroke="#586450" strokeWidth="0.8" />
           <path d="M 33,568 Q 45,560 50,568 Q 42,578 34,572" fill="#74826A" stroke="#586450" strokeWidth="0.8" />
@@ -136,7 +136,7 @@ export const CourtyardSection: React.FC<CourtyardSectionProps> = ({ selectedPers
         </g>
       </g>
 
-      {/* MULTISPECIES HIGHLIGHT 1: Community Street Dog ("Buba") */}
+      {/* MULTISPECIES HIGHLIGHT: Community Street Dog ("Buba") resting on mat */}
       <g id="community-dog-buba" className={`perspective-transition ${isAnimalSubdued ? 'perspective-dimmed' : ''}`} transform="translate(125, 652)">
         {/* Burlap Sack Mat */}
         <ellipse cx="0" cy="8" rx="18" ry="4" fill="#C4B7A2" stroke="#AA9C86" strokeWidth="0.8" />
@@ -159,30 +159,6 @@ export const CourtyardSection: React.FC<CourtyardSectionProps> = ({ selectedPers
         <path d="M -12,2 Q -16,4 -15,7" fill="none" stroke="#C4B7A2" strokeWidth="2.5" strokeLinecap="round" />
       </g>
 
-      {/* MULTISPECIES HIGHLIGHT 2: Second Courtyard Cat ("Tsitsia") perched on fountain wall */}
-      <g id="courtyard-cat-tsitsia" className={`perspective-transition ${isAnimalSubdued ? 'perspective-dimmed' : ''}`} transform="translate(168, 622)">
-        {/* Sleek black/charcoal cat sitting alert */}
-        {/* Body */}
-        <ellipse cx="0" cy="0" rx="4" ry="6" fill="#262B29" stroke="#343B37" strokeWidth="0.6" />
-        {/* White chest patch */}
-        <ellipse cx="1.5" cy="0" rx="1.5" ry="3" fill="#F7F3EB" />
-        {/* Cat Head */}
-        <circle cx="0" cy="-7" r="3" fill="#262B29" stroke="#343B37" strokeWidth="0.6" />
-        {/* Pointed ears */}
-        <polygon points="-2.5,-9 -1.5,-12 0,-9" fill="#262B29" />
-        <polygon points="0.5,-9 2,-12 2.8,-9" fill="#262B29" />
-        {/* Eyes (warm jade green) */}
-        <circle cx="-1" cy="-7" r="0.6" fill="#8A997F" />
-        <circle cx="1.5" cy="-7" r="0.6" fill="#8A997F" />
-        {/* Whiskers */}
-        <line x1="-1" y1="-5.5" x2="-4" y2="-5.5" stroke="#DDD4C3" strokeWidth="0.4" />
-        <line x1="1" y1="-5.5" x2="4" y2="-5.5" stroke="#DDD4C3" strokeWidth="0.4" />
-        {/* Tail hanging down side with subtle animated twitch */}
-        <g className="animate-courtyard-cat-tail">
-          <path d="M -2,4 Q -4,10 -1,14" fill="none" stroke="#262B29" strokeWidth="1.4" />
-        </g>
-      </g>
-
       {/* Courtyard Drinking Fountain / Tap (Fonte / ეზოს ონკანი) */}
       <g id="courtyard-water-fountain" transform="translate(162, 630)">
         {/* Vertical Stone Plinth */}
@@ -190,8 +166,8 @@ export const CourtyardSection: React.FC<CourtyardSectionProps> = ({ selectedPers
         {/* Brass Curved Tap */}
         <path d="M 0,10 L -5,10 L -5,13" fill="none" stroke="#965D45" strokeWidth="1.8" />
         <circle cx="-5" cy="7" r="1.2" fill="#7D4732" />
-        {/* Water drip droplet animation */}
-        <circle cx="-5" cy="18" r="1" fill="#F7F3EB" className="animate-droplet" />
+        {/* Water drip drop (Clean, Static) */}
+        <circle cx="-5" cy="18" r="0.8" fill="#F7F3EB" opacity="0.8" />
         {/* Stone basin catching water */}
         <rect x="-9" y="26" width="10" height="4" fill="#343B37" stroke="#262B29" strokeWidth="0.8" />
         {/* Moist green moss around fountain base */}

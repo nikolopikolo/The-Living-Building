@@ -19,7 +19,6 @@ export const BuildingFrame: React.FC<BuildingFrameProps> = ({ selectedPerspectiv
   ];
 
   const isPlantSubdued = selectedPerspective !== 'ALL' && selectedPerspective !== 'PLANT';
-  const isHumanSubdued = selectedPerspective !== 'ALL' && selectedPerspective !== 'HUMAN';
   const isInfraSubdued = selectedPerspective !== 'ALL' && selectedPerspective !== 'INFRASTRUCTURE';
 
   return (
@@ -85,7 +84,7 @@ export const BuildingFrame: React.FC<BuildingFrameProps> = ({ selectedPerspectiv
         ))}
       </g>
 
-      {/* Climbing Vines on Left Exterior Concrete Facade & Joint Cracks */}
+      {/* Climbing Vines on Left Exterior Concrete Facade & Joint Cracks (Static Architectural Flora) */}
       <g id="facade-climbing-vines" className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
         {/* Main climbing vine stem up left column (x=178) */}
         <path
@@ -103,7 +102,7 @@ export const BuildingFrame: React.FC<BuildingFrameProps> = ({ selectedPerspectiv
           { x: 178, y: 430 },
           { x: 175, y: 390 },
         ].map((pt, i) => (
-          <g key={i} transform={`translate(${pt.x}, ${pt.y})`} className="animate-leaves">
+          <g key={i} transform={`translate(${pt.x}, ${pt.y})`}>
             <path d="M 0,0 Q -4,-5 -1,-8 Q 3,-5 0,0" fill="#74826A" stroke="#586450" strokeWidth="0.5" />
             <path d="M 0,0 Q 4,-4 2,-7 Q -1,-4 0,0" fill="#8A997F" stroke="#586450" strokeWidth="0.5" />
           </g>
@@ -156,100 +155,26 @@ export const BuildingFrame: React.FC<BuildingFrameProps> = ({ selectedPerspectiv
         <path d="M 835,675 Q 835,690 850,690" fill="none" stroke="#7D4732" strokeWidth="3" />
       </g>
 
-      {/* Cantilever Balconies with Metal Railings, Planters & Swaying Laundry */}
-      {[260, 360, 460, 560].map((by, idx) => (
-        <g key={by} className="balcony-assembly">
-          {/* Support bracket & concrete slab */}
-          <g className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
-            {/* Triangular steel diagonal gusset */}
-            <polygon
-              points={`180,${by} 150,${by} 180,${by + 28}`}
-              fill="#343B37"
-              stroke="#262B29"
-              strokeWidth="1"
-            />
-            {/* Concrete cantilever slab extension */}
-            <rect
-              x="135"
-              y={by - 8}
-              width="45"
-              height="10"
-              fill="#C4B7A2"
-              stroke="#262B29"
-              strokeWidth="1.2"
-            />
-          </g>
-
-          {/* Metal Balustrade / Railing */}
-          <g className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
-            {/* Handrail */}
-            <line x1="135" y1={by - 32} x2="180" y2={by - 32} stroke="#262B29" strokeWidth="1.5" />
-            {/* Outer Post */}
-            <line x1="135" y1={by - 8} x2="135" y2={by - 32} stroke="#262B29" strokeWidth="1.8" />
-            {/* Intermediate vertical balusters */}
-            {[144, 153, 162, 171].map((rx) => (
-              <line key={rx} x1={rx} y1={by - 8} x2={rx} y2={by - 32} stroke="#343B37" strokeWidth="1" />
-            ))}
-          </g>
-
-          {/* Balcony Vegetation: Potted Geraniums & Trailing Ivy on Floors 2, 4, 5 */}
-          {idx !== 2 && (
-            <g className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
-              {/* Terracotta planter box strapped to railing */}
-              <rect x="140" y={by - 26} width="22" height="7" fill="#965D45" stroke="#262B29" strokeWidth="0.75" />
-              {/* Green foliage with micro-sway */}
-              <g className="animate-leaves" transform={`translate(142, ${by - 27})`}>
-                <circle cx="4" cy="0" r="3.5" fill="#74826A" />
-                <circle cx="10" cy="-1" r="3.8" fill="#8A997F" />
-                <circle cx="16" cy="0" r="3.5" fill="#74826A" />
-                {/* Tiny red geranium blossom dots */}
-                <circle cx="7" cy="-2" r="1.2" fill="#B34B38" />
-                <circle cx="13" cy="-3" r="1.2" fill="#B34B38" />
-                {/* Trailing ivy hanging down over slab */}
-                <path d="M 4,4 Q 2,12 5,16" fill="none" stroke="#74826A" strokeWidth="1" />
-                <circle cx="5" cy="16" r="1.5" fill="#8A997F" />
-              </g>
-            </g>
-          )}
-
-          {/* Human Presence: Floor 4 (by=360) Cantilever Clothesline & Hanging Laundry */}
-          {by === 360 && (
-            <g id="balcony-laundry-line" className={`perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
-              {/* Cantilever clothesline wire */}
-              <path d="M 135,335 Q 95,342 55,337" fill="none" stroke="#343B37" strokeWidth="0.75" strokeDasharray="3,1" />
-              {/* Pulley wheel bracket at balcony edge */}
-              <circle cx="135" cy="335" r="2.2" fill="#7D4732" stroke="#262B29" strokeWidth="0.6" />
-
-              {/* Hanging clothes swaying in the wind */}
-              <g className="animate-laundry" transform="translate(112, 338)">
-                {/* Wooden clothespins */}
-                <rect x="-1" y="-3" width="2" height="4" fill="#AA9C86" />
-                <rect x="9" y="-3" width="2" height="4" fill="#AA9C86" />
-                {/* White cotton bedsheet */}
-                <polygon points="0,0 10,0 9,22 1,22" fill="#F7F3EB" stroke="#C4B7A2" strokeWidth="0.6" />
-                <line x1="5" y1="2" x2="5" y2="20" stroke="#E8E0D1" strokeWidth="0.5" />
-              </g>
-
-              {/* Blue linen kitchen towel */}
-              <g className="animate-laundry" transform="translate(86, 340)">
-                <rect x="0" y="-3" width="1.5" height="3" fill="#AA9C86" />
-                <polygon points="0,0 8,0 7,16 1,16" fill="#8A997F" stroke="#586450" strokeWidth="0.6" />
-                <line x1="2" y1="12" x2="6" y2="12" stroke="#F7F3EB" strokeWidth="0.6" />
-              </g>
-
-              {/* Pair of socks */}
-              <g className="animate-laundry" transform="translate(68, 339)">
-                <path d="M 0,0 L 0,8 L 3,10 L 3,8 L 1,0 Z" fill="#965D45" stroke="#7D4732" strokeWidth="0.5" />
-                <path d="M 6,0 L 6,8 L 9,10 L 9,8 L 7,0 Z" fill="#965D45" stroke="#7D4732" strokeWidth="0.5" />
-              </g>
-
-              {/* Porcelain coffee cup on balcony sill */}
-              <g transform="translate(172, 349)">
-                <rect x="0" y="0" width="4" height="4" fill="#F7F3EB" stroke="#262B29" strokeWidth="0.5" rx="0.5" />
-                <path d="M 4,1 Q 5.5,2 4,3" fill="none" stroke="#262B29" strokeWidth="0.5" />
-              </g>
-            </g>
-          )}
+      {/* Cantilever Balcony Steel Brackets on Left Facade (Floors 2, 3, 4, 5) */}
+      {[260, 360, 460, 560].map((by) => (
+        <g key={by} className={`balcony-support perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
+          {/* Triangular steel diagonal gusset */}
+          <polygon
+            points={`180,${by} 150,${by} 180,${by + 28}`}
+            fill="#343B37"
+            stroke="#262B29"
+            strokeWidth="1"
+          />
+          {/* Concrete cantilever slab extension */}
+          <rect
+            x="135"
+            y={by - 8}
+            width="45"
+            height="10"
+            fill="#C4B7A2"
+            stroke="#262B29"
+            strokeWidth="1.2"
+          />
         </g>
       ))}
 

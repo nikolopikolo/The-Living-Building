@@ -75,136 +75,10 @@
 }
 
 /* ========================================================
-   SUBTLE ENVIRONMENTAL ANIMATIONS (Asynchronous, natural intervals)
+   SUBTLE ENVIRONMENTAL AMBIENCE (Pure Opacity & Lighting, Zero Transform Shifts)
    ======================================================== */
 
-/* 1. Rooftop Pigeon Head Turn (Restrained twitch every ~9s) */
-@keyframes pigeon-head-turn {
-  0%, 78%, 100% {
-    transform: rotate(0deg);
-  }
-  82%, 92% {
-    transform: rotate(-18deg);
-  }
-  94% {
-    transform: rotate(4deg);
-  }
-}
-
-.animate-pigeon-head {
-  transform-origin: 3.5px -2px;
-  animation: pigeon-head-turn 8.6s ease-in-out infinite;
-}
-
-/* 2. Bird Wing Flap (Occasional brief wing rustle every ~13s) */
-@keyframes bird-wing-flutter {
-  0%, 86%, 100% {
-    transform: scaleY(1) translateY(0);
-  }
-  88%, 92% {
-    transform: scaleY(0.4) translateY(-1.5px);
-  }
-  90%, 94% {
-    transform: scaleY(1.15) translateY(-2px);
-  }
-}
-
-.animate-bird-wings {
-  transform-origin: center center;
-  animation: bird-wing-flutter 13.4s ease-in-out infinite;
-}
-
-/* 3. Rooftop Antenna Mast Imperceptible Sway (~11.5s period) */
-@keyframes antenna-micro-sway {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  48% {
-    transform: rotate(0.45deg);
-  }
-  82% {
-    transform: rotate(-0.35deg);
-  }
-}
-
-.animate-antenna-sway {
-  transform-origin: 560px 148px;
-  animation: antenna-micro-sway 11.2s ease-in-out infinite;
-}
-
-/* 4. Balcony Laundry Swaying in Caucasian Breeze (~7.2s) */
-@keyframes laundry-breeze {
-  0%, 100% {
-    transform: rotate(0deg) skewX(0deg);
-  }
-  35% {
-    transform: rotate(2.4deg) skewX(1.8deg);
-  }
-  70% {
-    transform: rotate(-1.6deg) skewX(-1.2deg);
-  }
-}
-
-.animate-laundry {
-  transform-origin: top center;
-  animation: laundry-breeze 7.4s ease-in-out infinite;
-}
-
-/* 5. Balcony Foliage & Vine Leaves Moving in Breeze (~6.5s) */
-@keyframes leaf-sway {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  45% {
-    transform: rotate(3.2deg);
-  }
-  80% {
-    transform: rotate(-2deg);
-  }
-}
-
-.animate-leaves {
-  transform-origin: 20px 20px;
-  animation: leaf-sway 6.8s ease-in-out infinite;
-}
-
-/* 6. Stairwell Tabby Cat Tail Twitch (~10.8s) */
-@keyframes cat-tail-swish {
-  0%, 80%, 100% {
-    transform: rotate(0deg);
-  }
-  86% {
-    transform: rotate(-9deg) translateX(-0.5px);
-  }
-  92% {
-    transform: rotate(7deg) translateX(0.5px);
-  }
-}
-
-.animate-cat-tail {
-  transform-origin: -6.5px 1px;
-  animation: cat-tail-swish 10.8s ease-in-out infinite;
-}
-
-/* 7. Courtyard Cat Slow Posture Shift / Tail (~12.2s) */
-@keyframes courtyard-cat-tail {
-  0%, 82%, 100% {
-    transform: rotate(0deg);
-  }
-  88% {
-    transform: rotate(8deg);
-  }
-  94% {
-    transform: rotate(-5deg);
-  }
-}
-
-.animate-courtyard-cat-tail {
-  transform-origin: bottom left;
-  animation: courtyard-cat-tail 12.2s ease-in-out infinite;
-}
-
-/* 8. Stairwell Light Subtle Voltage Flicker (~15.6s) */
+/* 1. Stairwell Light Subtle Voltage Flicker (~15.6s) */
 @keyframes stair-light-flicker {
   0%, 93%, 97%, 100% {
     opacity: 0.85;
@@ -224,25 +98,7 @@
   animation: stair-light-flicker 15.6s ease-in-out infinite;
 }
 
-/* 9. Apartment Curtains Fluttering in Draft (~8.3s) */
-@keyframes curtain-breeze {
-  0%, 100% {
-    transform: scaleX(1) skewY(0deg);
-  }
-  42% {
-    transform: scaleX(1.1) skewY(1.4deg);
-  }
-  78% {
-    transform: scaleX(0.96) skewY(-0.8deg);
-  }
-}
-
-.animate-curtain {
-  transform-origin: top left;
-  animation: curtain-breeze 8.3s ease-in-out infinite;
-}
-
-/* 10. Warm Window Light Changing Intensity (~14.2s) */
+/* 2. Warm Window Light Changing Intensity (~14.2s) */
 @keyframes window-glow {
   0%, 100% {
     opacity: 0.32;
@@ -256,58 +112,7 @@
   animation: window-glow 14.2s ease-in-out infinite;
 }
 
-/* 11. Basement Pipe Water Droplet Drip (~5.8s) */
-@keyframes droplet-fall {
-  0%, 55% {
-    transform: translateY(0px) scale(0.6);
-    opacity: 0;
-  }
-  58% {
-    opacity: 0.85;
-    transform: translateY(2px) scale(1);
-  }
-  78% {
-    opacity: 0.85;
-    transform: translateY(28px) scale(0.9, 1.2);
-  }
-  80% {
-    opacity: 0;
-    transform: translateY(30px) scale(1.6, 0.4);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-}
-
-@keyframes droplet-ripple {
-  0%, 78% {
-    r: 1px;
-    opacity: 0;
-  }
-  81% {
-    opacity: 0.7;
-    r: 2px;
-  }
-  92% {
-    opacity: 0;
-    r: 8px;
-  }
-  100% {
-    opacity: 0;
-    r: 8px;
-  }
-}
-
-.animate-droplet {
-  animation: droplet-fall 5.8s ease-in infinite;
-}
-
-.animate-droplet-ripple {
-  animation: droplet-ripple 5.8s ease-out infinite;
-}
-
-/* 12. Basement Infrastructure Indicator Pulse (~3.6s) */
+/* 3. Basement Infrastructure Indicator Pulse (~3.6s) */
 @keyframes indicator-glow {
   0%, 100% {
     opacity: 0.25;
@@ -321,43 +126,18 @@
   animation: indicator-glow 3.6s ease-in-out infinite;
 }
 
-/* Existing Legacy Keyframes for compatibility */
-@keyframes subtle-sway {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(1.8deg); }
-}
-
-@keyframes bird-flutter {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-3px); }
-}
-
+/* 4. Rooftop Chimney Kitchen Air / Steam Opacity Pulse (~5.5s) */
 @keyframes steam-rise {
-  0% { opacity: 0.15; transform: translateY(0px) scale(0.9); }
-  50% { opacity: 0.35; }
-  100% { opacity: 0; transform: translateY(-12px) scale(1.3); }
-}
-
-@keyframes subtle-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.85; }
-}
-
-.animate-sway {
-  transform-origin: top center;
-  animation: subtle-sway 6s ease-in-out infinite;
-}
-
-.animate-flutter {
-  animation: bird-flutter 4.5s ease-in-out infinite;
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }
 
 .animate-steam {
-  animation: steam-rise 4s ease-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: subtle-pulse 3s ease-in-out infinite;
+  animation: steam-rise 5.5s ease-in-out infinite;
 }
 
 /* Accessibility: Precedence for prefers-reduced-motion */
