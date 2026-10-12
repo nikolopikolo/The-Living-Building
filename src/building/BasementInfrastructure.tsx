@@ -1,6 +1,15 @@
 import React from 'react';
+import type { PerspectiveFilter } from '../types';
 
-export const BasementInfrastructure: React.FC = () => {
+interface BasementInfrastructureProps {
+  selectedPerspective?: PerspectiveFilter;
+}
+
+export const BasementInfrastructure: React.FC<BasementInfrastructureProps> = ({ selectedPerspective = 'ALL' }) => {
+  const isPlantSubdued = selectedPerspective !== 'ALL' && selectedPerspective !== 'PLANT';
+  const isHumanSubdued = selectedPerspective !== 'ALL' && selectedPerspective !== 'HUMAN';
+  const isInfraSubdued = selectedPerspective !== 'ALL' && selectedPerspective !== 'INFRASTRUCTURE';
+
   return (
     <g id="basement-sardapi">
       {/* Subterranean Damp Masonry Foundation Vault */}
@@ -11,7 +20,7 @@ export const BasementInfrastructure: React.FC = () => {
       <rect x="180" y="720" width="650" height="50" fill="url(#moss-patina)" opacity="0.6" />
 
       {/* Heavy Structural Arch Foundation Columns */}
-      <g id="basement-piers">
+      <g id="basement-piers" className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
         <rect x="340" y="660" width="22" height="110" fill="#343B37" stroke="#262B29" strokeWidth="1.2" />
         <rect x="520" y="660" width="22" height="110" fill="#343B37" stroke="#262B29" strokeWidth="1.2" />
         <rect x="680" y="660" width="22" height="110" fill="#343B37" stroke="#262B29" strokeWidth="1.2" />
@@ -21,7 +30,7 @@ export const BasementInfrastructure: React.FC = () => {
       </g>
 
       {/* District Heating Arteries (Main Central Supply & Return Pipes) */}
-      <g id="district-heating-pipes">
+      <g id="district-heating-pipes" className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
         {/* Heavy Upper Supply Pipe (Insulated with fiber/canvas lagging) */}
         <rect x="180" y="678" width="650" height="12" fill="#AA9C86" stroke="#262B29" strokeWidth="1.2" />
         {/* Lagging Wire Ties along pipe */}
@@ -39,7 +48,7 @@ export const BasementInfrastructure: React.FC = () => {
         ))}
 
         {/* Massive Cast-Iron Gate Valves with Handwheels */}
-        {/* Valve 1 */}
+        {/* Valve 1 with water droplet drip animation */}
         <g transform="translate(300, 672)">
           <rect x="0" y="0" width="14" height="24" fill="#7D4732" stroke="#262B29" strokeWidth="1" />
           {/* Wheel shaft */}
@@ -47,7 +56,21 @@ export const BasementInfrastructure: React.FC = () => {
           {/* Cast iron red wheel */}
           <ellipse cx="7" cy="-8" rx="10" ry="3.5" fill="#965D45" stroke="#262B29" strokeWidth="1.2" />
           <circle cx="7" cy="-8" r="1.5" fill="#262B29" />
+
+          {/* Slow Water Droplet falling from flange */}
+          <g transform="translate(7, 24)">
+            <ellipse cx="0" cy="0" rx="1" ry="1.4" fill="#DDD4C3" className="animate-droplet" />
+          </g>
+
+          {/* Catchment tin pan on ground with ripple */}
+          <g transform="translate(7, 72)">
+            <ellipse cx="0" cy="0" rx="9" ry="3" fill="#343B37" stroke="#262B29" strokeWidth="0.8" />
+            <ellipse cx="0" cy="0" rx="7" ry="2.2" fill="#586450" opacity="0.4" />
+            {/* Animated droplet ripple ring */}
+            <circle cx="0" cy="0" r="1" fill="none" stroke="#E8E0D1" strokeWidth="0.6" className="animate-droplet-ripple" />
+          </g>
         </g>
+
         {/* Valve 2 */}
         <g transform="translate(630, 690)">
           <rect x="0" y="0" width="12" height="20" fill="#7D4732" stroke="#262B29" strokeWidth="1" />
@@ -60,18 +83,27 @@ export const BasementInfrastructure: React.FC = () => {
         <line x1="680" y1="678" x2="680" y2="660" stroke="#7D4732" strokeWidth="3" />
       </g>
 
-      {/* Domestic Water Manifold & Dial Meters (x=205 to 250, y=715 to 740) */}
-      <g id="water-meters">
+      {/* Domestic Water Manifold & Dial Meters + Electrical Indicator Box */}
+      <g id="water-meters" className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
         <line x1="205" y1="720" x2="245" y2="720" stroke="#AF7359" strokeWidth="3" />
         <circle cx="215" cy="720" r="4.5" fill="#C4B7A2" stroke="#262B29" strokeWidth="1" />
         <circle cx="235" cy="720" r="4.5" fill="#C4B7A2" stroke="#262B29" strokeWidth="1" />
         {/* Dial hands */}
         <line x1="215" y1="720" x2="217" y2="718" stroke="#965D45" strokeWidth="0.8" />
         <line x1="235" y1="720" x2="233" y2="718" stroke="#965D45" strokeWidth="0.8" />
+
+        {/* Cast-Iron Utility Fusebox with Pulsing Indicator Light */}
+        <g transform="translate(205, 688)">
+          <rect x="0" y="0" width="16" height="18" fill="#343B37" stroke="#262B29" strokeWidth="1" rx="1.5" />
+          <line x1="8" y1="0" x2="8" y2="-10" stroke="#262B29" strokeWidth="1.2" />
+          {/* Pulsing indicator light (green/amber) */}
+          <circle cx="8" cy="9" r="2.2" fill="#74826A" className="animate-indicator-glow" />
+          <circle cx="8" cy="9" r="4" fill="#74826A" opacity="0.4" className="animate-indicator-glow" />
+        </g>
       </g>
 
       {/* Wooden Slatted Storage Stall (Sardapi Pantry: x=375 to 505) */}
-      <g id="storage-stall">
+      <g id="storage-stall" className={`perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
         {/* Timber partition framing */}
         <rect x="375" y="708" width="130" height="62" fill="#343B37" fillOpacity="0.4" />
         {/* Slatted wood planks with gaps */}
@@ -106,7 +138,7 @@ export const BasementInfrastructure: React.FC = () => {
       </g>
 
       {/* Vintage Soviet Bicycle Leaning in Corridor (x=550 to 595) */}
-      <g id="basement-bicycle" opacity="0.85">
+      <g id="basement-bicycle" opacity="0.85" className={`perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
         {/* Wheels */}
         <circle cx="560" cy="752" r="12" fill="none" stroke="#AA9C86" strokeWidth="1.2" />
         <circle cx="590" cy="752" r="12" fill="none" stroke="#AA9C86" strokeWidth="1.2" />
@@ -126,10 +158,16 @@ export const BasementInfrastructure: React.FC = () => {
       </g>
 
       {/* Multispecies Flora: Subterranean Cave Moss & Damp Lichen */}
-      <g className="basement-flora">
+      <g className={`basement-flora perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
         {/* Moss colonies hugging bottom floor and pipe joints */}
         <path
           d="M 185,768 Q 200,760 215,768 Q 235,762 250,770 Z"
+          fill="#586450"
+          stroke="#343B37"
+          strokeWidth="0.6"
+        />
+        <path
+          d="M 330,769 Q 345,762 360,769 Z"
           fill="#586450"
           stroke="#343B37"
           strokeWidth="0.6"

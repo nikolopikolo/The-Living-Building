@@ -7,7 +7,7 @@ import { StairwellSection } from './StairwellSection';
 import { BasementInfrastructure } from './BasementInfrastructure';
 import { CourtyardSection } from './CourtyardSection';
 import { ZoneHighlightLayer } from '../interactions/ZoneHighlightLayer';
-import type { InteractiveZone, Language } from '../types';
+import type { InteractiveZone, Language, PerspectiveFilter } from '../types';
 
 interface ArchitecturalCutawayProps {
   zones: InteractiveZone[];
@@ -16,6 +16,7 @@ interface ArchitecturalCutawayProps {
   onZoneSelect: (zone: InteractiveZone) => void;
   onZoneHover: (zoneId: string | null) => void;
   language: Language;
+  selectedPerspective?: PerspectiveFilter;
 }
 
 export const ArchitecturalCutaway: React.FC<ArchitecturalCutawayProps> = ({
@@ -25,6 +26,7 @@ export const ArchitecturalCutaway: React.FC<ArchitecturalCutawayProps> = ({
   onZoneSelect,
   onZoneHover,
   language,
+  selectedPerspective = 'ALL',
 }) => {
   return (
     <div className="relative w-full h-full flex items-center justify-center select-none">
@@ -52,23 +54,23 @@ export const ArchitecturalCutaway: React.FC<ArchitecturalCutawayProps> = ({
           />
         </g>
 
-        {/* 1. Structural Frame (Columns, floor slabs, level marks, earth) */}
-        <BuildingFrame />
+        {/* 1. Structural Frame (Columns, floor slabs, level marks, earth, balconies) */}
+        <BuildingFrame selectedPerspective={selectedPerspective} />
 
         {/* 2. Subterranean Infrastructure & Sardapi */}
-        <BasementInfrastructure />
+        <BasementInfrastructure selectedPerspective={selectedPerspective} />
 
         {/* 3. Tbilisi Shared Courtyard & Talavari */}
-        <CourtyardSection />
+        <CourtyardSection selectedPerspective={selectedPerspective} />
 
         {/* 4. Communal Stairwell (Sadarbozo) */}
-        <StairwellSection />
+        <StairwellSection selectedPerspective={selectedPerspective} />
 
         {/* 5. Residential Apartment Rooms (Floors 1 - 5) */}
-        <ApartmentRooms />
+        <ApartmentRooms selectedPerspective={selectedPerspective} />
 
         {/* 6. Rooftop & Aerial Canopy */}
-        <RoofStructure />
+        <RoofStructure selectedPerspective={selectedPerspective} />
 
         {/* 7. Interactive Zone Highlight & Selection Layer */}
         <ZoneHighlightLayer
@@ -78,6 +80,7 @@ export const ArchitecturalCutaway: React.FC<ArchitecturalCutawayProps> = ({
           onZoneSelect={onZoneSelect}
           onZoneHover={onZoneHover}
           language={language}
+          selectedPerspective={selectedPerspective}
         />
 
         {/* 8. Architectural Drafting Marginalia & Graphic Scale Bar */}

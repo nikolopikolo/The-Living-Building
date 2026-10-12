@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Layers, Info, ChevronDown } from 'lucide-react';
-import type { InteractiveZone, Language } from '../types';
+import { Layers, Info, ChevronDown, User, Feather, Trees, Wrench, Eye } from 'lucide-react';
+import type { InteractiveZone, Language, PerspectiveFilter } from '../types';
 
 interface HeaderProps {
   language: Language;
@@ -9,7 +9,22 @@ interface HeaderProps {
   zones: InteractiveZone[];
   onSelectZone: (zone: InteractiveZone) => void;
   activeZoneId: string | null;
+  selectedPerspective: PerspectiveFilter;
+  onSelectPerspective: (perspective: PerspectiveFilter) => void;
 }
+
+const PERSPECTIVES: {
+  id: PerspectiveFilter;
+  labelEn: string;
+  labelKa: string;
+  icon: React.ComponentType<{ className?: string }>;
+}[] = [
+  { id: 'ALL', labelEn: 'ALL', labelKa: 'ყველა', icon: Eye },
+  { id: 'HUMAN', labelEn: 'HUMAN', labelKa: 'ადამიანი', icon: User },
+  { id: 'ANIMAL', labelEn: 'ANIMAL', labelKa: 'ცხოველი', icon: Feather },
+  { id: 'PLANT', labelEn: 'PLANT', labelKa: 'მცენარე', icon: Trees },
+  { id: 'INFRASTRUCTURE', labelEn: 'INFRASTRUCTURE', labelKa: 'ინფრასტრუქტურა', icon: Wrench },
+];
 
 export const Header: React.FC<HeaderProps> = ({
   language,
@@ -18,17 +33,19 @@ export const Header: React.FC<HeaderProps> = ({
   zones,
   onSelectZone,
   activeZoneId,
+  selectedPerspective,
+  onSelectPerspective,
 }) => {
   const [exploreOpen, setExploreOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none p-4 md:p-6 lg:p-8 flex items-start justify-between">
+    <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col md:flex-row md:items-start justify-between gap-3">
       {/* Top-Left: Exhibition Identity */}
-      <div className="pointer-events-auto bg-[#F7F3EB]/95 backdrop-blur-sm border border-[#343B37] shadow-brutalist-sm p-3.5 md:p-4 max-w-[340px] md:max-w-[420px]">
+      <div className="pointer-events-auto bg-[#F7F3EB]/95 backdrop-blur-sm border border-[#343B37] shadow-brutalist-sm p-3 md:p-4 max-w-[340px] md:max-w-[420px]">
         <div className="flex items-center gap-2 mb-1">
-          <span className="inline-block w-2 h-2 bg-[#965D45] rounded-full" />
-          <span className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold">
-            GEOLAB FIELDWORK ARCHIVE · PHASE 01
+          <span className="inline-block w-2 h-2 bg-[#965D45] rounded-full animate-pulse-slow" />
+          <span className="font-mono text-[9px] md:text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold">
+            GEOLAB FIELDWORK ARCHIVE · PHASE 02
           </span>
         </div>
         
@@ -41,10 +58,52 @@ export const Header: React.FC<HeaderProps> = ({
             ? 'თბილისის საცხოვრებელი არქიტექტურის მულტისახეობრივი კვლევა'
             : "A Multispecies Exploration of Tbilisi's Residential Architecture"}
         </p>
+
+        {/* Compact Perspective Selector embedded in Editorial Panel */}
+        <div className="mt-3 pt-2.5 border-t border-[#C4B7A2]/70">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="font-mono text-[9px] tracking-wider text-[#7D4732] uppercase font-semibold">
+              {language === 'KA' ? 'კვლევის პერსპექტივა' : 'RESEARCH PERSPECTIVE'}
+            </span>
+            <span className="font-mono text-[8px] text-[#74826A]">
+              {selectedPerspective === 'ALL' ? 'COMPLETE ECOSYSTEM' : selectedPerspective}
+            </span>
+          </div>
+
+          <div
+            className="flex items-center gap-1 overflow-x-auto pb-0.5 no-scrollbar"
+            role="tablist"
+            aria-label="Perspective Filters"
+          >
+            {PERSPECTIVES.map((p) => {
+              const Icon = p.icon;
+              const isSelected = selectedPerspective === p.id;
+              const label = language === 'KA' ? p.labelKa : p.labelEn;
+
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => onSelectPerspective(p.id)}
+                  role="tab"
+                  aria-selected={isSelected}
+                  className={`flex items-center gap-1 px-2 py-1 text-[10px] font-mono tracking-wider uppercase transition-all duration-200 border ${
+                    isSelected
+                      ? 'bg-[#262B29] text-[#E8E0D1] border-[#262B29] font-bold shadow-sm'
+                      : 'bg-[#E8E0D1]/80 text-[#343B37] border-[#C4B7A2] hover:bg-[#DDD4C3] hover:text-[#262B29]'
+                  }`}
+                  title={`${language === 'KA' ? 'პერსპექტივა:' : 'Perspective:'} ${label}`}
+                >
+                  <Icon className={`w-2.8 h-2.8 ${isSelected ? 'text-[#C4B7A2]' : 'text-[#7D4732]'}`} />
+                  <span className="whitespace-nowrap">{label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Top-Right: Navigation & Controls */}
-      <div className="pointer-events-auto flex items-center gap-2 md:gap-3">
+      <div className="pointer-events-auto flex items-center gap-2 md:gap-3 self-end md:self-start">
         {/* Explore Zone Dropdown */}
         <div className="relative">
           <button
