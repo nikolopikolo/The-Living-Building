@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Feather, Trees, User, Wrench, Compass, Volume2, Target, RotateCcw } from 'lucide-react';
+import { X, Feather, Trees, User, Wrench, Compass, Volume2, Camera, Film, Target, RotateCcw, ArrowRight } from 'lucide-react';
 import type { InteractiveZone, Language, SpeciesCategory } from '../types';
 import { INTERACTIVE_ZONES } from '../data/zonesData';
+import {
+  VisualFieldArchive,
+  ArchivalLightbox,
+  ArchivalAudioPlayer,
+  ArchivalVideoPlayer,
+  FieldNarrativeView,
+  ConnectedSpaces,
+  MediaPlaceholderPlate,
+} from '../components/archive';
 
 interface ZonePreviewModalProps {
   zone: InteractiveZone | null;
@@ -54,23 +63,25 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
   language,
   allZones,
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'narrative' | 'soundscapes'>('overview');
-  const [isPlayingAudio, setIsPlayingAudio] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'overview' | 'narrative' | 'visual' | 'soundscapes'>('overview');
+  const [standaloneLightboxIndex, setStandaloneLightboxIndex] = useState<number | null>(null);
 
   if (!zone) return null;
 
   const availableZones = allZones || INTERACTIVE_ZONES;
-  const relatedZones = (zone.relatedZoneIds || [])
-    .map((id) => availableZones.find((z) => z.id === id))
-    .filter((z): z is InteractiveZone => Boolean(z));
 
   const title = language === 'KA' ? zone.titleKa : zone.titleEn;
   const secondaryTitle = language === 'KA' ? zone.titleEn : zone.titleKa;
   const subtitle = language === 'KA' ? zone.subtitleKa : zone.subtitleEn;
   const description = language === 'KA' ? zone.descriptionKa : zone.descriptionEn;
-  const extendedNarrative = language === 'KA' ? zone.extendedNarrativeKa : zone.extendedNarrativeEn;
   const architecturalNotes = language === 'KA' ? zone.architecturalNotesKa : zone.architecturalNotesEn;
   const floorBadge = language === 'KA' ? zone.floorLevelKa : zone.floorLevel;
+
+  // Media Collections
+  const mediaRecords = zone.mediaRecords || [];
+  const photoRecords = mediaRecords.filter((m) => m.type === 'image');
+  const audioRecords = mediaRecords.filter((m) => m.type === 'audio');
+  const videoRecords = mediaRecords.filter((m) => m.type === 'video');
 
   return (
     <AnimatePresence>
@@ -79,12 +90,12 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 24, scale: 0.97 }}
         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:right-8 z-50 w-[94vw] max-w-[490px] max-h-[85vh] flex flex-col bg-[#F7F3EB] border border-[#343B37] shadow-brutalist p-5 sm:p-6 text-[#262B29]"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:right-8 z-40 w-[94vw] max-w-[500px] max-h-[86vh] flex flex-col bg-[#F7F3EB] border border-[#343B37] shadow-brutalist p-4 sm:p-6 text-[#262B29]"
         role="dialog"
         aria-labelledby="zone-preview-title"
       >
         {/* Archival Dossier Header Stamp */}
-        <div className="flex items-start justify-between border-b border-[#C4B7A2] pb-3 mb-3">
+        <div className="flex items-start justify-between border-b border-[#C4B7A2] pb-2.5 mb-2.5">
           <div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-[10px] font-bold px-2 py-0.5 bg-[#262B29] text-[#E8E0D1] uppercase tracking-wider">
@@ -104,14 +115,17 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
           <div className="flex items-center gap-1.5">
             {onResetView && (
               <button
+                type="button"
                 onClick={onResetView}
                 title={language === 'KA' ? 'სრულ ხედზე დაბრუნება' : 'Return to full building view'}
                 className="p-1.5 text-[#343B37] hover:text-[#262B29] hover:bg-[#E8E0D1] border border-transparent hover:border-[#343B37]/30 transition-colors rounded"
+                aria-label="Reset viewport"
               >
                 <RotateCcw className="w-3.8 h-3.8" />
               </button>
             )}
             <button
+              type="button"
               onClick={onClose}
               className="p-1.5 text-[#343B37] hover:text-[#965D45] hover:bg-[#E8E0D1] border border-transparent hover:border-[#343B37]/30 transition-colors rounded"
               aria-label="Close dossier"
@@ -122,7 +136,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
         </div>
 
         {/* Perspective Category Tags */}
-        <div className="flex flex-wrap items-center gap-1 mb-3">
+        <div className="flex flex-wrap items-center gap-1 mb-2.5">
           <span className="font-mono text-[9px] uppercase tracking-wider text-[#7D4732] mr-1">
             {language === 'KA' ? 'კატეგორიები:' : 'LENSES:'}
           </span>
@@ -130,7 +144,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
         </div>
 
         {/* Zone Titles */}
-        <div className="mb-3">
+        <div className="mb-2.5">
           <h2
             id="zone-preview-title"
             className="font-editorial text-2xl sm:text-3xl font-bold leading-tight text-[#262B29]"
@@ -145,11 +159,13 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
           </p>
         </div>
 
-        {/* Navigation Tabs within Dossier */}
-        <div className="flex items-center border-b border-[#C4B7A2] mb-3.5 text-xs font-mono">
+        {/* Archival Research Dossier Navigation Tabs */}
+        <div className="flex items-center border-b border-[#C4B7A2] mb-3 text-xs font-mono overflow-x-auto select-none">
+          {/* 1. OVERVIEW Tab */}
           <button
+            type="button"
             onClick={() => setActiveTab('overview')}
-            className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[11px] ${
+            className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 ${
               activeTab === 'overview'
                 ? 'border-[#965D45] text-[#262B29] font-bold'
                 : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
@@ -157,9 +173,12 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
           >
             {language === 'KA' ? 'მიმოხილვა' : 'OVERVIEW'}
           </button>
+
+          {/* 2. FIELD NARRATIVE Tab */}
           <button
+            type="button"
             onClick={() => setActiveTab('narrative')}
-            className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[11px] ${
+            className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 ${
               activeTab === 'narrative'
                 ? 'border-[#965D45] text-[#262B29] font-bold'
                 : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
@@ -167,23 +186,44 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
           >
             {language === 'KA' ? 'საველე ჩანაწერი' : 'FIELD NARRATIVE'}
           </button>
-          {zone.audioRecordings && zone.audioRecordings.length > 0 && (
-            <button
-              onClick={() => setActiveTab('soundscapes')}
-              className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[11px] flex items-center gap-1 ${
-                activeTab === 'soundscapes'
-                  ? 'border-[#965D45] text-[#262B29] font-bold'
-                  : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
-              }`}
-            >
-              <Volume2 className="w-3 h-3 text-[#74826A]" />
-              <span>{language === 'KA' ? 'აკუსტიკა' : 'SOUND'}</span>
-            </button>
-          )}
+
+          {/* 3. VISUAL RECORDS Tab */}
+          <button
+            type="button"
+            onClick={() => setActiveTab('visual')}
+            className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 flex items-center gap-1 ${
+              activeTab === 'visual'
+                ? 'border-[#965D45] text-[#262B29] font-bold'
+                : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
+            }`}
+          >
+            <Camera className="w-3 h-3 text-[#965D45]" />
+            <span>{language === 'KA' ? 'ფოტოარქივი' : 'VISUAL'}</span>
+            {photoRecords.length > 0 && (
+              <span className="text-[8.5px] px-1 py-0.2 bg-[#DDD4C3] text-[#343B37] rounded-xs font-semibold">
+                {photoRecords.length}
+              </span>
+            )}
+          </button>
+
+          {/* 4. SOUND Tab */}
+          <button
+            type="button"
+            onClick={() => setActiveTab('soundscapes')}
+            className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 flex items-center gap-1 ${
+              activeTab === 'soundscapes'
+                ? 'border-[#965D45] text-[#262B29] font-bold'
+                : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
+            }`}
+          >
+            <Volume2 className="w-3 h-3 text-[#74826A]" />
+            <span>{language === 'KA' ? 'აკუსტიკა' : 'SOUND'}</span>
+          </button>
         </div>
 
         {/* Scrollable Dossier Content Area */}
         <div className="flex-1 overflow-y-auto pr-1 space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#343B37]">
+          {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <>
               {/* Short Ethnographic Abstract */}
@@ -237,120 +277,155 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                 </div>
               </div>
 
-              {/* CONNECTED SPACES Section */}
-              {relatedZones.length > 0 && (
-                <div className="pt-2 border-t border-[#C4B7A2]/70">
+              {/* Visual Field Records Preview Strip */}
+              {photoRecords.length > 0 && (
+                <div className="pt-2 border-t border-[#C4B7A2]">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
-                      <Compass className="w-3.5 h-3.5 text-[#965D45]" />
-                      <span>{language === 'KA' ? 'დაკავშირებული სივრცეები' : 'CONNECTED SPACES'}</span>
+                      <Camera className="w-3.5 h-3.5 text-[#965D45]" />
+                      <span>{language === 'KA' ? 'ვიზუალური საველე ჩანაწერები' : 'VISUAL FIELD RECORDS'}</span>
                     </h3>
-                    <span className="font-mono text-[9px] text-[#586450]">
-                      {relatedZones.length} {language === 'KA' ? 'სივრცე' : 'SPACES'}
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('visual')}
+                      className="font-mono text-[9px] text-[#965D45] hover:text-[#262B29] flex items-center gap-0.5"
+                    >
+                      <span>{language === 'KA' ? 'სრულად' : 'VIEW ALL'}</span>
+                      <ArrowRight className="w-2.5 h-2.5" />
+                    </button>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {relatedZones.map((relZone) => {
-                      const relTitle = language === 'KA' ? relZone.titleKa : relZone.titleEn;
-                      const relFloor = language === 'KA' ? relZone.floorLevelKa : relZone.floorLevel;
-                      return (
-                        <button
-                          key={relZone.id}
-                          type="button"
-                          onClick={() => onFocusZone?.(relZone)}
-                          className="group text-left p-2.5 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#C4B7A2] hover:border-[#965D45] transition-all flex flex-col justify-between cursor-pointer focus-visible:outline-2 focus-visible:outline-[#965D45]"
-                          aria-label={`${language === 'KA' ? 'გადასვლა' : 'Explore'}: ${relFloor} - ${relTitle}`}
-                        >
-                          <div className="flex items-center justify-between w-full mb-1">
-                            <span className="font-mono text-[9px] font-bold px-1.5 py-0.5 bg-[#262B29] text-[#E8E0D1] uppercase tracking-wider">
-                              {relFloor}
-                            </span>
-                            <span className="text-[#965D45] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs font-mono font-bold">
-                              →
-                            </span>
+                  <div className="grid grid-cols-2 gap-2">
+                    {photoRecords.slice(0, 2).map((record, index) => (
+                      <button
+                        key={record.id}
+                        type="button"
+                        onClick={() => setStandaloneLightboxIndex(index)}
+                        className="group text-left border border-[#C4B7A2] hover:border-[#965D45] overflow-hidden bg-[#E8E0D1] transition-all cursor-pointer"
+                      >
+                        <div className="aspect-[4/3] w-full overflow-hidden">
+                          <MediaPlaceholderPlate
+                            record={record}
+                            language={language}
+                            aspectRatio="card"
+                            compact={true}
+                          />
+                        </div>
+                        <div className="p-1.5 bg-[#F7F3EB] border-t border-[#C4B7A2]/50">
+                          <div className="font-mono text-[8px] text-[#7D4732] font-bold truncate">
+                            {record.id.toUpperCase()}
                           </div>
-                          <div className="font-medium text-xs text-[#262B29] group-hover:text-[#965D45] leading-snug line-clamp-2 transition-colors">
-                            {relTitle}
+                          <div className="font-editorial text-[11px] font-bold text-[#262B29] truncate group-hover:text-[#965D45]">
+                            {language === 'KA' && record.titleKa ? record.titleKa : record.title}
                           </div>
-                        </button>
-                      );
-                    })}
+                        </div>
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
+
+              {/* CONNECTED SPACES Section */}
+              <ConnectedSpaces
+                currentZone={zone}
+                allZones={availableZones}
+                language={language}
+                onFocusZone={onFocusZone}
+              />
             </>
           )}
 
+          {/* TAB 2: FIELD NARRATIVE */}
           {activeTab === 'narrative' && (
-            <div className="space-y-3">
-              <div className="font-editorial text-sm md:text-base leading-relaxed text-[#262B29] first-letter:text-3xl first-letter:font-bold first-letter:float-left first-letter:mr-1.5 first-letter:leading-none">
-                {extendedNarrative}
-              </div>
+            <FieldNarrativeView
+              zone={zone}
+              language={language}
+              onFocusZone={onFocusZone}
+              onSelectTab={setActiveTab}
+              onOpenLightbox={(idx) => setStandaloneLightboxIndex(idx)}
+              allZones={availableZones}
+            />
+          )}
 
-              {zone.images && zone.images.length > 0 && (
-                <div className="mt-3 p-2 bg-[#E8E0D1] border border-[#C4B7A2] text-[11px] font-mono text-[#586450]">
-                  <div className="font-bold text-[#7D4732] uppercase text-[10px]">
-                    ARCHIVAL REFERENCE: {zone.images[0].captionEn} ({zone.images[0].year || 'UNDATED'})
+          {/* TAB 3: VISUAL RECORDS */}
+          {activeTab === 'visual' && (
+            <div className="space-y-4">
+              {/* Visual Field Records Section */}
+              <VisualFieldArchive
+                records={mediaRecords}
+                language={language}
+              />
+
+              {/* Video Records Section */}
+              {videoRecords.length > 0 && (
+                <div className="space-y-2 pt-2 border-t border-[#C4B7A2]">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
+                      <Film className="w-3.5 h-3.5 text-[#7D4732]" />
+                      <span>{language === 'KA' ? 'კინოჩანაწერები (16მმ)' : 'CINEMATIC FIELD RECORDS'}</span>
+                    </h3>
+                    <span className="font-mono text-[9px] text-[#586450]">
+                      {videoRecords.length} {language === 'KA' ? 'ფირი' : 'REELS'}
+                    </span>
                   </div>
-                  <div className="text-[10px] text-[#343B37] mt-0.5">
-                    {language === 'KA' ? zone.images[0].fieldNoteKa : zone.images[0].fieldNoteEn}
+
+                  <div className="space-y-3">
+                    {videoRecords.map((vid) => (
+                      <ArchivalVideoPlayer
+                        key={vid.id}
+                        record={vid}
+                        language={language}
+                      />
+                    ))}
                   </div>
                 </div>
               )}
             </div>
           )}
 
-          {activeTab === 'soundscapes' && zone.audioRecordings && (
+          {/* TAB 4: SOUND */}
+          {activeTab === 'soundscapes' && (
             <div className="space-y-3">
+              <div className="flex items-center justify-between border-b border-[#C4B7A2] pb-1.5">
+                <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
+                  <Volume2 className="w-3.5 h-3.5 text-[#74826A]" />
+                  <span>{language === 'KA' ? 'აკუსტიკური საველე არქივი' : 'ACOUSTIC FIELD RECORDINGS'}</span>
+                </h3>
+                <span className="font-mono text-[9px] text-[#586450]">
+                  {audioRecords.length} {language === 'KA' ? 'ჩანაწერი' : 'RECORDINGS'}
+                </span>
+              </div>
+
               <p className="text-[11px] text-[#586450] italic">
                 {language === 'KA'
-                  ? 'საველე აკუსტიკური დაკვირვება: გარემოს ხმები და მულტისახეობრივი ექო'
-                  : 'Acoustic field recordings documenting ambient environmental resonance and species acoustics.'}
+                  ? 'საველე აკუსტიკური ინსტრუმენტი: გარემოს რეზონანსი, ინფრასტრუქტურის ვიბრაცია და მულტისახეობრივი ექო.'
+                  : 'Archival field recording player documenting ambient environmental resonance and multispecies acoustics.'}
               </p>
 
-              {zone.audioRecordings.map((audio) => {
-                const isPlaying = isPlayingAudio === audio.id;
-                return (
-                  <div
+              {audioRecords.length > 0 ? (
+                audioRecords.map((audio) => (
+                  <ArchivalAudioPlayer
                     key={audio.id}
-                    className="p-3 bg-[#E8E0D1] border border-[#C4B7A2] space-y-2"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="font-mono text-xs font-semibold text-[#262B29]">
-                        {language === 'KA' ? audio.titleKa : audio.titleEn}
-                      </div>
-                      <span className="font-mono text-[10px] px-1.5 py-0.5 bg-[#DDD4C3] text-[#7D4732]">
-                        {audio.duration}
-                      </span>
-                    </div>
-
-                    <p className="text-[11px] text-[#586450]">
-                      {language === 'KA' ? audio.descriptionKa : audio.descriptionEn}
-                    </p>
-
-                    <button
-                      onClick={() => setIsPlayingAudio(isPlaying ? null : audio.id)}
-                      className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono font-medium border transition-colors ${
-                        isPlaying
-                          ? 'bg-[#965D45] text-[#E8E0D1] border-[#965D45]'
-                          : 'bg-[#F7F3EB] text-[#262B29] border-[#343B37] hover:bg-[#DDD4C3]'
-                      }`}
-                    >
-                      <Volume2 className="w-3 h-3" />
-                      <span>{isPlaying ? 'PAUSE DEMO STREAM' : 'PLAY FIELD RECORDING'}</span>
-                    </button>
-                  </div>
-                );
-              })}
+                    record={audio}
+                    language={language}
+                  />
+                ))
+              ) : (
+                <div className="p-4 bg-[#E8E0D1]/60 border border-[#C4B7A2] text-center font-mono text-xs text-[#586450]">
+                  {language === 'KA'
+                    ? 'აკუსტიკური ჩანაწერები დამუშავების პროცესშია'
+                    : 'No acoustic field recordings currently ingested.'}
+                </div>
+              )}
             </div>
           )}
         </div>
 
         {/* Footer Actions */}
-        <div className="pt-3 mt-3 border-t border-[#C4B7A2] flex items-center justify-between gap-2">
+        <div className="pt-2.5 mt-2.5 border-t border-[#C4B7A2] flex items-center justify-between gap-2">
           {onFocusZone ? (
             <button
+              type="button"
               onClick={() => onFocusZone(zone)}
               className="flex items-center gap-1.5 px-3 py-1.5 bg-[#262B29] hover:bg-[#343B37] text-[#E8E0D1] text-xs font-mono font-semibold tracking-wider uppercase transition-colors"
             >
@@ -363,6 +438,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
 
           {onResetView && (
             <button
+              type="button"
               onClick={onResetView}
               className="px-2.5 py-1.5 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#343B37] text-[#262B29] text-xs font-mono tracking-wider uppercase transition-colors"
             >
@@ -370,6 +446,18 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
             </button>
           )}
         </div>
+
+        {/* Standalone Lightbox for clicks from Overview or Narrative */}
+        {photoRecords.length > 0 && standaloneLightboxIndex !== null && (
+          <ArchivalLightbox
+            records={photoRecords}
+            currentIndex={standaloneLightboxIndex}
+            isOpen={true}
+            onClose={() => setStandaloneLightboxIndex(null)}
+            onNavigate={(newIdx) => setStandaloneLightboxIndex(newIdx)}
+            language={language}
+          />
+        )}
       </motion.div>
     </AnimatePresence>
   );

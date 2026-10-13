@@ -40,6 +40,41 @@ export interface ArchivalVideo {
   noteKa?: string;
 }
 
+export interface MediaRecord {
+  id: string;
+  locationId: string;
+  type: 'image' | 'audio' | 'video';
+  title: string;
+  titleKa?: string;
+  caption: string;
+  captionKa?: string;
+  src?: string;
+  thumbnailSrc?: string;
+  date?: string;
+  credit?: string;
+  creditKa?: string;
+  transcript?: string;
+  transcriptKa?: string;
+  isPlaceholder?: boolean;
+  mediaFormat?: string; // e.g. "35mm B/W Gelatin Silver Negative", "Architectural Field Survey Sketch", "Nagra 1/4\" Mono Field Reel", "16mm Reversal Color Film"
+  duration?: string;
+  recordingLocation?: string;
+  recordingLocationKa?: string;
+  notes?: string;
+  notesKa?: string;
+}
+
+export interface FieldNarrativeSections {
+  researchContextEn: string;
+  researchContextKa: string;
+  spatialObservationsEn: string;
+  spatialObservationsKa: string;
+  multispeciesRelationshipsEn: string;
+  multispeciesRelationshipsKa: string;
+  architecturalContextEn: string;
+  architecturalContextKa: string;
+}
+
 export interface InteractiveZone {
   id: string;
   floorLevel: string; // e.g. "FL 05", "ROOF", "BSMT", "YARD"
@@ -69,6 +104,8 @@ export interface InteractiveZone {
   images?: ArchivalImage[];
   audioRecordings?: ArchivalAudio[];
   videoRecordings?: ArchivalVideo[];
+  mediaRecords?: MediaRecord[];
+  narrativeSections?: FieldNarrativeSections;
   relatedZoneIds?: string[];
   isDemonstration?: boolean;
 }
