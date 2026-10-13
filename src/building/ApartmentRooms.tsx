@@ -21,30 +21,32 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
         <g id="room-5a" className={`perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
           {/* Back wall plaster: Faded institutional green plaster */}
           <rect x="195" y="160" width="240" height="100" fill="url(#soviet-wall-green)" fillOpacity="0.85" />
+          {/* Subtle occupied studio atmospheric warmth */}
+          <rect x="195" y="160" width="240" height="100" fill="#B09A69" fillOpacity="0.04" className="pointer-events-none" />
           {/* Subtle herringbone parquet */}
           <rect x="195" y="248" width="240" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Large Studio Window (x=205 to 260, y=175 to 240) */}
-          <rect x="205" y="175" width="55" height="65" fill="#1C221F" fillOpacity="0.8" stroke="#151817" strokeWidth="1.2" />
+          <rect x="205" y="175" width="55" height="65" fill="#1C2420" fillOpacity="0.8" stroke="#151817" strokeWidth="1.2" />
           <line x1="232" y1="175" x2="232" y2="240" stroke="#151817" strokeWidth="1" />
           <line x1="205" y1="200" x2="260" y2="200" stroke="#151817" strokeWidth="1" />
           {/* Window Sill with Potted Plants */}
-          <rect x="202" y="238" width="61" height="3" fill="#3E443F" stroke="#151817" strokeWidth="0.8" />
+          <rect x="202" y="238" width="61" height="3" fill="#4A524C" stroke="#151817" strokeWidth="0.8" />
           {/* Terracotta plant pots */}
           <g className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
-            <polygon points="210,238 218,238 217,231 211,231" fill="#7C3E33" stroke="#151817" strokeWidth="0.6" />
-            <path d="M 214,231 Q 210,224 214,220 Q 218,224 214,231" fill="#4D584A" />
-            <polygon points="224,238 232,238 231,230 225,230" fill="#7C3E33" stroke="#151817" strokeWidth="0.6" />
-            <circle cx="228" cy="227" r="3.5" fill="#556251" />
+            <polygon points="210,238 218,238 217,231 211,231" fill="#8E473A" stroke="#151817" strokeWidth="0.6" />
+            <path d="M 214,231 Q 210,224 214,220 Q 218,224 214,231" fill="#5A6C54" />
+            <polygon points="224,238 232,238 231,230 225,230" fill="#8E473A" stroke="#151817" strokeWidth="0.6" />
+            <circle cx="228" cy="227" r="3.5" fill="#65775F" />
           </g>
 
           {/* Hanging Spider Plant (Chlorophytum) from ceiling */}
           <g className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
             <line x1="285" y1="160" x2="285" y2="185" stroke="#151817" strokeWidth="0.75" />
-            <ellipse cx="285" cy="186" rx="6" ry="3" fill="#632D24" stroke="#151817" strokeWidth="0.6" />
-            <path d="M 282,185 Q 272,192 268,205" fill="none" stroke="#4D584A" strokeWidth="0.8" />
-            <path d="M 285,185 Q 280,195 282,210" fill="none" stroke="#556251" strokeWidth="0.8" />
-            <path d="M 288,185 Q 296,192 300,206" fill="none" stroke="#4D584A" strokeWidth="0.8" />
+            <ellipse cx="285" cy="186" rx="6" ry="3" fill="#7C3E33" stroke="#151817" strokeWidth="0.6" />
+            <path d="M 282,185 Q 272,192 268,205" fill="none" stroke="#5A6C54" strokeWidth="0.9" />
+            <path d="M 285,185 Q 280,195 282,210" fill="none" stroke="#65775F" strokeWidth="0.9" />
+            <path d="M 288,185 Q 296,192 300,206" fill="none" stroke="#5A6C54" strokeWidth="0.9" />
           </g>
 
           {/* Architectural Drafting Table / Easel (x=310 to 365) */}
@@ -52,32 +54,35 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <line x1="360" y1="248" x2="345" y2="215" stroke="#151817" strokeWidth="1.5" />
           <line x1="324" y1="235" x2="356" y2="235" stroke="#151817" strokeWidth="1" />
           {/* Tilted drawing board */}
-          <line x1="315" y1="222" x2="368" y2="204" stroke="#3D453E" strokeWidth="4" />
+          <line x1="315" y1="222" x2="368" y2="204" stroke="#48544D" strokeWidth="4" />
           {/* Blueprinted paper pinned */}
-          <line x1="322" y1="220" x2="360" y2="206" stroke="#939B92" strokeWidth="2.5" />
+          <line x1="322" y1="220" x2="360" y2="206" stroke="#B8C4B8" strokeWidth="2.5" />
           <line x1="330" y1="216" x2="350" y2="209" stroke="#556251" strokeWidth="1" strokeDasharray="2,1" />
 
           {/* Ceramic tea cup with steam on drafting desk */}
           <g transform="translate(364, 214)">
             <rect x="0" y="0" width="3.5" height="4" fill="#D8D7CD" stroke="#151817" strokeWidth="0.5" rx="0.5" />
-            <circle cx="2" cy="-3" r="1" fill="#939B92" className="animate-steam" />
+            <circle cx="2" cy="-3" r="1" fill="#B0B7AF" className="animate-steam" />
           </g>
 
           {/* Drafting Stool */}
           <line x1="380" y1="248" x2="380" y2="225" stroke="#151817" strokeWidth="1.5" />
-          <ellipse cx="380" cy="225" rx="6" ry="2" fill="#52362E" stroke="#151817" strokeWidth="0.8" />
+          <ellipse cx="380" cy="225" rx="6" ry="2" fill="#6B453A" stroke="#151817" strokeWidth="0.8" />
 
           {/* Bookshelf & Herbarium folders on right wall (x=410 to 435) */}
-          <rect x="412" y="180" width="22" height="68" fill="#3D453E" stroke="#151817" strokeWidth="1" />
+          <rect x="412" y="180" width="22" height="68" fill="#48524B" stroke="#252C28" strokeWidth="1" />
           {[195, 210, 225, 240].map((sy) => (
             <line key={sy} x1="412" y1={sy} x2="434" y2={sy} stroke="#151817" strokeWidth="0.8" />
           ))}
           {/* Books on shelves */}
-          <rect x="414" y="182" width="4" height="12" fill="#7C3E33" />
-          <rect x="419" y="184" width="3" height="10" fill="#4D584A" />
-          <rect x="423" y="181" width="5" height="13" fill="#222725" />
-          <rect x="414" y="197" width="5" height="12" fill="#384136" />
-          <rect x="420" y="196" width="6" height="13" fill="#52362E" />
+          <rect x="414" y="182" width="4" height="12" fill="#8E473A" />
+          <rect x="419" y="184" width="3" height="10" fill="#5A6C54" />
+          <rect x="423" y="181" width="5" height="13" fill="#282E2B" />
+          <rect x="414" y="197" width="5" height="12" fill="#434D40" />
+          <rect x="420" y="196" width="6" height="13" fill="#6B453A" />
+
+          {/* Structural room boundary */}
+          <line x1="435" y1="160" x2="435" y2="260" stroke="#2D3530" strokeWidth="1.8" />
         </g>
 
         {/* Room 5B (Center Bay: x=445 to 680): Upper Flat Living & Bedroom */}
@@ -86,27 +91,27 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <rect x="445" y="248" width="235" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Wall Clock */}
-          <circle cx="510" cy="180" r="7" fill="#D8D7CD" stroke="#151817" strokeWidth="1" />
+          <circle cx="510" cy="180" r="7" fill="#E6E5DC" stroke="#151817" strokeWidth="1" />
           <line x1="510" y1="180" x2="510" y2="176" stroke="#151817" strokeWidth="0.8" />
           <line x1="510" y1="180" x2="514" y2="180" stroke="#151817" strokeWidth="0.8" />
 
           {/* Bed with Quilt and Pillows (x=460 to 535) */}
-          <rect x="460" y="228" width="70" height="20" fill="#353B37" stroke="#151817" strokeWidth="1" />
-          <rect x="456" y="212" width="5" height="36" fill="#4A3B31" stroke="#151817" strokeWidth="1" />
-          <ellipse cx="468" cy="226" rx="6" ry="3.5" fill="#D8D7CD" stroke="#555B56" strokeWidth="0.8" />
-          <rect x="475" y="228" width="55" height="20" fill="#465044" fillOpacity="0.8" stroke="#384136" strokeWidth="0.8" />
+          <rect x="460" y="228" width="70" height="20" fill="#3E4642" stroke="#151817" strokeWidth="1" />
+          <rect x="456" y="212" width="5" height="36" fill="#5A473B" stroke="#151817" strokeWidth="1" />
+          <ellipse cx="468" cy="226" rx="6" ry="3.5" fill="#E6E5DC" stroke="#687565" strokeWidth="0.8" />
+          <rect x="475" y="228" width="55" height="20" fill="#4D5A4C" fillOpacity="0.85" stroke="#3E493C" strokeWidth="0.8" />
           <line x1="485" y1="228" x2="485" y2="248" stroke="#D8D7CD" strokeWidth="0.6" strokeDasharray="2,2" />
           <line x1="505" y1="228" x2="505" y2="248" stroke="#D8D7CD" strokeWidth="0.6" strokeDasharray="2,2" />
 
           {/* Center Window with Curtains (x=565 to 625) */}
-          <rect x="565" y="175" width="60" height="65" fill="#1C221F" stroke="#151817" strokeWidth="1.2" />
+          <rect x="565" y="175" width="60" height="65" fill="#1C2420" stroke="#151817" strokeWidth="1.2" />
           <line x1="595" y1="175" x2="595" y2="240" stroke="#151817" strokeWidth="1" />
           <line x1="565" y1="205" x2="625" y2="205" stroke="#151817" strokeWidth="0.8" />
 
           {/* Draped Curtains */}
           <g>
-            <path d="M 565,175 Q 575,205 570,240 L 565,240 Z" fill="#632D24" fillOpacity="0.85" />
-            <path d="M 625,175 Q 615,205 620,240 L 625,240 Z" fill="#632D24" fillOpacity="0.85" />
+            <path d="M 565,175 Q 575,205 570,240 L 565,240 Z" fill="#7C3E33" fillOpacity="0.85" />
+            <path d="M 625,175 Q 615,205 620,240 L 625,240 Z" fill="#7C3E33" fillOpacity="0.85" />
           </g>
 
           {/* Radiator under window */}
@@ -115,6 +120,9 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
               <line key={rx} x1={rx} y1="0" x2={rx} y2="7" stroke="#A35243" strokeWidth="2.5" />
             ))}
           </g>
+
+          {/* Structural room boundary */}
+          <line x1="680" y1="160" x2="680" y2="260" stroke="#2D3530" strokeWidth="1.8" />
         </g>
       </g>
 
@@ -206,67 +214,75 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
 
         {/* Room 4A (Left Bay: x=195 to 435): Kitchen & Dining */}
         <g id="room-4a" className={`perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
-          <rect x="195" y="260" width="240" height="100" fill="url(#soviet-wall-green)" fillOpacity="0.8" />
+          <rect x="195" y="260" width="240" height="100" fill="url(#soviet-wall-green)" fillOpacity="0.85" />
+          {/* Subtle occupied kitchen warmth */}
+          <rect x="195" y="260" width="240" height="100" fill="#B09A69" fillOpacity="0.05" className="pointer-events-none" />
           <rect x="195" y="348" width="240" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Balcony Access Double Glazed Door */}
-          <rect x="195" y="275" width="35" height="73" fill="#1C221F" fillOpacity="0.75" stroke="#151817" strokeWidth="1.2" />
+          <rect x="195" y="275" width="35" height="73" fill="#1C2420" fillOpacity="0.75" stroke="#151817" strokeWidth="1.2" />
           <line x1="212" y1="275" x2="212" y2="348" stroke="#151817" strokeWidth="1" />
-          <circle cx="210" cy="315" r="1.5" fill="#B09A69" />
+          <circle cx="210" cy="315" r="1.5" fill="#D4BC7D" />
 
           {/* Dining Table with Embroidered Runner */}
-          <rect x="245" y="318" width="65" height="4" fill="#523B2E" stroke="#151817" strokeWidth="1" />
-          <line x1="250" y1="322" x2="250" y2="348" stroke="#523B2E" strokeWidth="1.5" />
-          <line x1="305" y1="322" x2="305" y2="348" stroke="#523B2E" strokeWidth="1.5" />
-          <rect x="260" y="316" width="35" height="4" fill="#D8D7CD" stroke="#939B92" strokeWidth="0.6" />
+          <rect x="245" y="318" width="65" height="4" fill="#684C3B" stroke="#251C15" strokeWidth="1" />
+          <line x1="250" y1="322" x2="250" y2="348" stroke="#684C3B" strokeWidth="1.5" />
+          <line x1="305" y1="322" x2="305" y2="348" stroke="#684C3B" strokeWidth="1.5" />
+          <rect x="260" y="316" width="35" height="4" fill="#E6E5DC" stroke="#B0B7AF" strokeWidth="0.7" />
           {/* Porcelain teapot and cup */}
-          <ellipse cx="275" cy="313" rx="4" ry="3" fill="#D8D7CD" stroke="#151817" strokeWidth="0.8" />
-          <rect x="283" y="313" width="3" height="3" fill="#D8D7CD" stroke="#151817" strokeWidth="0.5" rx="0.5" />
+          <ellipse cx="275" cy="313" rx="4" ry="3" fill="#E6E5DC" stroke="#151817" strokeWidth="0.8" />
+          <rect x="283" y="313" width="3" height="3" fill="#E6E5DC" stroke="#151817" strokeWidth="0.5" rx="0.5" />
 
           {/* Dining Chairs */}
-          <path d="M 238,348 L 238,310 L 244,310 L 244,348" fill="none" stroke="#151817" strokeWidth="1.2" />
-          <path d="M 315,348 L 315,310 L 321,310 L 321,348" fill="none" stroke="#151817" strokeWidth="1.2" />
+          <path d="M 238,348 L 238,310 L 244,310 L 244,348" fill="none" stroke="#28221B" strokeWidth="1.4" />
+          <path d="M 315,348 L 315,310 L 321,310 L 321,348" fill="none" stroke="#28221B" strokeWidth="1.4" />
 
           {/* Kitchen Wall Shelves with Glass Jars */}
-          <rect x="350" y="275" width="75" height="73" fill="#2E3430" fillOpacity="0.6" stroke="#3D453E" strokeWidth="0.8" />
+          <rect x="350" y="275" width="75" height="73" fill="#38403B" fillOpacity="0.75" stroke="#4A544E" strokeWidth="0.8" />
           <line x1="350" y1="298" x2="425" y2="298" stroke="#151817" strokeWidth="1" />
           <line x1="350" y1="320" x2="425" y2="320" stroke="#151817" strokeWidth="1" />
-          <rect x="358" y="286" width="8" height="11" rx="1" fill="#7C3E33" stroke="#151817" strokeWidth="0.6" />
-          <rect x="372" y="285" width="9" height="12" rx="1" fill="#4D584A" stroke="#151817" strokeWidth="0.6" />
-          <rect x="388" y="287" width="8" height="10" rx="1" fill="#A35243" stroke="#151817" strokeWidth="0.6" />
+          <rect x="358" y="286" width="8" height="11" rx="1" fill="#8E473A" stroke="#151817" strokeWidth="0.6" />
+          <rect x="372" y="285" width="9" height="12" rx="1" fill="#5A6C54" stroke="#151817" strokeWidth="0.6" />
+          <rect x="388" y="287" width="8" height="10" rx="1" fill="#B55B49" stroke="#151817" strokeWidth="0.6" />
+
+          {/* Structural room boundary */}
+          <line x1="435" y1="260" x2="435" y2="360" stroke="#2D3530" strokeWidth="1.8" />
         </g>
 
         {/* Room 4B (Center Bay: x=445 to 680): Living / Study with Bookshelf */}
         <g id="room-4b" className={`perspective-transition ${isHumanSubdued ? 'perspective-dimmed' : ''}`}>
-          <rect x="445" y="260" width="235" height="100" fill="url(#soviet-wall-gray)" fillOpacity="0.8" />
+          <rect x="445" y="260" width="235" height="100" fill="url(#soviet-wall-gray)" fillOpacity="0.85" />
           <rect x="445" y="348" width="235" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Large Georgian Window */}
-          <rect x="480" y="275" width="60" height="65" fill="#1C221F" stroke="#151817" strokeWidth="1.2" />
+          <rect x="480" y="275" width="60" height="65" fill="#1C2420" stroke="#151817" strokeWidth="1.2" />
           <line x1="510" y1="275" x2="510" y2="340" stroke="#151817" strokeWidth="1" />
           <line x1="480" y1="305" x2="540" y2="305" stroke="#151817" strokeWidth="0.8" />
           
           {/* Subtle lace curtain */}
-          <path d="M 480,275 Q 492,305 486,340 L 480,340 Z" fill="#D8D7CD" fillOpacity="0.4" />
+          <path d="M 480,275 Q 492,305 486,340 L 480,340 Z" fill="#E6E5DC" fillOpacity="0.45" />
 
           {/* Monstera plant in corner */}
           <g transform="translate(465, 335)" className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
-            <ellipse cx="0" cy="8" rx="6" ry="5" fill="#632D24" stroke="#151817" strokeWidth="0.8" />
-            <path d="M 0,5 Q -8,-5 -10,-12" fill="none" stroke="#343C32" strokeWidth="1.2" />
-            <path d="M 0,5 Q 6,-8 10,-14" fill="none" stroke="#343C32" strokeWidth="1.2" />
-            <circle cx="-10" cy="-12" r="5" fill="#4D584A" />
-            <circle cx="10" cy="-14" r="5" fill="#556251" />
+            <ellipse cx="0" cy="8" rx="6" ry="5" fill="#7C3E33" stroke="#151817" strokeWidth="0.8" />
+            <path d="M 0,5 Q -8,-5 -10,-12" fill="none" stroke="#3E473C" strokeWidth="1.2" />
+            <path d="M 0,5 Q 6,-8 10,-14" fill="none" stroke="#3E473C" strokeWidth="1.2" />
+            <circle cx="-10" cy="-12" r="5" fill="#5A6C54" />
+            <circle cx="10" cy="-14" r="5" fill="#687862" />
           </g>
 
           {/* Sofa with Cushions */}
-          <rect x="560" y="325" width="70" height="23" rx="3" fill="#282E2B" stroke="#151817" strokeWidth="1.2" />
-          <rect x="565" y="320" width="28" height="10" rx="2" fill="#4D584A" />
-          <rect x="598" y="320" width="28" height="10" rx="2" fill="#7C3E33" />
+          <rect x="560" y="325" width="70" height="23" rx="3" fill="#343C37" stroke="#1A201D" strokeWidth="1.2" />
+          <rect x="565" y="320" width="28" height="10" rx="2" fill="#5A6C54" />
+          <rect x="598" y="320" width="28" height="10" rx="2" fill="#8E473A" />
 
           {/* Standing Lamp with Warm Glow */}
           <line x1="645" y1="348" x2="645" y2="285" stroke="#151817" strokeWidth="1.5" />
-          <polygon points="638,285 652,285 648,272 642,272" fill="#B09A69" stroke="#151817" strokeWidth="1" />
+          <polygon points="638,285 652,285 648,272 642,272" fill="#D4BC7D" stroke="#151817" strokeWidth="1" />
           <circle cx="645" cy="285" r="14" fill="url(#lamp-glow)" className="animate-window-glow" />
+
+          {/* Structural room boundary */}
+          <line x1="680" y1="260" x2="680" y2="360" stroke="#2D3530" strokeWidth="1.8" />
         </g>
       </g>
 
@@ -280,23 +296,26 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <rect x="195" y="448" width="240" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Large Soviet Polished Wardrobe (Stenka / Garderob) */}
-          <rect x="205" y="375" width="55" height="73" fill="#4A3B31" stroke="#151817" strokeWidth="1.2" />
+          <rect x="205" y="375" width="55" height="73" fill="#5A473B" stroke="#231A14" strokeWidth="1.2" />
           <line x1="232" y1="375" x2="232" y2="448" stroke="#151817" strokeWidth="1" />
-          <rect x="210" y="380" width="18" height="30" fill="#6B503F" stroke="#4A3B31" strokeWidth="0.8" />
-          <rect x="236" y="380" width="18" height="30" fill="#6B503F" stroke="#4A3B31" strokeWidth="0.8" />
-          <circle cx="230" cy="410" r="1" fill="#B09A69" />
-          <circle cx="235" cy="410" r="1" fill="#B09A69" />
+          <rect x="210" y="380" width="18" height="30" fill="#7D5F4A" stroke="#5A473B" strokeWidth="0.8" />
+          <rect x="236" y="380" width="18" height="30" fill="#7D5F4A" stroke="#5A473B" strokeWidth="0.8" />
+          <circle cx="230" cy="410" r="1" fill="#D4BC7D" />
+          <circle cx="235" cy="410" r="1" fill="#D4BC7D" />
 
           {/* Double Bed with Quilt */}
-          <rect x="280" y="426" width="75" height="22" fill="#353B37" stroke="#151817" strokeWidth="1" />
-          <rect x="276" y="408" width="6" height="40" fill="#4A3B31" stroke="#151817" strokeWidth="1" />
-          <rect x="285" y="426" width="68" height="22" fill="#3E493C" fillOpacity="0.75" stroke="#343C32" strokeWidth="0.8" />
+          <rect x="280" y="426" width="75" height="22" fill="#3E4642" stroke="#151817" strokeWidth="1" />
+          <rect x="276" y="408" width="6" height="40" fill="#5A473B" stroke="#151817" strokeWidth="1" />
+          <rect x="285" y="426" width="68" height="22" fill="#485646" fillOpacity="0.8" stroke="#3E4A3C" strokeWidth="0.8" />
 
           {/* Window with Lace Sheers */}
-          <rect x="375" y="375" width="45" height="65" fill="#1C221F" stroke="#151817" strokeWidth="1.2" />
+          <rect x="375" y="375" width="45" height="65" fill="#1C2420" stroke="#151817" strokeWidth="1.2" />
           <g>
-            <path d="M 378,377 L 417,377 L 412,438 L 382,438 Z" fill="#D8D7CD" fillOpacity="0.4" stroke="#555B56" strokeWidth="0.5" />
+            <path d="M 378,377 L 417,377 L 412,438 L 382,438 Z" fill="#E6E5DC" fillOpacity="0.4" stroke="#687565" strokeWidth="0.5" />
           </g>
+
+          {/* Structural room boundary */}
+          <line x1="435" y1="360" x2="435" y2="460" stroke="#2D3530" strokeWidth="1.8" />
         </g>
 
         {/* Room 3B (Center Bay: x=445 to 680): LIVED INTERIOR APARTMENT 3-B (INTERACTIVE ZONE) */}
@@ -306,33 +325,33 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           {/* 40-year Polished Oak Herringbone Parquet */}
           <rect x="445" y="448" width="235" height="12" fill="url(#herringbone-parquet)" />
 
-          {/* Warm Ambient Window Glow */}
-          <rect x="445" y="360" width="235" height="100" fill="#A35243" fillOpacity="0.05" className="animate-window-glow pointer-events-none" />
+          {/* Inhabited Living Atmospheric Warmth */}
+          <rect x="445" y="360" width="235" height="100" fill="#B09A69" fillOpacity="0.07" className="animate-window-glow pointer-events-none" />
 
           {/* Hand-Woven Caucasian Kilim Rug Hanging on Wall */}
           <g id="wall-kilim-carpet" transform="translate(465, 375)">
             <rect x="0" y="0" width="68" height="46" fill="url(#caucasian-carpet)" stroke="#151817" strokeWidth="1.2" />
             {[2, 8, 14, 20, 26, 32, 38, 44, 50, 56, 62, 66].map((fx) => (
-              <line key={fx} x1={fx} y1="46" x2={fx} y2="49" stroke="#939B92" strokeWidth="0.8" />
+              <line key={fx} x1={fx} y1="46" x2={fx} y2="49" stroke="#B0B7AF" strokeWidth="0.8" />
             ))}
           </g>
 
           {/* Floor-to-Ceiling Built-in Bookshelf */}
-          <rect x="545" y="365" width="42" height="83" fill="#3D453E" stroke="#151817" strokeWidth="1.2" />
+          <rect x="545" y="365" width="42" height="83" fill="#465048" stroke="#252C28" strokeWidth="1.2" />
           {[382, 398, 414, 430, 446].map((sy) => (
             <line key={sy} x1="545" y1={sy} x2="587" y2={sy} stroke="#151817" strokeWidth="0.8" />
           ))}
           {/* Books spines */}
-          <rect x="547" y="367" width="5" height="14" fill="#7C3E33" />
-          <rect x="553" y="368" width="4" height="13" fill="#222725" />
-          <rect x="558" y="366" width="6" height="15" fill="#523B2E" />
-          <rect x="566" y="367" width="5" height="14" fill="#4D584A" />
-          <rect x="572" y="369" width="4" height="12" fill="#384136" />
-          <rect x="578" y="367" width="6" height="14" fill="#A35243" />
-          <rect x="547" y="384" width="7" height="13" fill="#523B2E" />
-          <rect x="556" y="383" width="8" height="14" fill="#6B503F" />
-          <rect x="566" y="385" width="5" height="12" fill="#222725" />
-          <rect x="573" y="384" width="7" height="13" fill="#4D584A" />
+          <rect x="547" y="367" width="5" height="14" fill="#8E473A" />
+          <rect x="553" y="368" width="4" height="13" fill="#282E2B" />
+          <rect x="558" y="366" width="6" height="15" fill="#634737" />
+          <rect x="566" y="367" width="5" height="14" fill="#5A6C54" />
+          <rect x="572" y="369" width="4" height="12" fill="#434D40" />
+          <rect x="578" y="367" width="6" height="14" fill="#B55B49" />
+          <rect x="547" y="384" width="7" height="13" fill="#634737" />
+          <rect x="556" y="383" width="8" height="14" fill="#7D5F4A" />
+          <rect x="566" y="385" width="5" height="12" fill="#282E2B" />
+          <rect x="573" y="384" width="7" height="13" fill="#5A6C54" />
 
           {/* Mid-Century Armchair with Subtle Resident Silhouette Reading */}
           <g id="vintage-armchair" transform="translate(480, 420)">
@@ -340,31 +359,31 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
             <line x1="4" y1="28" x2="0" y2="15" stroke="#151817" strokeWidth="1.5" />
             <line x1="28" y1="28" x2="32" y2="15" stroke="#151817" strokeWidth="1.5" />
             {/* Seat & Back */}
-            <path d="M 0,15 Q 0,0 16,0 Q 32,0 32,15 L 30,22 L 2,22 Z" fill="#6B3B32" stroke="#151817" strokeWidth="1.2" />
-            <rect x="3" y="14" width="26" height="8" rx="2" fill="#A35243" stroke="#632D24" strokeWidth="0.8" />
+            <path d="M 0,15 Q 0,0 16,0 Q 32,0 32,15 L 30,22 L 2,22 Z" fill="#7D453A" stroke="#231A14" strokeWidth="1.2" />
+            <rect x="3" y="14" width="26" height="8" rx="2" fill="#B55B49" stroke="#7C3E33" strokeWidth="0.8" />
             {/* Wooden Armrests */}
-            <line x1="-2" y1="12" x2="10" y2="12" stroke="#4A3B31" strokeWidth="2" />
-            <line x1="22" y1="12" x2="34" y2="12" stroke="#4A3B31" strokeWidth="2" />
+            <line x1="-2" y1="12" x2="10" y2="12" stroke="#5A473B" strokeWidth="2" />
+            <line x1="22" y1="12" x2="34" y2="12" stroke="#5A473B" strokeWidth="2" />
 
             {/* Resident Silhouette */}
-            <g id="resident-reading-silhouette" opacity="0.75">
-              <circle cx="16" cy="-4" r="4.2" fill="#1C201E" />
-              <path d="M 12,0 Q 16,-2 20,0 L 22,14 L 10,14 Z" fill="#1C201E" />
-              <path d="M 10,8 L 15,10 L 17,7" fill="none" stroke="#1C201E" strokeWidth="1.4" />
-              <polygon points="14,10 18,10 19,7 15,7" fill="#D8D7CD" stroke="#151817" strokeWidth="0.5" />
+            <g id="resident-reading-silhouette" opacity="0.85">
+              <circle cx="16" cy="-4" r="4.2" fill="#1A201D" />
+              <path d="M 12,0 Q 16,-2 20,0 L 22,14 L 10,14 Z" fill="#1A201D" />
+              <path d="M 10,8 L 15,10 L 17,7" fill="none" stroke="#1A201D" strokeWidth="1.4" />
+              <polygon points="14,10 18,10 19,7 15,7" fill="#E6E5DC" stroke="#151817" strokeWidth="0.5" />
             </g>
           </g>
 
           {/* Retro Soviet Radiogram / Turntable Console */}
-          <rect x="595" y="420" width="35" height="28" fill="#523B2E" stroke="#151817" strokeWidth="1" />
-          <rect x="600" y="424" width="16" height="18" fill="#3D453E" stroke="#151817" strokeWidth="0.6" />
+          <rect x="595" y="420" width="35" height="28" fill="#634737" stroke="#151817" strokeWidth="1" />
+          <rect x="600" y="424" width="16" height="18" fill="#465048" stroke="#151817" strokeWidth="0.6" />
           <rect x="618" y="424" width="9" height="6" fill="#1C201E" />
-          <circle cx="622" cy="436" r="2" fill="#B09A69" />
+          <circle cx="622" cy="436" r="2" fill="#D4BC7D" />
 
           {/* Heavy Cast-Iron Soviet Radiator ("Harmonica") */}
           <g transform="translate(640, 436)" className={`perspective-transition ${isInfraSubdued ? 'perspective-dimmed' : ''}`}>
             {[0, 4, 8, 12, 16, 20, 24, 28].map((rx) => (
-              <line key={rx} x1={rx} y1="0" x2={rx} y2="12" stroke="#632D24" strokeWidth="2.5" />
+              <line key={rx} x1={rx} y1="0" x2={rx} y2="12" stroke="#7C3E33" strokeWidth="2.5" />
             ))}
             <line x1="-2" y1="2" x2="30" y2="2" stroke="#151817" strokeWidth="1" />
             <line x1="-2" y1="10" x2="30" y2="10" stroke="#151817" strokeWidth="1" />
@@ -372,17 +391,20 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
 
           {/* Large Thriving Monstera in Ceramic Tub */}
           <g transform="translate(650, 405)" className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
-            <polygon points="-5,15 5,15 4,24 -4,24" fill="#632D24" stroke="#151817" strokeWidth="0.8" />
-            <path d="M 0,15 Q -10,0 -16,-10" fill="none" stroke="#343C32" strokeWidth="1.5" />
-            <path d="M 0,15 Q 10,2 14,-8" fill="none" stroke="#343C32" strokeWidth="1.5" />
-            <ellipse cx="-16" cy="-10" rx="9" ry="7" fill="#4D584A" stroke="#343C32" strokeWidth="0.8" transform="rotate(-25 -16 -10)" />
-            <ellipse cx="14" cy="-8" rx="8" ry="6" fill="#556251" stroke="#343C32" strokeWidth="0.8" transform="rotate(20 14 -8)" />
+            <polygon points="-5,15 5,15 4,24 -4,24" fill="#7C3E33" stroke="#151817" strokeWidth="0.8" />
+            <path d="M 0,15 Q -10,0 -16,-10" fill="none" stroke="#3E473C" strokeWidth="1.5" />
+            <path d="M 0,15 Q 10,2 14,-8" fill="none" stroke="#3E473C" strokeWidth="1.5" />
+            <ellipse cx="-16" cy="-10" rx="9" ry="7" fill="#5A6C54" stroke="#3E473C" strokeWidth="0.8" transform="rotate(-25 -16 -10)" />
+            <ellipse cx="14" cy="-8" rx="8" ry="6" fill="#687862" stroke="#3E473C" strokeWidth="0.8" transform="rotate(20 14 -8)" />
           </g>
 
           {/* Vintage Brass Floor Lamp */}
-          <line x1="535" y1="448" x2="535" y2="390" stroke="#8E7B50" strokeWidth="1.5" />
-          <polygon points="527,390 543,390 539,378 531,378" fill="#B09A69" stroke="#151817" strokeWidth="1" />
+          <line x1="535" y1="448" x2="535" y2="390" stroke="#A89462" strokeWidth="1.5" />
+          <polygon points="527,390 543,390 539,378 531,378" fill="#D4BC7D" stroke="#151817" strokeWidth="1" />
           <circle cx="535" cy="390" r="18" fill="url(#lamp-glow)" className="animate-window-glow" />
+
+          {/* Structural room boundary */}
+          <line x1="680" y1="360" x2="680" y2="460" stroke="#2D3530" strokeWidth="1.8" />
         </g>
       </g>
 
@@ -396,24 +418,27 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <rect x="195" y="548" width="240" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Exposed Brick Feature Wall */}
-          <rect x="195" y="465" width="55" height="83" fill="url(#weathered-brick)" stroke="#3D453E" strokeWidth="0.8" />
+          <rect x="195" y="465" width="55" height="83" fill="url(#weathered-brick)" stroke="#4A524A" strokeWidth="0.8" />
 
           {/* Work Desk with Laptop, Ceramic Mug & Contemporary Lamp */}
-          <rect x="260" y="520" width="55" height="4" fill="#222725" stroke="#151817" strokeWidth="1" />
-          <line x1="265" y1="524" x2="265" y2="548" stroke="#151817" strokeWidth="1.5" />
-          <line x1="310" y1="524" x2="310" y2="548" stroke="#151817" strokeWidth="1.5" />
+          <rect x="260" y="520" width="55" height="4" fill="#3D453E" stroke="#1A201D" strokeWidth="1" />
+          <line x1="265" y1="524" x2="265" y2="548" stroke="#3D453E" strokeWidth="1.5" />
+          <line x1="310" y1="524" x2="310" y2="548" stroke="#3D453E" strokeWidth="1.5" />
           {/* Laptop open */}
-          <line x1="275" y1="520" x2="290" y2="520" stroke="#555B56" strokeWidth="1.5" />
-          <line x1="278" y1="520" x2="284" y2="512" stroke="#555B56" strokeWidth="1.5" />
+          <line x1="275" y1="520" x2="290" y2="520" stroke="#7E8780" strokeWidth="1.5" />
+          <line x1="278" y1="520" x2="284" y2="512" stroke="#7E8780" strokeWidth="1.5" />
           {/* Coffee mug */}
-          <rect x="268" y="516" width="3.5" height="4" fill="#D8D7CD" stroke="#151817" strokeWidth="0.5" rx="0.5" />
+          <rect x="268" y="516" width="3.5" height="4" fill="#E6E5DC" stroke="#151817" strokeWidth="0.5" rx="0.5" />
           {/* Desk Lamp */}
-          <path d="M 302,520 L 302,508 L 296,505" fill="none" stroke="#A35243" strokeWidth="1.2" />
+          <path d="M 302,520 L 302,508 L 296,505" fill="none" stroke="#B55B49" strokeWidth="1.2" />
 
           {/* Modern Sofa */}
-          <rect x="335" y="525" width="68" height="23" rx="3" fill="#3E473C" stroke="#151817" strokeWidth="1.2" />
-          <rect x="340" y="520" width="28" height="10" rx="2" fill="#343C32" />
-          <rect x="370" y="520" width="28" height="10" rx="2" fill="#343C32" />
+          <rect x="335" y="525" width="68" height="23" rx="3" fill="#485246" stroke="#252C26" strokeWidth="1.2" />
+          <rect x="340" y="520" width="28" height="10" rx="2" fill="#5A6C54" />
+          <rect x="370" y="520" width="28" height="10" rx="2" fill="#5A6C54" />
+
+          {/* Structural room boundary */}
+          <line x1="435" y1="460" x2="435" y2="560" stroke="#2D3530" strokeWidth="1.8" />
         </g>
 
         {/* Room 2B (Center Bay: x=445 to 680): Open Plan Kitchen & Dining */}
@@ -422,22 +447,25 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <rect x="445" y="548" width="235" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Kitchen Counter / Island */}
-          <rect x="460" y="515" width="60" height="33" fill="#222725" stroke="#151817" strokeWidth="1" />
-          <rect x="458" y="512" width="64" height="4" fill="#484E49" stroke="#151817" strokeWidth="0.8" />
-          <polygon points="475,475 495,475 500,490 470,490" fill="#383E3A" stroke="#151817" strokeWidth="0.8" />
+          <rect x="460" y="515" width="60" height="33" fill="#38403B" stroke="#1A201D" strokeWidth="1" />
+          <rect x="458" y="512" width="64" height="4" fill="#5A625C" stroke="#151817" strokeWidth="0.8" />
+          <polygon points="475,475 495,475 500,490 470,490" fill="#464E48" stroke="#151817" strokeWidth="0.8" />
 
           {/* Dining Table with Modern Chairs */}
-          <rect x="545" y="522" width="60" height="4" fill="#484E49" stroke="#151817" strokeWidth="1" />
-          <line x1="552" y1="526" x2="552" y2="548" stroke="#151817" strokeWidth="1.2" />
-          <line x1="598" y1="526" x2="598" y2="548" stroke="#151817" strokeWidth="1.2" />
-          <ellipse cx="575" cy="519" rx="6" ry="3" fill="#D8D7CD" stroke="#151817" strokeWidth="0.8" />
+          <rect x="545" y="522" width="60" height="4" fill="#5C5449" stroke="#231E18" strokeWidth="1" />
+          <line x1="552" y1="526" x2="552" y2="548" stroke="#5C5449" strokeWidth="1.2" />
+          <line x1="598" y1="526" x2="598" y2="548" stroke="#5C5449" strokeWidth="1.2" />
+          <ellipse cx="575" cy="519" rx="6" ry="3" fill="#E6E5DC" stroke="#151817" strokeWidth="0.8" />
 
           {/* Potted Ficus in Corner */}
           <g className={`perspective-transition ${isPlantSubdued ? 'perspective-dimmed' : ''}`}>
-            <polygon points="640,548 650,548 648,536 642,536" fill="#632D24" stroke="#151817" strokeWidth="0.8" />
-            <circle cx="645" cy="528" r="7" fill="#4D584A" />
-            <circle cx="643" cy="520" r="5" fill="#556251" />
+            <polygon points="640,548 650,548 648,536 642,536" fill="#7C3E33" stroke="#151817" strokeWidth="0.8" />
+            <circle cx="645" cy="528" r="7" fill="#5A6C54" />
+            <circle cx="643" cy="520" r="5" fill="#687862" />
           </g>
+
+          {/* Structural room boundary */}
+          <line x1="680" y1="460" x2="680" y2="560" stroke="#2D3530" strokeWidth="1.8" />
         </g>
       </g>
 
@@ -460,21 +488,24 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           />
 
           {/* Heavy Antique Credenza with Georgian Samovar */}
-          <rect x="280" y="595" width="70" height="53" fill="#523B2E" stroke="#151817" strokeWidth="1.2" />
-          <line x1="315" y1="595" x2="315" y2="648" stroke="#151817" strokeWidth="1" />
+          <rect x="280" y="595" width="70" height="53" fill="#634737" stroke="#251C15" strokeWidth="1.2" />
+          <line x1="315" y1="595" x2="315" y2="648" stroke="#251C15" strokeWidth="1" />
           <g transform="translate(315, 584)">
-            <ellipse cx="0" cy="5" rx="5" ry="4" fill="#B09A69" stroke="#151817" strokeWidth="0.8" />
-            <rect x="-3" y="-2" width="6" height="4" fill="#8E7B50" stroke="#151817" strokeWidth="0.6" />
+            <ellipse cx="0" cy="5" rx="5" ry="4" fill="#D4BC7D" stroke="#151817" strokeWidth="0.8" />
+            <rect x="-3" y="-2" width="6" height="4" fill="#B09A69" stroke="#151817" strokeWidth="0.6" />
             <line x1="0" y1="-2" x2="0" y2="-4" stroke="#151817" strokeWidth="1" />
-            <circle cx="0" cy="-5" r="1" fill="#A35243" />
+            <circle cx="0" cy="-5" r="1" fill="#B55B49" />
           </g>
 
           {/* Family Dining Table with Fruit Bowl & Georgian tea cups */}
-          <rect x="365" y="620" width="58" height="4" fill="#523B2E" stroke="#151817" strokeWidth="1" />
-          <line x1="370" y1="624" x2="370" y2="648" stroke="#523B2E" strokeWidth="1.5" />
-          <line x1="418" y1="624" x2="418" y2="648" stroke="#523B2E" strokeWidth="1.5" />
-          <ellipse cx="394" cy="616" rx="6" ry="3" fill="#6B3B32" stroke="#151817" strokeWidth="0.8" />
-          <circle cx="383" cy="618" r="1.5" fill="#D8D7CD" stroke="#222725" strokeWidth="0.4" />
+          <rect x="365" y="620" width="58" height="4" fill="#634737" stroke="#251C15" strokeWidth="1" />
+          <line x1="370" y1="624" x2="370" y2="648" stroke="#634737" strokeWidth="1.5" />
+          <line x1="418" y1="624" x2="418" y2="648" stroke="#634737" strokeWidth="1.5" />
+          <ellipse cx="394" cy="616" rx="6" ry="3" fill="#7D453A" stroke="#151817" strokeWidth="0.8" />
+          <circle cx="383" cy="618" r="1.5" fill="#E6E5DC" stroke="#222725" strokeWidth="0.4" />
+
+          {/* Structural room boundary */}
+          <line x1="435" y1="560" x2="435" y2="660" stroke="#2D3530" strokeWidth="1.8" />
         </g>
 
         {/* Room 1B (Center Bay: x=445 to 680): Entrance Vestibule & Hallway */}
@@ -483,21 +514,24 @@ export const ApartmentRooms: React.FC<ApartmentRoomsProps> = ({ selectedPerspect
           <rect x="445" y="648" width="235" height="12" fill="url(#herringbone-parquet)" />
 
           {/* Entrance Door with Brass Lock & Coat Rack */}
-          <rect x="455" y="575" width="40" height="73" fill="#523B2E" stroke="#151817" strokeWidth="1.2" />
-          <circle cx="462" cy="615" r="1.5" fill="#B09A69" />
+          <rect x="455" y="575" width="40" height="73" fill="#5C4436" stroke="#231A14" strokeWidth="1.2" />
+          <circle cx="462" cy="615" r="1.5" fill="#D4BC7D" />
           {/* Wall Coat Rack with Hanging Jackets & Woolen Hat */}
           <line x1="510" y1="585" x2="550" y2="585" stroke="#151817" strokeWidth="1.5" />
-          <path d="M 518,585 L 515,605 L 525,605 L 522,585" fill="#222725" stroke="#151817" strokeWidth="0.8" />
-          <path d="M 535,585 L 532,608 L 542,608 L 539,585" fill="#7C3E33" stroke="#151817" strokeWidth="0.8" />
+          <path d="M 518,585 L 515,605 L 525,605 L 522,585" fill="#38403B" stroke="#151817" strokeWidth="0.8" />
+          <path d="M 535,585 L 532,608 L 542,608 L 539,585" fill="#8E473A" stroke="#151817" strokeWidth="0.8" />
 
           {/* Shoe bench with slippers */}
-          <rect x="508" y="635" width="45" height="13" fill="#3D453E" stroke="#151817" strokeWidth="0.8" />
-          <ellipse cx="518" cy="632" rx="4" ry="2" fill="#4D584A" />
-          <ellipse cx="530" cy="632" rx="4" ry="2" fill="#6B3B32" />
+          <rect x="508" y="635" width="45" height="13" fill="#465048" stroke="#151817" strokeWidth="0.8" />
+          <ellipse cx="518" cy="632" rx="4" ry="2" fill="#5A6C54" />
+          <ellipse cx="530" cy="632" rx="4" ry="2" fill="#7D453A" />
 
           {/* Side Credenza & Hallway Runner Rug */}
-          <rect x="580" y="610" width="50" height="38" fill="#3D453E" stroke="#151817" strokeWidth="1" />
-          <rect x="465" y="646" width="180" height="4" fill="#632D24" stroke="#522A26" strokeWidth="0.6" />
+          <rect x="580" y="610" width="50" height="38" fill="#4A544E" stroke="#151817" strokeWidth="1" />
+          <rect x="465" y="646" width="180" height="4" fill="#7D3E34" stroke="#522A26" strokeWidth="0.6" />
+
+          {/* Structural room boundary */}
+          <line x1="680" y1="560" x2="680" y2="660" stroke="#2D3530" strokeWidth="1.8" />
         </g>
       </g>
     </g>

@@ -24,20 +24,20 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 16 }}
           transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto bg-[#222725] border border-[#303633] shadow-brutalist p-6 md:p-8 text-[#D8D7CD]"
+          className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto bg-[#222725] border border-[#3E4642] shadow-brutalist p-6 md:p-8 text-[#E6E5DC]"
           role="dialog"
           aria-modal="true"
         >
           {/* Header */}
-          <div className="flex items-start justify-between border-b border-[#303633] pb-4 mb-6">
+          <div className="flex items-start justify-between border-b border-[#3E4642] pb-4 mb-6">
             <div>
-              <div className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold mb-1">
+              <div className="font-mono text-[10.5px] tracking-widest text-[#D4BC7D] uppercase font-bold mb-1">
                 GEOLAB ARCHIVE · ARCHITECTURAL ETHNOGRAPHY DOSSIER
               </div>
-              <h2 className="font-editorial text-3xl md:text-4xl font-bold uppercase text-[#D8D7CD] leading-tight">
+              <h2 className="font-editorial text-3xl md:text-4xl font-bold uppercase text-[#E6E5DC] leading-tight">
                 {language === 'KA' ? 'პროექტის შესახებ' : 'ABOUT THE LIVING BUILDING'}
               </h2>
-              <div className="font-editorial text-base italic text-[#687565] mt-0.5">
+              <div className="font-editorial text-base italic text-[#889885] mt-0.5">
                 {language === 'KA'
                   ? 'ცოცხალი შენობა: მულტისახეობრივი თანაცხოვრება თბილისში'
                   : 'A Multispecies Exploration of Tbilisi\'s Residential Architecture'}
@@ -45,7 +45,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 text-[#939B92] hover:text-[#A35243] hover:bg-[#181C1A] transition-colors border border-transparent hover:border-[#303633]"
+              className="p-1.5 text-[#B0B7AF] hover:text-[#FFFFFF] hover:bg-[#181C1A] transition-colors border border-transparent hover:border-[#3E4642]"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -53,7 +53,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
           </div>
 
           {/* Exhibition Content */}
-          <div className="space-y-5 text-xs md:text-sm font-sans leading-relaxed text-[#D8D7CD]">
+          <div className="space-y-5 text-xs md:text-sm font-sans leading-relaxed text-[#E6E5DC]">
             <p>
               {language === 'KA'
                 ? '„ცოცხალი შენობა“ არის GeoLab-ის ციფრული ეთნოგრაფიული პროექტი, რომელიც იკვლევს მულტისახეობრივ თანაცხოვრებას თბილისის საბჭოთა პერიოდის საცხოვრებელ კორპუსებსა და ეზოებში.'
@@ -61,24 +61,24 @@ export const AboutModal: React.FC<AboutModalProps> = ({
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-2">
-              <div className="bg-[#181C1A] border border-[#303633] p-3.5">
-                <div className="flex items-center gap-2 mb-1.5 font-mono text-[11px] font-bold text-[#D8D7CD] uppercase">
-                  <Building2 className="w-4 h-4 text-[#A35243]" />
+              <div className="bg-[#181C1A] border border-[#3E4642] p-3.5">
+                <div className="flex items-center gap-2 mb-1.5 font-mono text-[11px] font-bold text-[#E6E5DC] uppercase">
+                  <Building2 className="w-4 h-4 text-[#B55B49]" />
                   <span>{language === 'KA' ? 'არქიტექტურა როგორც ეკოსისტემა' : 'Architecture as Ecosystem'}</span>
                 </div>
-                <p className="text-xs text-[#939B92] leading-snug">
+                <p className="text-xs text-[#B0B7AF] leading-snug">
                   {language === 'KA'
                     ? 'შენობა არ არის იზოლირებული ბეტონის ობიექტი. ის არის ცოცხალი გარემო, სადაც ერთმანეთს ერწყმის ბეტონი, მცენარეები, ცხოველები და ადამიანები.'
                     : 'The building is not an isolated concrete monument, but a porous metabolism woven together by precast panels, soil, roots, heating steam, and animal pathways.'}
                 </p>
               </div>
 
-              <div className="bg-[#181C1A] border border-[#303633] p-3.5">
-                <div className="flex items-center gap-2 mb-1.5 font-mono text-[11px] font-bold text-[#D8D7CD] uppercase">
-                  <Eye className="w-4 h-4 text-[#687565]" />
+              <div className="bg-[#181C1A] border border-[#3E4642] p-3.5">
+                <div className="flex items-center gap-2 mb-1.5 font-mono text-[11px] font-bold text-[#E6E5DC] uppercase">
+                  <Eye className="w-4 h-4 text-[#889885]" />
                   <span>{language === 'KA' ? 'მულტისახეობრივი ლინზა' : 'Multispecies Lens'}</span>
                 </div>
-                <p className="text-xs text-[#939B92] leading-snug">
+                <p className="text-xs text-[#B0B7AF] leading-snug">
                   {language === 'KA'
                     ? 'ჩვენ ვაკვირდებით კატებს სადარბაზოებში, ნამგალებს სახურავებზე, ვაზს აივნებზე და მიწისქვეშა მილებს, როგორც ერთიან ეკოლოგიას.'
                     : 'Attending to common swifts nesting beneath zinc hoods, community cats warming themselves on terrazzo stair landings, and grapevines shading summer concrete.'}
@@ -86,20 +86,20 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               </div>
             </div>
 
-            <p className="text-[#939B92]">
+            <p className="text-[#B0B7AF]">
               {language === 'KA'
                 ? 'ეს ინტერაქციული ჭრილი წარმოადგენს საველე არქივის სრულ ეთნოგრაფიულ დოკუმენტაციას, მათ შორის საველე აუდიო ჩანაწერებს, ფოტოარქივებს და ზეპირ ისტორიებს.'
                 : 'This interactive architectural cutaway presents comprehensive ethnographic fieldwork documentation, including field audio phonography, archival contact sheets, and oral histories.'}
             </p>
 
             {/* Curatorial Attribution */}
-            <div className="border-t border-[#303633] pt-4 mt-6 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] text-[#939B92]">
+            <div className="border-t border-[#3E4642] pt-4 mt-6 flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] text-[#B0B7AF]">
               <div className="flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-[#A35243]" />
+                <BookOpen className="w-3.5 h-3.5 text-[#B55B49]" />
                 <span>GEOLAB RESEARCH INITIATIVE · TBILISI</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Compass className="w-3.5 h-3.5 text-[#687565]" />
+                <Compass className="w-3.5 h-3.5 text-[#889885]" />
                 <span>BRUTALIST ARCHITECTURE × DOCUMENTARY ETHNOGRAPHY</span>
               </div>
             </div>

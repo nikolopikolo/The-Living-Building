@@ -9,10 +9,18 @@ import { AboutModal } from './layout/AboutModal';
 import { INTERACTIVE_ZONES } from './data/zonesData';
 import type { InteractiveZone, Language, PerspectiveFilter, ViewportState } from './types';
 
-// Compute responsive initial scale: desktop has ~12% increased visual prominence
+// Compute responsive initial scale: desktop framed ~5-8% more prominent (1.18) with full clearance
 const getInitialScale = () => {
-  if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
-    return 1.12; // 12% prominence boost on desktop while keeping full margins
+  if (typeof window !== 'undefined') {
+    if (window.innerWidth >= 1280) {
+      return 1.18; // Prominence boost keeping roof, basement, markers fully visible
+    }
+    if (window.innerWidth >= 1024) {
+      return 1.14;
+    }
+    if (window.innerWidth >= 768) {
+      return 1.06;
+    }
   }
   return 1.0;
 };

@@ -54,57 +54,57 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
     .filter((z): z is InteractiveZone => Boolean(z));
 
   return (
-    <div className="space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#D8D7CD]">
+    <div className="space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#E6E5DC]">
       {/* Archival Field Docket Header */}
-      <div className="bg-[#181C1A] border-l-2 border-[#A35243] p-2.5 flex items-center justify-between text-[9px] font-mono">
-        <span className="font-bold text-[#B09A69] uppercase tracking-wider">
+      <div className="bg-[#181C1A] border-l-2 border-[#B55B49] p-2.5 flex items-center justify-between text-[9px] font-mono">
+        <span className="font-bold text-[#D4BC7D] uppercase tracking-wider">
           DOSSIER SECTION: TB-{zone.id.toUpperCase()}-DOC
         </span>
-        <span className="text-[#939B92]">
+        <span className="text-[#B0B7AF]">
           {language === 'KA' ? 'საველე ჩანაწერები' : 'STRUCTURED FIELD REPORT'}
         </span>
       </div>
 
       {/* 1. RESEARCH CONTEXT */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
-          <BookOpen className="w-3.5 h-3.5 text-[#A35243]" />
+        <h4 className="font-mono text-[10.5px] tracking-widest text-[#D4BC7D] uppercase font-bold flex items-center gap-1.5 border-b border-[#3E4642] pb-1">
+          <BookOpen className="w-3.5 h-3.5 text-[#B55B49]" />
           <span>{language === 'KA' ? '1. კვლევითი კონტექსტი' : '1. RESEARCH CONTEXT'}</span>
         </h4>
-        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#D8D7CD]">
+        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#E6E5DC]">
           {researchContext}
         </p>
       </section>
 
       {/* 2. SPATIAL OBSERVATIONS */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
-          <Compass className="w-3.5 h-3.5 text-[#687565]" />
+        <h4 className="font-mono text-[10.5px] tracking-widest text-[#D4BC7D] uppercase font-bold flex items-center gap-1.5 border-b border-[#3E4642] pb-1">
+          <Compass className="w-3.5 h-3.5 text-[#889885]" />
           <span>{language === 'KA' ? '2. სივრცითი დაკვირვება' : '2. SPATIAL OBSERVATIONS'}</span>
         </h4>
-        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#D8D7CD] first-letter:text-2xl first-letter:font-bold first-letter:float-left first-letter:mr-1.5 first-letter:leading-none">
+        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#E6E5DC] first-letter:text-2xl first-letter:font-bold first-letter:float-left first-letter:mr-1.5 first-letter:leading-none">
           {spatialObservations}
         </p>
       </section>
 
       {/* 3. MULTISPECIES RELATIONSHIPS */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
-          <Layers className="w-3.5 h-3.5 text-[#555B56]" />
+        <h4 className="font-mono text-[10.5px] tracking-widest text-[#D4BC7D] uppercase font-bold flex items-center gap-1.5 border-b border-[#3E4642] pb-1">
+          <Layers className="w-3.5 h-3.5 text-[#889885]" />
           <span>{language === 'KA' ? '3. მულტისახეობრივი ურთიერთობები' : '3. MULTISPECIES RELATIONSHIPS'}</span>
         </h4>
-        <div className="bg-[#181C1A] border border-[#303633] p-2.5 font-sans text-xs text-[#D8D7CD] leading-relaxed">
+        <div className="bg-[#181C1A] border border-[#3E4642] p-2.5 font-sans text-xs text-[#E6E5DC] leading-relaxed">
           {multispeciesRelations}
         </div>
       </section>
 
       {/* 4. ARCHITECTURAL CONTEXT */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
-          <span className="font-mono text-xs text-[#A35243]">▤</span>
+        <h4 className="font-mono text-[10.5px] tracking-widest text-[#D4BC7D] uppercase font-bold flex items-center gap-1.5 border-b border-[#3E4642] pb-1">
+          <span className="font-mono text-xs text-[#B55B49]">▤</span>
           <span>{language === 'KA' ? '4. არქიტექტურული კონტექსტი' : '4. ARCHITECTURAL CONTEXT'}</span>
         </h4>
-        <div className="bg-[#181C1A] border-l-2 border-[#555B56] p-2.5 text-[11px] font-mono leading-relaxed text-[#939B92]">
+        <div className="bg-[#181C1A] border-l-2 border-[#889885] p-2.5 text-[11.5px] font-mono leading-relaxed text-[#B0B7AF]">
           {architecturalContext}
         </div>
       </section>

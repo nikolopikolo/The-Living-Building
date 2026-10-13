@@ -167,18 +167,18 @@ export const ArchivalAudioPlayer: React.FC<ArchivalAudioPlayerProps> = ({
 
       {/* Recording Title and Abstract */}
       <div>
-        <h4 className="font-editorial text-sm sm:text-base font-bold text-[#D8D7CD] leading-snug">
+        <h4 className="font-editorial text-sm sm:text-base font-bold text-[#E6E5DC] leading-snug">
           {title}
         </h4>
-        <p className="font-sans text-[11px] text-[#939B92] mt-0.5 leading-relaxed">
+        <p className="font-sans text-[11.5px] text-[#B0B7AF] mt-0.5 leading-relaxed">
           {caption}
         </p>
       </div>
 
       {/* Main Field Recording Instrument Control Panel */}
-      <div className="bg-[#222725] border border-[#303633] p-2.5 sm:p-3 space-y-2.5">
+      <div className="bg-[#222725] border border-[#3E4642] p-2.5 sm:p-3 space-y-2.5">
         {/* Analog VU / Decibel Meter Simulation */}
-        <div className="flex items-center justify-between font-mono text-[8px] text-[#939B92] px-1">
+        <div className="flex items-center justify-between font-mono text-[8px] text-[#B0B7AF] px-1">
           <span>VU METER · -20dB</span>
           <div className="flex items-center gap-0.5">
             {[...Array(14)].map((_, i) => (
@@ -189,8 +189,8 @@ export const ArchivalAudioPlayer: React.FC<ArchivalAudioPlayerProps> = ({
                     ? i < 9
                       ? 'bg-[#687565]'
                       : i < 12
-                      ? 'bg-[#B09A69]'
-                      : 'bg-[#A35243]'
+                      ? 'bg-[#D4BC7D]'
+                      : 'bg-[#B55B49]'
                     : 'bg-[#181C1A]'
                 }`}
               />
@@ -210,23 +210,23 @@ export const ArchivalAudioPlayer: React.FC<ArchivalAudioPlayerProps> = ({
               value={currentTime}
               onChange={handleSeek}
               disabled={!hasAudioSource}
-              className={`w-full h-1.5 bg-[#181C1A] rounded-none appearance-none cursor-pointer accent-[#A35243] ${
-                !hasAudioSource ? 'cursor-not-allowed opacity-50' : ''
+              className={`w-full h-1.5 bg-[#181C1A] rounded-none appearance-none cursor-pointer accent-[#B55B49] ${
+                !hasAudioSource ? 'cursor-not-allowed opacity-40' : ''
               }`}
               aria-label="Timeline scrubber"
             />
           </div>
 
-          <div className="flex items-center justify-between font-mono text-[9px] text-[#D8D7CD]">
-            <span className="font-bold text-[#B09A69]">{formatSeconds(currentTime)}</span>
-            <span className="text-[#939B92]">
+          <div className="flex items-center justify-between font-mono text-[9px] text-[#E6E5DC]">
+            <span className="font-bold text-[#D4BC7D]">{formatSeconds(currentTime)}</span>
+            <span className="text-[#B0B7AF]">
               {formatSeconds(effectiveDuration)}
             </span>
           </div>
         </div>
 
         {/* Hardware Buttons & Volume Control */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-[#303633]">
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-[#3E4642]">
           <div className="flex items-center gap-1.5">
             {/* Play / Pause button */}
             <button
@@ -235,10 +235,10 @@ export const ArchivalAudioPlayer: React.FC<ArchivalAudioPlayerProps> = ({
               disabled={!hasAudioSource}
               className={`flex items-center gap-1.5 px-3 py-1 font-mono text-[10px] font-semibold border transition-all ${
                 !hasAudioSource
-                  ? 'bg-[#181C1A] text-[#939B92] border-[#303633] opacity-60 cursor-not-allowed'
+                  ? 'bg-[#181C1A] text-[#7E8880] border-[#303633] opacity-40 cursor-not-allowed'
                   : isPlaying
-                  ? 'bg-[#A35243] text-white border-[#A35243]'
-                  : 'bg-[#181C1A] text-[#D8D7CD] border-[#303633] hover:bg-[#2A302D]'
+                  ? 'bg-[#A35243] text-white border-[#B55B49]'
+                  : 'bg-[#181C1A] text-[#E6E5DC] border-[#3E4642] hover:bg-[#2A302D]'
               }`}
               aria-label={isPlaying ? 'Pause audio' : 'Play field recording'}
             >
@@ -260,7 +260,7 @@ export const ArchivalAudioPlayer: React.FC<ArchivalAudioPlayerProps> = ({
               type="button"
               onClick={handleReset}
               disabled={!hasAudioSource}
-              className="p-1 text-[#D8D7CD] hover:text-white bg-[#181C1A] border border-[#303633] hover:bg-[#2A302D] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1 text-[#E6E5DC] hover:text-white bg-[#181C1A] border border-[#3E4642] hover:bg-[#2A302D] disabled:opacity-40 disabled:cursor-not-allowed"
               title="Return to start (00:00)"
               aria-label="Return to start"
             >

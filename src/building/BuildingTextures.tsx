@@ -35,12 +35,12 @@ export const BuildingTextures: React.FC = () => {
         height="12"
         patternUnits="userSpaceOnUse"
       >
-        <rect width="24" height="12" fill="#3D3833" fillOpacity="0.7" />
-        <line x1="0" y1="6" x2="24" y2="6" stroke="#222725" strokeWidth="0.75" strokeOpacity="0.7" />
-        <line x1="0" y1="12" x2="24" y2="12" stroke="#222725" strokeWidth="0.75" strokeOpacity="0.7" />
-        <line x1="12" y1="0" x2="12" y2="6" stroke="#A35243" strokeWidth="0.75" strokeOpacity="0.4" />
-        <line x1="6" y1="6" x2="6" y2="12" stroke="#A35243" strokeWidth="0.75" strokeOpacity="0.4" />
-        <line x1="18" y1="6" x2="18" y2="12" stroke="#A35243" strokeWidth="0.75" strokeOpacity="0.4" />
+        <rect width="24" height="12" fill="#453F39" fillOpacity="0.75" />
+        <line x1="0" y1="6" x2="24" y2="6" stroke="#282E2B" strokeWidth="0.75" strokeOpacity="0.7" />
+        <line x1="0" y1="12" x2="24" y2="12" stroke="#282E2B" strokeWidth="0.75" strokeOpacity="0.7" />
+        <line x1="12" y1="0" x2="12" y2="6" stroke="#A35243" strokeWidth="0.75" strokeOpacity="0.45" />
+        <line x1="6" y1="6" x2="6" y2="12" stroke="#A35243" strokeWidth="0.75" strokeOpacity="0.45" />
+        <line x1="18" y1="6" x2="18" y2="12" stroke="#A35243" strokeWidth="0.75" strokeOpacity="0.45" />
       </pattern>
 
       {/* Herringbone Wooden Parquet (Aged Soviet Oak Parquet) */}
@@ -50,14 +50,14 @@ export const BuildingTextures: React.FC = () => {
         height="14"
         patternUnits="userSpaceOnUse"
       >
-        <rect width="14" height="14" fill="#2E2B25" fillOpacity="0.95" />
+        <rect width="14" height="14" fill="#38342D" fillOpacity="0.95" />
         <path
           d="M0 0 L7 7 L0 14 M7 0 L14 7 L7 14"
           fill="none"
-          stroke="#423E34"
+          stroke="#4E483C"
           strokeWidth="0.9"
         />
-        <line x1="7" y1="0" x2="7" y2="14" stroke="#211E1A" strokeWidth="0.6" strokeOpacity="0.6" />
+        <line x1="7" y1="0" x2="7" y2="14" stroke="#26221E" strokeWidth="0.6" strokeOpacity="0.6" />
       </pattern>
 
       {/* Caucasian Kilim / Georgian Wall Carpet Geometric Pattern (Darkened Wool) */}
@@ -90,18 +90,18 @@ export const BuildingTextures: React.FC = () => {
         <stop offset="100%" stopColor="#303633" />
       </linearGradient>
 
-      {/* Faded Soviet Institutional Green Wall Paint */}
+      {/* Faded Soviet Institutional Green Wall Paint (Brightened ~12% for interior clarity) */}
       <linearGradient id="soviet-wall-green" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#465044" />
-        <stop offset="60%" stopColor="#384136" />
-        <stop offset="100%" stopColor="#2E352C" />
+        <stop offset="0%" stopColor="#525E4F" />
+        <stop offset="60%" stopColor="#434D40" />
+        <stop offset="100%" stopColor="#363E34" />
       </linearGradient>
 
-      {/* Faded Institutional Plaster Gray */}
+      {/* Faded Institutional Plaster Gray (Brightened ~12% for interior clarity) */}
       <linearGradient id="soviet-wall-gray" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#3E4541" />
-        <stop offset="70%" stopColor="#323835" />
-        <stop offset="100%" stopColor="#282E2B" />
+        <stop offset="0%" stopColor="#4A524D" />
+        <stop offset="70%" stopColor="#3E4541" />
+        <stop offset="100%" stopColor="#323835" />
       </linearGradient>
 
       {/* Damp Moss Patina Gradient */}
@@ -111,9 +111,9 @@ export const BuildingTextures: React.FC = () => {
         <stop offset="100%" stopColor="#687565" stopOpacity="0" />
       </linearGradient>
 
-      {/* Interior Ambient Occlusion (Heavy Brutalist Ceiling Shadow) */}
+      {/* Interior Ambient Occlusion (Ceiling Shadow - Lightened for visibility) */}
       <linearGradient id="ambient-ceiling-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#101312" stopOpacity="0.55" />
+        <stop offset="0%" stopColor="#101312" stopOpacity="0.35" />
         <stop offset="100%" stopColor="#101312" stopOpacity="0.0" />
       </linearGradient>
 

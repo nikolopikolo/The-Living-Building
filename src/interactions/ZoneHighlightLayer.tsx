@@ -166,35 +166,35 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
               <circle
                 cx="0"
                 cy="0"
-                r={isActive ? 4.5 : 3.5}
-                fill={isActive ? '#A35243' : '#151817'}
-                stroke="#D8D7CD"
-                strokeWidth="1.2"
+                r={isActive ? 5 : 4}
+                fill={isActive ? '#B55B49' : '#1C201E'}
+                stroke="#E6E5DC"
+                strokeWidth="1.4"
               />
 
               {/* Technical Zone Indicator Badge - Hard Rectangular Archival Stamp */}
               <g
-                transform={`translate(12, -7)`}
+                transform={`translate(12, -8)`}
                 className="transition-opacity duration-200"
-                opacity={isHovered || isActive ? 1 : 0.85}
+                opacity={isHovered || isActive ? 1 : 0.9}
               >
                 <rect
                   x="0"
                   y="0"
-                  width={zone.floorLevel.length * 6 + 14}
-                  height="14"
-                  fill={isActive ? '#A35243' : '#222725'}
+                  width={zone.floorLevel.length * 6.5 + 16}
+                  height="16"
+                  fill={isActive ? '#A35243' : '#1C201E'}
                   rx="0"
-                  stroke={isHovered ? '#687565' : '#303633'}
+                  stroke={isActive ? '#B55B49' : isHovered ? '#687565' : '#4A544E'}
                   strokeWidth="1"
                 />
                 <text
-                  x="7"
-                  y="10"
+                  x="8"
+                  y="11.5"
                   fontFamily="JetBrains Mono, monospace"
-                  fontSize="7.5"
-                  fill="#D8D7CD"
-                  fontWeight="600"
+                  fontSize="8.5"
+                  fill="#E6E5DC"
+                  fontWeight="700"
                   letterSpacing="0.5"
                 >
                   {zone.floorLevel}
@@ -204,28 +204,28 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
               {/* Hover Contextual Field Label Pill / Tooltip */}
               {isHovered && (
                 <g
-                  transform="translate(12, -26)"
+                  transform="translate(12, -28)"
                   className="pointer-events-none filter drop-shadow-md"
                   style={{ transition: 'opacity 180ms ease-out' }}
                 >
                   <rect
                     x="0"
                     y="0"
-                    width={Math.max(title.length * 5.8 + 24, 115)}
-                    height="20"
-                    fill="#222725"
-                    stroke="#303633"
+                    width={Math.max(title.length * 6.2 + 24, 125)}
+                    height="22"
+                    fill="#1C201E"
+                    stroke="#4A544E"
                     strokeWidth="1"
                     rx="0"
                   />
-                  <circle cx="8" cy="10" r="2.5" fill={isActive ? '#A35243' : '#687565'} />
+                  <circle cx="9" cy="11" r="2.5" fill={isActive ? '#B55B49' : '#889885'} />
                   <text
-                    x="15"
-                    y="13.5"
+                    x="16"
+                    y="14.5"
                     fontFamily="Inter, sans-serif"
-                    fontSize="8"
+                    fontSize="9"
                     fontWeight="600"
-                    fill="#D8D7CD"
+                    fill="#E6E5DC"
                   >
                     {title}
                   </text>
