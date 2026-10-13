@@ -8,35 +8,45 @@ export default {
     extend: {
       colors: {
         charcoal: {
-          DEFAULT: '#262B29',
-          dark: '#1c201e',
-          light: '#313735',
+          DEFAULT: '#151817',
+          dark: '#0D0F0E',
+          light: '#222725',
+        },
+        panel: {
+          DEFAULT: '#222725',
+          dark: '#191D1B',
+          light: '#2A302D',
         },
         concrete: {
-          DEFAULT: '#C4B7A2',
-          light: '#D7CCBC',
-          dark: '#AA9C86',
+          DEFAULT: '#555B56',
+          light: '#6B726C',
+          dark: '#3F4540',
+        },
+        shadow: {
+          DEFAULT: '#303633',
+          dark: '#1C201E',
+          light: '#3E4642',
         },
         moss: {
-          DEFAULT: '#74826A',
-          light: '#8A997F',
-          dark: '#586450',
-        },
-        paper: {
-          DEFAULT: '#E8E0D1',
-          light: '#F3EDE1',
-          dark: '#DDD4C3',
-          warm: '#F7F3EB',
+          DEFAULT: '#687565',
+          light: '#7D8C7A',
+          dark: '#465044',
         },
         rust: {
-          DEFAULT: '#965D45',
-          light: '#AF7359',
-          dark: '#7D4732',
+          DEFAULT: '#A35243',
+          light: '#BA6656',
+          dark: '#7C3E33',
         },
-        ink: {
-          DEFAULT: '#343B37',
-          light: '#48524D',
-          dark: '#202522',
+        amber: {
+          DEFAULT: '#B09A69',
+          light: '#C4AD7C',
+          dark: '#8E7B50',
+        },
+        paper: {
+          DEFAULT: '#D8D7CD',
+          light: '#E6E5DC',
+          dark: '#939B92',
+          warm: '#222725',
         },
       },
       fontFamily: {
@@ -45,9 +55,9 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {
-        'brutalist': '4px 4px 0px 0px #262B29',
-        'brutalist-sm': '2px 2px 0px 0px #262B29',
-        'brutalist-rust': '3px 3px 0px 0px #965D45',
+        'brutalist': '3px 3px 0px 0px #0D0F0E',
+        'brutalist-sm': '2px 2px 0px 0px #0D0F0E',
+        'brutalist-rust': '2px 2px 0px 0px #A35243',
       }
     },
   },

@@ -25,30 +25,30 @@ interface ZonePreviewModalProps {
 const getCategoryIcon = (category: SpeciesCategory) => {
   switch (category) {
     case 'fauna':
-      return <Feather className="w-3.5 h-3.5 text-[#965D45]" />;
+      return <Feather className="w-3.5 h-3.5 text-[#A35243]" />;
     case 'flora':
-      return <Trees className="w-3.5 h-3.5 text-[#74826A]" />;
+      return <Trees className="w-3.5 h-3.5 text-[#687565]" />;
     case 'human':
-      return <User className="w-3.5 h-3.5 text-[#343B37]" />;
+      return <User className="w-3.5 h-3.5 text-[#B09A69]" />;
     case 'infrastructure':
-      return <Wrench className="w-3.5 h-3.5 text-[#262B29]" />;
+      return <Wrench className="w-3.5 h-3.5 text-[#555B56]" />;
     default:
-      return <Compass className="w-3.5 h-3.5 text-[#AA9C86]" />;
+      return <Compass className="w-3.5 h-3.5 text-[#939B92]" />;
   }
 };
 
 const getPerspectiveBadge = (p: 'HUMAN' | 'ANIMAL' | 'PLANT' | 'INFRASTRUCTURE', language: Language) => {
   const map: Record<string, { en: string; ka: string; bg: string; text: string }> = {
-    HUMAN: { en: 'HUMAN', ka: 'ადამიანი', bg: 'bg-[#DDD4C3]', text: 'text-[#262B29]' },
-    ANIMAL: { en: 'ANIMAL', ka: 'ცხოველი', bg: 'bg-[#C4B7A2]', text: 'text-[#7D4732]' },
-    PLANT: { en: 'PLANT', ka: 'მცენარე', bg: 'bg-[#D6DDD1]', text: 'text-[#586450]' },
-    INFRASTRUCTURE: { en: 'INFRASTRUCTURE', ka: 'ინფრასტრუქტურა', bg: 'bg-[#E0DAD1]', text: 'text-[#343B37]' },
+    HUMAN: { en: 'HUMAN', ka: 'ადამიანი', bg: 'bg-[#181C1A]', text: 'text-[#B09A69]' },
+    ANIMAL: { en: 'ANIMAL', ka: 'ცხოველი', bg: 'bg-[#181C1A]', text: 'text-[#A35243]' },
+    PLANT: { en: 'PLANT', ka: 'მცენარე', bg: 'bg-[#181C1A]', text: 'text-[#687565]' },
+    INFRASTRUCTURE: { en: 'INFRASTRUCTURE', ka: 'ინფრასტრუქტურა', bg: 'bg-[#181C1A]', text: 'text-[#939B92]' },
   };
-  const config = map[p] || { en: p, ka: p, bg: 'bg-[#E8E0D1]', text: 'text-[#262B29]' };
+  const config = map[p] || { en: p, ka: p, bg: 'bg-[#181C1A]', text: 'text-[#D8D7CD]' };
   return (
     <span
       key={p}
-      className={`px-1.5 py-0.5 text-[9px] font-mono tracking-wider font-semibold uppercase border border-[#343B37]/30 ${config.bg} ${config.text}`}
+      className={`px-1.5 py-0.5 text-[9px] font-mono tracking-wider font-semibold uppercase border border-[#303633] ${config.bg} ${config.text}`}
     >
       {language === 'KA' ? config.ka : config.en}
     </span>
@@ -90,23 +90,23 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 24, scale: 0.97 }}
         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:right-8 z-40 w-[94vw] max-w-[500px] max-h-[86vh] flex flex-col bg-[#F7F3EB] border border-[#343B37] shadow-brutalist p-4 sm:p-6 text-[#262B29]"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:right-8 z-40 w-[94vw] max-w-[500px] max-h-[86vh] flex flex-col bg-[#222725] border border-[#303633] shadow-brutalist p-4 sm:p-6 text-[#D8D7CD]"
         role="dialog"
         aria-labelledby="zone-preview-title"
       >
         {/* Archival Dossier Header Stamp */}
-        <div className="flex items-start justify-between border-b border-[#C4B7A2] pb-2.5 mb-2.5">
+        <div className="flex items-start justify-between border-b border-[#303633] pb-2.5 mb-2.5">
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[10px] font-bold px-2 py-0.5 bg-[#262B29] text-[#E8E0D1] uppercase tracking-wider">
+              <span className="font-mono text-[10px] font-bold px-2 py-0.5 bg-[#A35243] text-white uppercase tracking-wider">
                 {floorBadge}
               </span>
-              <span className="font-mono text-[10px] text-[#7D4732] tracking-wider uppercase font-semibold">
+              <span className="font-mono text-[10px] text-[#B09A69] tracking-wider uppercase font-semibold">
                 ARCHIVE REF · TB-{zone.id.toUpperCase()}
               </span>
             </div>
             {zone.isDemonstration && (
-              <div className="mt-1 font-mono text-[8px] text-[#586450] uppercase tracking-widest">
+              <div className="mt-1 font-mono text-[8px] text-[#939B92] uppercase tracking-widest">
                 [ DEMONSTRATION ETHNOGRAPHIC RECORD ]
               </div>
             )}
@@ -118,7 +118,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                 type="button"
                 onClick={onResetView}
                 title={language === 'KA' ? 'სრულ ხედზე დაბრუნება' : 'Return to full building view'}
-                className="p-1.5 text-[#343B37] hover:text-[#262B29] hover:bg-[#E8E0D1] border border-transparent hover:border-[#343B37]/30 transition-colors rounded"
+                className="p-1.5 text-[#939B92] hover:text-[#D8D7CD] hover:bg-[#181C1A] border border-transparent hover:border-[#303633] transition-colors"
                 aria-label="Reset viewport"
               >
                 <RotateCcw className="w-3.8 h-3.8" />
@@ -127,7 +127,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 text-[#343B37] hover:text-[#965D45] hover:bg-[#E8E0D1] border border-transparent hover:border-[#343B37]/30 transition-colors rounded"
+              className="p-1.5 text-[#939B92] hover:text-[#A35243] hover:bg-[#181C1A] border border-transparent hover:border-[#303633] transition-colors"
               aria-label="Close dossier"
             >
               <X className="w-4.5 h-4.5" />
@@ -137,7 +137,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
 
         {/* Perspective Category Tags */}
         <div className="flex flex-wrap items-center gap-1 mb-2.5">
-          <span className="font-mono text-[9px] uppercase tracking-wider text-[#7D4732] mr-1">
+          <span className="font-mono text-[9px] uppercase tracking-wider text-[#B09A69] mr-1">
             {language === 'KA' ? 'კატეგორიები:' : 'LENSES:'}
           </span>
           {zone.perspectives && zone.perspectives.map((p) => getPerspectiveBadge(p, language))}
@@ -147,28 +147,28 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
         <div className="mb-2.5">
           <h2
             id="zone-preview-title"
-            className="font-editorial text-2xl sm:text-3xl font-bold leading-tight text-[#262B29]"
+            className="font-editorial text-2xl sm:text-3xl font-bold leading-tight text-[#D8D7CD]"
           >
             {title}
           </h2>
-          <div className="font-editorial text-xs sm:text-sm italic text-[#7D4732] mt-0.5 opacity-90">
+          <div className="font-editorial text-xs sm:text-sm italic text-[#A35243] mt-0.5 opacity-90">
             {secondaryTitle}
           </div>
-          <p className="font-sans text-xs font-medium text-[#586450] mt-1 leading-snug">
+          <p className="font-sans text-xs font-medium text-[#939B92] mt-1 leading-snug">
             {subtitle}
           </p>
         </div>
 
         {/* Archival Research Dossier Navigation Tabs */}
-        <div className="flex items-center border-b border-[#C4B7A2] mb-3 text-xs font-mono overflow-x-auto select-none">
+        <div className="flex items-center border-b border-[#303633] mb-3 text-xs font-mono overflow-x-auto select-none">
           {/* 1. OVERVIEW Tab */}
           <button
             type="button"
             onClick={() => setActiveTab('overview')}
             className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 ${
               activeTab === 'overview'
-                ? 'border-[#965D45] text-[#262B29] font-bold'
-                : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
+                ? 'border-[#A35243] text-[#D8D7CD] font-bold'
+                : 'border-transparent text-[#939B92] hover:text-[#D8D7CD]'
             }`}
           >
             {language === 'KA' ? 'მიმოხილვა' : 'OVERVIEW'}
@@ -180,8 +180,8 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
             onClick={() => setActiveTab('narrative')}
             className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 ${
               activeTab === 'narrative'
-                ? 'border-[#965D45] text-[#262B29] font-bold'
-                : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
+                ? 'border-[#A35243] text-[#D8D7CD] font-bold'
+                : 'border-transparent text-[#939B92] hover:text-[#D8D7CD]'
             }`}
           >
             {language === 'KA' ? 'საველე ჩანაწერი' : 'FIELD NARRATIVE'}
@@ -193,14 +193,14 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
             onClick={() => setActiveTab('visual')}
             className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 flex items-center gap-1 ${
               activeTab === 'visual'
-                ? 'border-[#965D45] text-[#262B29] font-bold'
-                : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
+                ? 'border-[#A35243] text-[#D8D7CD] font-bold'
+                : 'border-transparent text-[#939B92] hover:text-[#D8D7CD]'
             }`}
           >
-            <Camera className="w-3 h-3 text-[#965D45]" />
+            <Camera className="w-3 h-3 text-[#A35243]" />
             <span>{language === 'KA' ? 'ფოტოარქივი' : 'VISUAL'}</span>
             {photoRecords.length > 0 && (
-              <span className="text-[8.5px] px-1 py-0.2 bg-[#DDD4C3] text-[#343B37] rounded-xs font-semibold">
+              <span className="text-[8.5px] px-1 py-0.2 bg-[#181C1A] text-[#939B92] border border-[#303633] font-semibold">
                 {photoRecords.length}
               </span>
             )}
@@ -212,32 +212,32 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
             onClick={() => setActiveTab('soundscapes')}
             className={`pb-1.5 px-2 transition-colors border-b-2 font-medium uppercase tracking-wider text-[10.5px] sm:text-[11px] shrink-0 flex items-center gap-1 ${
               activeTab === 'soundscapes'
-                ? 'border-[#965D45] text-[#262B29] font-bold'
-                : 'border-transparent text-[#7D4732] hover:text-[#262B29]'
+                ? 'border-[#A35243] text-[#D8D7CD] font-bold'
+                : 'border-transparent text-[#939B92] hover:text-[#D8D7CD]'
             }`}
           >
-            <Volume2 className="w-3 h-3 text-[#74826A]" />
+            <Volume2 className="w-3 h-3 text-[#687565]" />
             <span>{language === 'KA' ? 'აკუსტიკა' : 'SOUND'}</span>
           </button>
         </div>
 
         {/* Scrollable Dossier Content Area */}
-        <div className="flex-1 overflow-y-auto pr-1 space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#343B37]">
+        <div className="flex-1 overflow-y-auto pr-1 space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#D8D7CD]">
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <>
               {/* Short Ethnographic Abstract */}
-              <div className="bg-[#E8E0D1]/60 border-l-2 border-[#343B37] p-2.5">
+              <div className="bg-[#181C1A] border-l-2 border-[#555B56] p-2.5 text-[#D8D7CD]">
                 <p>{description}</p>
               </div>
 
               {/* Multispecies Register */}
               <div className="pt-1">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold">
+                  <h3 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold">
                     {language === 'KA' ? 'მულტისახეობრივი თანაარსებობა' : 'MULTISPECIES REGISTER'}
                   </h3>
-                  <span className="font-mono text-[9px] text-[#586450]">
+                  <span className="font-mono text-[9px] text-[#939B92]">
                     {zone.multispecies.length} {language === 'KA' ? 'ერთეული' : 'ENTITIES'}
                   </span>
                 </div>
@@ -246,19 +246,19 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                   {zone.multispecies.map((item, idx) => (
                     <div
                       key={idx}
-                      className="bg-[#E8E0D1] border border-[#C4B7A2] p-2.5 flex items-start gap-2.5 text-xs"
+                      className="bg-[#181C1A] border border-[#303633] p-2.5 flex items-start gap-2.5 text-xs"
                     >
-                      <div className="mt-0.5 p-1 bg-[#F7F3EB] rounded border border-[#C4B7A2]">
+                      <div className="mt-0.5 p-1 bg-[#222725] border border-[#303633]">
                         {getCategoryIcon(item.category)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-[#262B29] leading-tight flex items-center justify-between">
+                        <div className="font-medium text-[#D8D7CD] leading-tight flex items-center justify-between">
                           <span>{language === 'KA' ? item.nameKa : item.nameEn}</span>
-                          <span className="font-mono text-[9px] uppercase px-1 py-0.2 bg-[#DDD4C3] text-[#343B37]">
+                          <span className="font-mono text-[9px] uppercase px-1 py-0.2 bg-[#222725] text-[#939B92] border border-[#303633]">
                             {item.category}
                           </span>
                         </div>
-                        <div className="text-[11px] text-[#586450] mt-0.5 leading-tight">
+                        <div className="text-[11px] text-[#939B92] mt-0.5 leading-tight">
                           {language === 'KA' ? item.detailKa : item.detailEn}
                         </div>
                       </div>
@@ -268,27 +268,27 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
               </div>
 
               {/* Architectural Construction Notes */}
-              <div className="bg-[#DDD4C3]/50 border-l-2 border-[#965D45] p-2.5">
-                <div className="font-mono text-[9px] uppercase tracking-wider text-[#7D4732] font-semibold mb-1">
+              <div className="bg-[#181C1A] border-l-2 border-[#A35243] p-2.5">
+                <div className="font-mono text-[9px] uppercase tracking-wider text-[#A35243] font-semibold mb-1">
                   {language === 'KA' ? 'არქიტექტურული შენიშვნა' : 'ARCHITECTURAL NOTE'}
                 </div>
-                <div className="text-[11px] leading-relaxed text-[#343B37]">
+                <div className="text-[11px] leading-relaxed text-[#939B92]">
                   {architecturalNotes}
                 </div>
               </div>
 
               {/* Visual Field Records Preview Strip */}
               {photoRecords.length > 0 && (
-                <div className="pt-2 border-t border-[#C4B7A2]">
+                <div className="pt-2 border-t border-[#303633]">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
-                      <Camera className="w-3.5 h-3.5 text-[#965D45]" />
+                    <h3 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5">
+                      <Camera className="w-3.5 h-3.5 text-[#A35243]" />
                       <span>{language === 'KA' ? 'ვიზუალური საველე ჩანაწერები' : 'VISUAL FIELD RECORDS'}</span>
                     </h3>
                     <button
                       type="button"
                       onClick={() => setActiveTab('visual')}
-                      className="font-mono text-[9px] text-[#965D45] hover:text-[#262B29] flex items-center gap-0.5"
+                      className="font-mono text-[9px] text-[#A35243] hover:text-[#D8D7CD] flex items-center gap-0.5"
                     >
                       <span>{language === 'KA' ? 'სრულად' : 'VIEW ALL'}</span>
                       <ArrowRight className="w-2.5 h-2.5" />
@@ -301,7 +301,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                         key={record.id}
                         type="button"
                         onClick={() => setStandaloneLightboxIndex(index)}
-                        className="group text-left border border-[#C4B7A2] hover:border-[#965D45] overflow-hidden bg-[#E8E0D1] transition-all cursor-pointer"
+                        className="group text-left border border-[#303633] hover:border-[#A35243] overflow-hidden bg-[#181C1A] transition-all cursor-pointer"
                       >
                         <div className="aspect-[4/3] w-full overflow-hidden">
                           <MediaPlaceholderPlate
@@ -311,11 +311,11 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                             compact={true}
                           />
                         </div>
-                        <div className="p-1.5 bg-[#F7F3EB] border-t border-[#C4B7A2]/50">
-                          <div className="font-mono text-[8px] text-[#7D4732] font-bold truncate">
+                        <div className="p-1.5 bg-[#222725] border-t border-[#303633]">
+                          <div className="font-mono text-[8px] text-[#B09A69] font-bold truncate">
                             {record.id.toUpperCase()}
                           </div>
-                          <div className="font-editorial text-[11px] font-bold text-[#262B29] truncate group-hover:text-[#965D45]">
+                          <div className="font-editorial text-[11px] font-bold text-[#D8D7CD] truncate group-hover:text-[#A35243]">
                             {language === 'KA' && record.titleKa ? record.titleKa : record.title}
                           </div>
                         </div>
@@ -358,13 +358,13 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
 
               {/* Video Records Section */}
               {videoRecords.length > 0 && (
-                <div className="space-y-2 pt-2 border-t border-[#C4B7A2]">
+                <div className="space-y-2 pt-2 border-t border-[#303633]">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
-                      <Film className="w-3.5 h-3.5 text-[#7D4732]" />
+                    <h3 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5">
+                      <Film className="w-3.5 h-3.5 text-[#A35243]" />
                       <span>{language === 'KA' ? 'კინოჩანაწერები (16მმ)' : 'CINEMATIC FIELD RECORDS'}</span>
                     </h3>
-                    <span className="font-mono text-[9px] text-[#586450]">
+                    <span className="font-mono text-[9px] text-[#939B92]">
                       {videoRecords.length} {language === 'KA' ? 'ფირი' : 'REELS'}
                     </span>
                   </div>
@@ -386,17 +386,17 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
           {/* TAB 4: SOUND */}
           {activeTab === 'soundscapes' && (
             <div className="space-y-3">
-              <div className="flex items-center justify-between border-b border-[#C4B7A2] pb-1.5">
-                <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
-                  <Volume2 className="w-3.5 h-3.5 text-[#74826A]" />
+              <div className="flex items-center justify-between border-b border-[#303633] pb-1.5">
+                <h3 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5">
+                  <Volume2 className="w-3.5 h-3.5 text-[#687565]" />
                   <span>{language === 'KA' ? 'აკუსტიკური საველე არქივი' : 'ACOUSTIC FIELD RECORDINGS'}</span>
                 </h3>
-                <span className="font-mono text-[9px] text-[#586450]">
+                <span className="font-mono text-[9px] text-[#939B92]">
                   {audioRecords.length} {language === 'KA' ? 'ჩანაწერი' : 'RECORDINGS'}
                 </span>
               </div>
 
-              <p className="text-[11px] text-[#586450] italic">
+              <p className="text-[11px] text-[#939B92] italic">
                 {language === 'KA'
                   ? 'საველე აკუსტიკური ინსტრუმენტი: გარემოს რეზონანსი, ინფრასტრუქტურის ვიბრაცია და მულტისახეობრივი ექო.'
                   : 'Archival field recording player documenting ambient environmental resonance and multispecies acoustics.'}
@@ -411,7 +411,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                   />
                 ))
               ) : (
-                <div className="p-4 bg-[#E8E0D1]/60 border border-[#C4B7A2] text-center font-mono text-xs text-[#586450]">
+                <div className="p-4 bg-[#181C1A] border border-[#303633] text-center font-mono text-xs text-[#939B92]">
                   {language === 'KA'
                     ? 'აკუსტიკური ჩანაწერები დამუშავების პროცესშია'
                     : 'No acoustic field recordings currently ingested.'}
@@ -422,14 +422,14 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="pt-2.5 mt-2.5 border-t border-[#C4B7A2] flex items-center justify-between gap-2">
+        <div className="pt-2.5 mt-2.5 border-t border-[#303633] flex items-center justify-between gap-2">
           {onFocusZone ? (
             <button
               type="button"
               onClick={() => onFocusZone(zone)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#262B29] hover:bg-[#343B37] text-[#E8E0D1] text-xs font-mono font-semibold tracking-wider uppercase transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#A35243] hover:bg-[#8E4437] text-white text-xs font-mono font-semibold tracking-wider uppercase transition-colors border border-[#A35243]"
             >
-              <Target className="w-3.5 h-3.5 text-[#C4B7A2]" />
+              <Target className="w-3.5 h-3.5 text-[#D8D7CD]" />
               <span>{language === 'KA' ? 'ფოკუსირება' : 'FOCUS LOCATION'}</span>
             </button>
           ) : (
@@ -440,7 +440,7 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
             <button
               type="button"
               onClick={onResetView}
-              className="px-2.5 py-1.5 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#343B37] text-[#262B29] text-xs font-mono tracking-wider uppercase transition-colors"
+              className="px-2.5 py-1.5 bg-[#181C1A] hover:bg-[#2A302D] border border-[#303633] text-[#D8D7CD] text-xs font-mono tracking-wider uppercase transition-colors"
             >
               {language === 'KA' ? 'სრული ხედი' : 'FULL VIEW'}
             </button>

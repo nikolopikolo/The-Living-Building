@@ -39,25 +39,25 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
         const title = language === 'KA' ? zone.titleKa : zone.titleEn;
         const floorBadge = language === 'KA' ? zone.floorLevelKa : zone.floorLevel;
 
-        // Visual highlight colors: muted moss green / rust conforming to visual identity
+        // Visual highlight colors: oxidized red / faded Soviet green / weathered concrete
         const highlightFill = isActive
-          ? '#965D45'
+          ? '#A35243'
           : matchesPerspective && selectedPerspective !== 'ALL'
-          ? '#586450'
-          : '#74826A';
+          ? '#687565'
+          : '#555B56';
 
         const highlightStroke = isActive
-          ? '#965D45'
+          ? '#A35243'
           : matchesPerspective && selectedPerspective !== 'ALL'
-          ? '#586450'
-          : '#74826A';
+          ? '#B09A69'
+          : '#555B56';
 
-        // Very low opacity translucent highlight with smooth 180ms transition
+        // Low opacity translucent highlight with smooth transition
         const fillOpacity = isActive
-          ? 0.16
+          ? 0.22
           : isHovered
-          ? (matchesPerspective && selectedPerspective !== 'ALL' ? 0.14 : 0.10)
-          : (matchesPerspective && selectedPerspective !== 'ALL' ? 0.035 : 0);
+          ? (matchesPerspective && selectedPerspective !== 'ALL' ? 0.18 : 0.12)
+          : (matchesPerspective && selectedPerspective !== 'ALL' ? 0.05 : 0);
 
         const strokeWidth = isActive ? 1.5 : 1;
 
@@ -128,8 +128,8 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
             {/* Architectural Corner Crop Marks (Appears on hover or active) */}
             {(isHovered || isActive) && (
               <g
-                stroke={isActive ? '#965D45' : '#343B37'}
-                strokeWidth="1"
+                stroke={isActive ? '#A35243' : '#555B56'}
+                strokeWidth="1.2"
                 className="pointer-events-none"
                 style={{ transition: 'stroke 180ms ease-out' }}
               >
@@ -155,9 +155,9 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
                 cx="0"
                 cy="0"
                 r={isActive ? 14 : isHovered ? 12 : 9}
-                fill={isActive ? '#965D45' : '#262B29'}
-                fillOpacity={isActive ? 0.28 : isHovered ? 0.2 : 0.14}
-                stroke={isActive ? '#965D45' : '#343B37'}
+                fill={isActive ? '#A35243' : '#222725'}
+                fillOpacity={isActive ? 0.35 : isHovered ? 0.25 : 0.15}
+                stroke={isActive ? '#A35243' : '#303633'}
                 strokeWidth={isActive ? 1.6 : 1}
                 className={isActive || isHovered ? 'animate-ping opacity-35' : ''}
               />
@@ -167,33 +167,33 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
                 cx="0"
                 cy="0"
                 r={isActive ? 4.5 : 3.5}
-                fill={isActive ? '#965D45' : '#262B29'}
-                stroke="#E8E0D1"
+                fill={isActive ? '#A35243' : '#151817'}
+                stroke="#D8D7CD"
                 strokeWidth="1.2"
               />
 
-              {/* Technical Zone Indicator Badge */}
+              {/* Technical Zone Indicator Badge - Hard Rectangular Archival Stamp */}
               <g
                 transform={`translate(12, -7)`}
                 className="transition-opacity duration-200"
-                opacity={isHovered || isActive ? 1 : 0.8}
+                opacity={isHovered || isActive ? 1 : 0.85}
               >
                 <rect
                   x="0"
                   y="0"
                   width={zone.floorLevel.length * 6 + 14}
                   height="14"
-                  fill={isActive ? '#965D45' : '#262B29'}
-                  rx="2"
-                  stroke={isHovered ? '#74826A' : 'none'}
-                  strokeWidth="0.8"
+                  fill={isActive ? '#A35243' : '#222725'}
+                  rx="0"
+                  stroke={isHovered ? '#687565' : '#303633'}
+                  strokeWidth="1"
                 />
                 <text
                   x="7"
                   y="10"
                   fontFamily="JetBrains Mono, monospace"
                   fontSize="7.5"
-                  fill="#E8E0D1"
+                  fill="#D8D7CD"
                   fontWeight="600"
                   letterSpacing="0.5"
                 >
@@ -205,27 +205,27 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
               {isHovered && (
                 <g
                   transform="translate(12, -26)"
-                  className="pointer-events-none filter drop-shadow-sm"
+                  className="pointer-events-none filter drop-shadow-md"
                   style={{ transition: 'opacity 180ms ease-out' }}
                 >
                   <rect
                     x="0"
                     y="0"
                     width={Math.max(title.length * 5.8 + 24, 115)}
-                    height="19"
-                    fill="#F7F3EB"
-                    stroke="#262B29"
+                    height="20"
+                    fill="#222725"
+                    stroke="#303633"
                     strokeWidth="1"
-                    rx="2"
+                    rx="0"
                   />
-                  <circle cx="8" cy="9.5" r="2.5" fill={isActive ? '#965D45' : '#74826A'} />
+                  <circle cx="8" cy="10" r="2.5" fill={isActive ? '#A35243' : '#687565'} />
                   <text
                     x="15"
-                    y="13"
+                    y="13.5"
                     fontFamily="Inter, sans-serif"
-                    fontSize="7.8"
+                    fontSize="8"
                     fontWeight="600"
-                    fill="#262B29"
+                    fill="#D8D7CD"
                   >
                     {title}
                   </text>

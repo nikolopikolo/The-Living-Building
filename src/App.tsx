@@ -242,17 +242,17 @@ export const App: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-20 md:bottom-22 left-1/2 -translate-x-1/2 z-50 pointer-events-auto bg-[#F7F3EB]/95 border border-[#343B37] shadow-brutalist-sm px-3.5 py-1.5 flex items-center gap-2.5 text-xs font-mono"
+            className="fixed bottom-20 md:bottom-22 left-1/2 -translate-x-1/2 z-50 pointer-events-auto bg-[#222725] border border-[#303633] shadow-brutalist-sm px-3.5 py-1.5 flex items-center gap-2.5 text-xs font-mono"
           >
-            <Compass className="w-3.5 h-3.5 text-[#965D45] animate-spin-slow" />
-            <span className="text-[#262B29] tracking-wider text-[11px]">
+            <Compass className="w-3.5 h-3.5 text-[#A35243] animate-spin-slow" />
+            <span className="text-[#D8D7CD] tracking-wider text-[11px]">
               {language === 'KA'
                 ? 'აირჩიეთ სივრცე ისტორიების გასაცნობად'
                 : 'Select a space to explore its stories.'}
             </span>
             <button
               onClick={() => setHintVisible(false)}
-              className="p-0.5 text-[#7D4732] hover:text-[#262B29] ml-1"
+              className="p-0.5 text-[#939B92] hover:text-[#A35243] ml-1"
               aria-label="Dismiss hint"
             >
               <X className="w-3 h-3" />

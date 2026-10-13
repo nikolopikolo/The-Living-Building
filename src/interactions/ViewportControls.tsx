@@ -22,21 +22,21 @@ export const ViewportControls: React.FC<ViewportControlsProps> = ({
   return (
     <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 select-none">
       {/* Interaction Hint */}
-      <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-[#F7F3EB]/90 border border-[#C4B7A2] text-[11px] font-mono text-[#586450]">
-        <Move className="w-3.5 h-3.5 text-[#965D45]" />
+      <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-[#222725]/95 border border-[#303633] text-[11px] font-mono text-[#939B92] shadow-brutalist-sm">
+        <Move className="w-3.5 h-3.5 text-[#A35243]" />
         <span>
           {language === 'KA'
-            ? 'გადაადგილება: თაგვის გადათრევა · მასშტაბირება: გორგოლაჭი'
+            ? 'გადაადგილება: გადათრევა · მასშტაბირება: გორგოლაჭი · ინსპექცია: დაკლიკება'
             : 'DRAG TO PAN · WHEEL TO ZOOM · CLICK ZONE TO INSPECT'}
         </span>
       </div>
 
-      {/* Button Cluster */}
-      <div className="flex items-center bg-[#F7F3EB] border border-[#343B37] shadow-brutalist-sm">
+      {/* Button Cluster - Industrial Instrument Styling */}
+      <div className="flex items-center bg-[#222725] border border-[#303633] shadow-brutalist-sm">
         {/* Zoom In */}
         <button
           onClick={onZoomIn}
-          className="p-2 md:p-2.5 text-[#262B29] hover:bg-[#E8E0D1] hover:text-[#965D45] transition-colors border-r border-[#C4B7A2]"
+          className="p-2 md:p-2.5 text-[#D8D7CD] hover:bg-[#2A302D] hover:text-[#A35243] transition-colors border-r border-[#303633]"
           title={language === 'KA' ? 'გადიდება' : 'Zoom In'}
           aria-label="Zoom in"
         >
@@ -44,14 +44,14 @@ export const ViewportControls: React.FC<ViewportControlsProps> = ({
         </button>
 
         {/* Zoom Level Indicator */}
-        <span className="px-2.5 font-mono text-xs font-medium text-[#343B37] min-w-[50px] text-center">
+        <span className="px-2.5 font-mono text-xs font-semibold text-[#B09A69] min-w-[50px] text-center bg-[#181C1A]">
           {zoomPercent}%
         </span>
 
         {/* Zoom Out */}
         <button
           onClick={onZoomOut}
-          className="p-2 md:p-2.5 text-[#262B29] hover:bg-[#E8E0D1] hover:text-[#965D45] transition-colors border-l border-r border-[#C4B7A2]"
+          className="p-2 md:p-2.5 text-[#D8D7CD] hover:bg-[#2A302D] hover:text-[#A35243] transition-colors border-l border-r border-[#303633]"
           title={language === 'KA' ? 'დაპატარავება' : 'Zoom Out'}
           aria-label="Zoom out"
         >
@@ -61,7 +61,7 @@ export const ViewportControls: React.FC<ViewportControlsProps> = ({
         {/* Reset View */}
         <button
           onClick={onReset}
-          className="flex items-center gap-1.5 px-3 py-2 md:py-2.5 text-xs font-mono font-medium text-[#262B29] hover:bg-[#E8E0D1] hover:text-[#965D45] transition-colors"
+          className="flex items-center gap-1.5 px-3 py-2 md:py-2.5 text-xs font-mono font-medium text-[#D8D7CD] hover:bg-[#2A302D] hover:text-[#A35243] transition-colors"
           title={language === 'KA' ? 'ხედის დაბრუნება' : 'Reset View'}
           aria-label="Reset view"
         >

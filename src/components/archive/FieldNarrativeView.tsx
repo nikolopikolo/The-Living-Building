@@ -54,69 +54,69 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
     .filter((z): z is InteractiveZone => Boolean(z));
 
   return (
-    <div className="space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#343B37]">
+    <div className="space-y-4 font-sans text-xs md:text-[13px] leading-relaxed text-[#D8D7CD]">
       {/* Archival Field Docket Header */}
-      <div className="bg-[#E8E0D1] border-l-2 border-[#965D45] p-2.5 flex items-center justify-between text-[9px] font-mono">
-        <span className="font-bold text-[#7D4732] uppercase tracking-wider">
+      <div className="bg-[#181C1A] border-l-2 border-[#A35243] p-2.5 flex items-center justify-between text-[9px] font-mono">
+        <span className="font-bold text-[#B09A69] uppercase tracking-wider">
           DOSSIER SECTION: TB-{zone.id.toUpperCase()}-DOC
         </span>
-        <span className="text-[#586450]">
+        <span className="text-[#939B92]">
           {language === 'KA' ? 'საველე ჩანაწერები' : 'STRUCTURED FIELD REPORT'}
         </span>
       </div>
 
       {/* 1. RESEARCH CONTEXT */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5 border-b border-[#C4B7A2]/60 pb-1">
-          <BookOpen className="w-3.5 h-3.5 text-[#965D45]" />
+        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
+          <BookOpen className="w-3.5 h-3.5 text-[#A35243]" />
           <span>{language === 'KA' ? '1. კვლევითი კონტექსტი' : '1. RESEARCH CONTEXT'}</span>
         </h4>
-        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#262B29]">
+        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#D8D7CD]">
           {researchContext}
         </p>
       </section>
 
       {/* 2. SPATIAL OBSERVATIONS */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5 border-b border-[#C4B7A2]/60 pb-1">
-          <Compass className="w-3.5 h-3.5 text-[#74826A]" />
+        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
+          <Compass className="w-3.5 h-3.5 text-[#687565]" />
           <span>{language === 'KA' ? '2. სივრცითი დაკვირვება' : '2. SPATIAL OBSERVATIONS'}</span>
         </h4>
-        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#262B29] first-letter:text-2xl first-letter:font-bold first-letter:float-left first-letter:mr-1.5 first-letter:leading-none">
+        <p className="font-editorial text-sm sm:text-base leading-relaxed text-[#D8D7CD] first-letter:text-2xl first-letter:font-bold first-letter:float-left first-letter:mr-1.5 first-letter:leading-none">
           {spatialObservations}
         </p>
       </section>
 
       {/* 3. MULTISPECIES RELATIONSHIPS */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5 border-b border-[#C4B7A2]/60 pb-1">
-          <Layers className="w-3.5 h-3.5 text-[#586450]" />
+        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
+          <Layers className="w-3.5 h-3.5 text-[#555B56]" />
           <span>{language === 'KA' ? '3. მულტისახეობრივი ურთიერთობები' : '3. MULTISPECIES RELATIONSHIPS'}</span>
         </h4>
-        <div className="bg-[#E8E0D1]/60 border border-[#C4B7A2] p-2.5 font-sans text-xs text-[#262B29] leading-relaxed">
+        <div className="bg-[#181C1A] border border-[#303633] p-2.5 font-sans text-xs text-[#D8D7CD] leading-relaxed">
           {multispeciesRelations}
         </div>
       </section>
 
       {/* 4. ARCHITECTURAL CONTEXT */}
       <section className="space-y-1.5">
-        <h4 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5 border-b border-[#C4B7A2]/60 pb-1">
-          <span className="font-mono text-xs text-[#7D4732]">▤</span>
+        <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5 border-b border-[#303633] pb-1">
+          <span className="font-mono text-xs text-[#A35243]">▤</span>
           <span>{language === 'KA' ? '4. არქიტექტურული კონტექსტი' : '4. ARCHITECTURAL CONTEXT'}</span>
         </h4>
-        <div className="bg-[#DDD4C3]/50 border-l-2 border-[#343B37] p-2.5 text-[11px] font-mono leading-relaxed text-[#343B37]">
+        <div className="bg-[#181C1A] border-l-2 border-[#555B56] p-2.5 text-[11px] font-mono leading-relaxed text-[#939B92]">
           {architecturalContext}
         </div>
       </section>
 
       {/* 5. RELATED FIELD RECORDS */}
-      <section className="space-y-2 pt-1 border-t border-[#C4B7A2]">
+      <section className="space-y-2 pt-1 border-t border-[#303633]">
         <div className="flex items-center justify-between">
-          <h4 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
-            <Camera className="w-3.5 h-3.5 text-[#965D45]" />
+          <h4 className="font-mono text-[10px] tracking-widest text-[#B09A69] uppercase font-semibold flex items-center gap-1.5">
+            <Camera className="w-3.5 h-3.5 text-[#A35243]" />
             <span>{language === 'KA' ? '5. დაკავშირებული საველე მასალები' : '5. RELATED FIELD RECORDS'}</span>
           </h4>
-          <span className="font-mono text-[8.5px] text-[#586450]">
+          <span className="font-mono text-[8.5px] text-[#939B92]">
             {mediaRecords.length} {language === 'KA' ? 'ერთეული' : 'ITEMS'}
           </span>
         </div>
@@ -131,20 +131,20 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
                 if (onOpenLightbox) onOpenLightbox(0);
                 else if (onSelectTab) onSelectTab('visual');
               }}
-              className="p-2 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#C4B7A2] hover:border-[#965D45] text-left transition-colors flex items-center justify-between group cursor-pointer"
+              className="p-2 bg-[#181C1A] hover:bg-[#222725] border border-[#303633] hover:border-[#A35243] text-left transition-colors flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-2 min-w-0">
-                <Camera className="w-3.5 h-3.5 text-[#965D45] shrink-0" />
+                <Camera className="w-3.5 h-3.5 text-[#A35243] shrink-0" />
                 <div className="truncate">
-                  <div className="font-mono text-[9px] font-bold text-[#262B29] group-hover:text-[#965D45]">
+                  <div className="font-mono text-[9px] font-bold text-[#D8D7CD] group-hover:text-[#A35243]">
                     {language === 'KA' ? 'ვიზუალური ფოტოარქივი' : 'VISUAL FIELD RECORDS'}
                   </div>
-                  <div className="font-mono text-[8px] text-[#586450]">
+                  <div className="font-mono text-[8px] text-[#939B92]">
                     {photoRecords.length} {language === 'KA' ? 'ფოტოჩანაწერი' : 'PHOTOGRAPHIC PLATES'}
                   </div>
                 </div>
               </div>
-              <ArrowRight className="w-3 h-3 text-[#965D45] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3 h-3 text-[#A35243] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
             </button>
           )}
 
@@ -153,20 +153,20 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
             <button
               type="button"
               onClick={() => onSelectTab?.('soundscapes')}
-              className="p-2 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#C4B7A2] hover:border-[#74826A] text-left transition-colors flex items-center justify-between group cursor-pointer"
+              className="p-2 bg-[#181C1A] hover:bg-[#222725] border border-[#303633] hover:border-[#687565] text-left transition-colors flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-2 min-w-0">
-                <Volume2 className="w-3.5 h-3.5 text-[#74826A] shrink-0" />
+                <Volume2 className="w-3.5 h-3.5 text-[#687565] shrink-0" />
                 <div className="truncate">
-                  <div className="font-mono text-[9px] font-bold text-[#262B29] group-hover:text-[#74826A]">
+                  <div className="font-mono text-[9px] font-bold text-[#D8D7CD] group-hover:text-[#687565]">
                     {language === 'KA' ? 'აკუსტიკური ჩანაწერი' : 'ACOUSTIC RECORDING'}
                   </div>
-                  <div className="font-mono text-[8px] text-[#586450]">
+                  <div className="font-mono text-[8px] text-[#939B92]">
                     {audioRecords[0].duration || 'FIELD REEL'} · {audioRecords.length} {language === 'KA' ? 'ჩანაწერი' : 'RECORD'}
                   </div>
                 </div>
               </div>
-              <ArrowRight className="w-3 h-3 text-[#74826A] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3 h-3 text-[#687565] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
             </button>
           )}
 
@@ -175,20 +175,20 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
             <button
               type="button"
               onClick={() => onSelectTab?.('visual')}
-              className="p-2 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#C4B7A2] hover:border-[#7D4732] text-left transition-colors flex items-center justify-between group cursor-pointer"
+              className="p-2 bg-[#181C1A] hover:bg-[#222725] border border-[#303633] hover:border-[#A35243] text-left transition-colors flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-2 min-w-0">
-                <Film className="w-3.5 h-3.5 text-[#7D4732] shrink-0" />
+                <Film className="w-3.5 h-3.5 text-[#A35243] shrink-0" />
                 <div className="truncate">
-                  <div className="font-mono text-[9px] font-bold text-[#262B29] group-hover:text-[#7D4732]">
+                  <div className="font-mono text-[9px] font-bold text-[#D8D7CD] group-hover:text-[#A35243]">
                     {language === 'KA' ? 'კინოფირი (16მმ)' : '16MM CINE RECORD'}
                   </div>
-                  <div className="font-mono text-[8px] text-[#586450]">
+                  <div className="font-mono text-[8px] text-[#939B92]">
                     {videoRecords.length} {language === 'KA' ? 'ვიდეოჩანაწერი' : 'REEL ARCHIVE'}
                   </div>
                 </div>
               </div>
-              <ArrowRight className="w-3 h-3 text-[#7D4732] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3 h-3 text-[#A35243] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
             </button>
           )}
         </div>
@@ -196,8 +196,8 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
         {/* Connected Locations Network */}
         {relatedZones.length > 0 && (
           <div className="pt-2">
-            <div className="font-mono text-[8.5px] uppercase tracking-wider text-[#7D4732] font-semibold mb-1.5 flex items-center gap-1">
-              <Compass className="w-3 h-3 text-[#965D45]" />
+            <div className="font-mono text-[8.5px] uppercase tracking-wider text-[#B09A69] font-semibold mb-1.5 flex items-center gap-1">
+              <Compass className="w-3 h-3 text-[#A35243]" />
               <span>{language === 'KA' ? 'დაკავშირებული სივრცეები:' : 'CROSS-REFERENCED SPACES:'}</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -206,7 +206,7 @@ export const FieldNarrativeView: React.FC<FieldNarrativeViewProps> = ({
                   key={rel.id}
                   type="button"
                   onClick={() => onFocusZone?.(rel)}
-                  className="px-2 py-1 bg-[#DDD4C3] hover:bg-[#965D45] hover:text-[#E8E0D1] text-[#262B29] border border-[#343B37]/30 text-[9px] font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                  className="px-2 py-1 bg-[#222725] hover:bg-[#A35243] hover:text-white text-[#D8D7CD] border border-[#303633] text-[9px] font-mono transition-colors flex items-center gap-1 cursor-pointer"
                 >
                   <span className="font-bold">{language === 'KA' ? rel.floorLevelKa : rel.floorLevel}:</span>
                   <span>{language === 'KA' ? rel.titleKa : rel.titleEn}</span>
