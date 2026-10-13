@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import type { InteractiveZone, Language, PerspectiveFilter } from '../types';
 
 interface ZoneHighlightLayerProps {
@@ -20,6 +20,8 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
   language,
   selectedPerspective = 'ALL',
 }) => {
+  const pointerDownPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
   return (
     <g id="interactive-zones-layer">
       {zones.map((zone) => {
@@ -37,20 +39,53 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
         const title = language === 'KA' ? zone.titleKa : zone.titleEn;
         const floorBadge = language === 'KA' ? zone.floorLevelKa : zone.floorLevel;
 
+        // Visual highlight colors: muted moss green / rust conforming to visual identity
+        const highlightFill = isActive
+          ? '#965D45'
+          : matchesPerspective && selectedPerspective !== 'ALL'
+          ? '#586450'
+          : '#74826A';
+
+        const highlightStroke = isActive
+          ? '#965D45'
+          : matchesPerspective && selectedPerspective !== 'ALL'
+          ? '#586450'
+          : '#74826A';
+
+        // Very low opacity translucent highlight with smooth 180ms transition
+        const fillOpacity = isActive
+          ? 0.16
+          : isHovered
+          ? (matchesPerspective && selectedPerspective !== 'ALL' ? 0.14 : 0.10)
+          : (matchesPerspective && selectedPerspective !== 'ALL' ? 0.035 : 0);
+
+        const strokeWidth = isActive ? 1.5 : 1;
+
         return (
           <g
             key={zone.id}
             id={`zone-${zone.id}`}
             className={`zone-interactive perspective-transition ${isSubdued ? 'perspective-dimmed' : ''}`}
+            onPointerDown={(e) => {
+              pointerDownPos.current = { x: e.clientX, y: e.clientY };
+            }}
             onClick={(e) => {
               e.stopPropagation();
+              // Prevent accidental selection during panning/dragging
+              const dist = Math.hypot(
+                e.clientX - pointerDownPos.current.x,
+                e.clientY - pointerDownPos.current.y
+              );
+              if (dist > 6) return;
               onZoneSelect(zone);
             }}
             onMouseEnter={() => onZoneHover(zone.id)}
             onMouseLeave={() => onZoneHover(null)}
             role="button"
             tabIndex={0}
-            aria-label={`${floorBadge}: ${title}`}
+            aria-label={`${floorBadge}: ${title}. ${
+              language === 'KA' ? 'დააჭირეთ დეტალებისთვის' : 'Click to explore architectural space.'
+            }`}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -59,39 +94,61 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
             }}
             style={{ cursor: 'pointer', outline: 'none' }}
           >
-            {/* Zone Interactive Bounding Fill (Hover highlight) */}
+            <title>{`${floorBadge}: ${title}`}</title>
+
+            {/* Architectural Hit Area & Translucent Hover Highlight */}
             <rect
               x={x}
               y={y}
               width={width}
               height={height}
-              fill={isActive ? '#965D45' : matchesPerspective && selectedPerspective !== 'ALL' ? '#74826A' : '#74826A'}
-              fillOpacity={isActive ? 0.2 : isHovered ? 0.14 : matchesPerspective && selectedPerspective !== 'ALL' ? 0.08 : 0.001}
-              stroke={isActive ? '#965D45' : isHovered ? '#74826A' : matchesPerspective && selectedPerspective !== 'ALL' ? '#586450' : 'none'}
-              strokeWidth={isActive ? 1.6 : 1}
-              strokeDasharray={isActive ? 'none' : '4,3'}
-              className="transition-all duration-300"
+              fill={fillOpacity > 0 ? highlightFill : 'transparent'}
+              fillOpacity={fillOpacity}
+              stroke={
+                isHovered || isActive
+                  ? highlightStroke
+                  : matchesPerspective && selectedPerspective !== 'ALL'
+                  ? highlightStroke
+                  : 'none'
+              }
+              strokeWidth={strokeWidth}
+              strokeDasharray={
+                isActive || isHovered
+                  ? 'none'
+                  : matchesPerspective && selectedPerspective !== 'ALL'
+                  ? '4,3'
+                  : 'none'
+              }
+              style={{
+                pointerEvents: 'all',
+                transition: 'fill-opacity 180ms ease-out, stroke 180ms ease-out, stroke-width 180ms ease-out',
+              }}
             />
 
             {/* Architectural Corner Crop Marks (Appears on hover or active) */}
-            {(isHovered || isActive || (matchesPerspective && selectedPerspective !== 'ALL')) && (
-              <g stroke={isActive ? '#965D45' : '#343B37'} strokeWidth="1.5">
+            {(isHovered || isActive) && (
+              <g
+                stroke={isActive ? '#965D45' : '#343B37'}
+                strokeWidth="1"
+                className="pointer-events-none"
+                style={{ transition: 'stroke 180ms ease-out' }}
+              >
                 {/* Top-Left */}
-                <line x1={x} y1={y} x2={x + 10} y2={y} />
-                <line x1={x} y1={y} x2={x} y2={y + 10} />
+                <line x1={x} y1={y} x2={x + 8} y2={y} />
+                <line x1={x} y1={y} x2={x} y2={y + 8} />
                 {/* Top-Right */}
-                <line x1={x + width} y1={y} x2={x + width - 10} y2={y} />
-                <line x1={x + width} y1={y} x2={x + width} y2={y + 10} />
+                <line x1={x + width} y1={y} x2={x + width - 8} y2={y} />
+                <line x1={x + width} y1={y} x2={x + width} y2={y + 8} />
                 {/* Bottom-Left */}
-                <line x1={x} y1={y + height} x2={x + 10} y2={y + height} />
-                <line x1={x} y1={y + height} x2={x} y2={y + height - 10} />
+                <line x1={x} y1={y + height} x2={x + 8} y2={y + height} />
+                <line x1={x} y1={y + height} x2={x} y2={y + height - 8} />
                 {/* Bottom-Right */}
-                <line x1={x + width} y1={y + height} x2={x + width - 10} y2={y + height} />
-                <line x1={x + width} y1={y + height} x2={x + width} y2={y + height - 10} />
+                <line x1={x + width} y1={y + height} x2={x + width - 8} y2={y + height} />
+                <line x1={x + width} y1={y + height} x2={x + width} y2={y + height - 8} />
               </g>
             )}
 
-            {/* Focal Point Reticle Marker */}
+            {/* Focal Point Reticle Marker (Preserved as secondary navigation) */}
             <g transform={`translate(${mx}, ${my})`}>
               {/* Outer Pulse Ring */}
               <circle
@@ -144,26 +201,27 @@ export const ZoneHighlightLayer: React.FC<ZoneHighlightLayerProps> = ({
                 </text>
               </g>
 
-              {/* Hover Contextual Field Label Pill */}
+              {/* Hover Contextual Field Label Pill / Tooltip */}
               {isHovered && (
                 <g
                   transform="translate(12, -26)"
                   className="pointer-events-none filter drop-shadow-sm"
+                  style={{ transition: 'opacity 180ms ease-out' }}
                 >
                   <rect
                     x="0"
                     y="0"
-                    width={Math.max(title.length * 5.6 + 22, 110)}
-                    height="18"
+                    width={Math.max(title.length * 5.8 + 24, 115)}
+                    height="19"
                     fill="#F7F3EB"
                     stroke="#262B29"
                     strokeWidth="1"
                     rx="2"
                   />
-                  <circle cx="8" cy="9" r="2.5" fill="#965D45" />
+                  <circle cx="8" cy="9.5" r="2.5" fill={isActive ? '#965D45' : '#74826A'} />
                   <text
                     x="15"
-                    y="12.5"
+                    y="13"
                     fontFamily="Inter, sans-serif"
                     fontSize="7.8"
                     fontWeight="600"

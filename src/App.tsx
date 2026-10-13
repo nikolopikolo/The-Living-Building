@@ -34,6 +34,7 @@ export const App: React.FC = () => {
   const isDraggingRef = useRef<boolean>(false);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const lastTranslateRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const hasDraggedBeyondThresholdRef = useRef<boolean>(false);
 
   // Zoom handlers
   const handleZoom = useCallback((factor: number) => {
@@ -98,16 +99,20 @@ export const App: React.FC = () => {
     // Only drag with primary mouse button
     if (e.button !== 0) return;
     isDraggingRef.current = true;
+    hasDraggedBeyondThresholdRef.current = false;
     dragStartRef.current = { x: e.clientX, y: e.clientY };
     lastTranslateRef.current = { x: viewport.translateX, y: viewport.translateY };
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-    setHintVisible(false);
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isDraggingRef.current) return;
     const dx = e.clientX - dragStartRef.current.x;
     const dy = e.clientY - dragStartRef.current.y;
+    if (Math.hypot(dx, dy) > 5) {
+      hasDraggedBeyondThresholdRef.current = true;
+      setHintVisible(false);
+    }
     setViewport((prev) => ({
       ...prev,
       translateX: lastTranslateRef.current.x + dx,
@@ -122,6 +127,9 @@ export const App: React.FC = () => {
     } catch {
       // Ignore
     }
+    setTimeout(() => {
+      hasDraggedBeyondThresholdRef.current = false;
+    }, 60);
   };
 
   // Keyboard navigation & shortcuts
@@ -148,8 +156,20 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleZoomIn, handleZoomOut, handleReset, handleFocusZone]);
 
+  // Support direct hash navigation (e.g. #balcony-garden, #rooftop)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const targetId = window.location.hash.replace(/^#/, '');
+      const match = INTERACTIVE_ZONES.find((z) => z.id === targetId);
+      if (match) {
+        handleFocusZone(match);
+      }
+    }
+  }, [handleFocusZone]);
+
   // Zone selection from menu / cutaway
   const handleZoneSelect = (zone: InteractiveZone) => {
+    if (hasDraggedBeyondThresholdRef.current) return;
     setActiveZone(zone);
     setHintVisible(false);
   };
@@ -222,13 +242,13 @@ export const App: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-14 left-1/2 -translate-x-1/2 z-35 pointer-events-auto bg-[#F7F3EB]/95 border border-[#343B37] shadow-brutalist-sm px-3.5 py-1.5 flex items-center gap-2.5 text-xs font-mono"
+            className="fixed bottom-20 md:bottom-22 left-1/2 -translate-x-1/2 z-50 pointer-events-auto bg-[#F7F3EB]/95 border border-[#343B37] shadow-brutalist-sm px-3.5 py-1.5 flex items-center gap-2.5 text-xs font-mono"
           >
             <Compass className="w-3.5 h-3.5 text-[#965D45] animate-spin-slow" />
             <span className="text-[#262B29] tracking-wider text-[11px]">
               {language === 'KA'
-                ? 'გამოიკვლიეთ შენობა · დააჭირეთ ზონას ან აირჩიეთ კვლევის პერსპექტივა'
-                : 'EXPLORE CUTAWAY · SELECT ZONES OR SWITCH PERSPECTIVES'}
+                ? 'აირჩიეთ სივრცე ისტორიების გასაცნობად'
+                : 'Select a space to explore its stories.'}
             </span>
             <button
               onClick={() => setHintVisible(false)}
@@ -257,6 +277,7 @@ export const App: React.FC = () => {
         onResetView={handleReset}
         onFocusZone={handleFocusZone}
         language={language}
+        allZones={INTERACTIVE_ZONES}
       />
 
       {/* About Exhibition Modal */}

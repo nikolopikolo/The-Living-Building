@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Feather, Trees, User, Wrench, Compass, Volume2, Target, RotateCcw } from 'lucide-react';
 import type { InteractiveZone, Language, SpeciesCategory } from '../types';
+import { INTERACTIVE_ZONES } from '../data/zonesData';
 
 interface ZonePreviewModalProps {
   zone: InteractiveZone | null;
@@ -9,6 +10,7 @@ interface ZonePreviewModalProps {
   onResetView?: () => void;
   onFocusZone?: (zone: InteractiveZone) => void;
   language: Language;
+  allZones?: InteractiveZone[];
 }
 
 const getCategoryIcon = (category: SpeciesCategory) => {
@@ -50,11 +52,17 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
   onResetView,
   onFocusZone,
   language,
+  allZones,
 }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'narrative' | 'soundscapes'>('overview');
   const [isPlayingAudio, setIsPlayingAudio] = useState<string | null>(null);
 
   if (!zone) return null;
+
+  const availableZones = allZones || INTERACTIVE_ZONES;
+  const relatedZones = (zone.relatedZoneIds || [])
+    .map((id) => availableZones.find((z) => z.id === id))
+    .filter((z): z is InteractiveZone => Boolean(z));
 
   const title = language === 'KA' ? zone.titleKa : zone.titleEn;
   const secondaryTitle = language === 'KA' ? zone.titleEn : zone.titleKa;
@@ -228,6 +236,49 @@ export const ZonePreviewModal: React.FC<ZonePreviewModalProps> = ({
                   {architecturalNotes}
                 </div>
               </div>
+
+              {/* CONNECTED SPACES Section */}
+              {relatedZones.length > 0 && (
+                <div className="pt-2 border-t border-[#C4B7A2]/70">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-mono text-[10px] tracking-widest text-[#7D4732] uppercase font-semibold flex items-center gap-1.5">
+                      <Compass className="w-3.5 h-3.5 text-[#965D45]" />
+                      <span>{language === 'KA' ? 'დაკავშირებული სივრცეები' : 'CONNECTED SPACES'}</span>
+                    </h3>
+                    <span className="font-mono text-[9px] text-[#586450]">
+                      {relatedZones.length} {language === 'KA' ? 'სივრცე' : 'SPACES'}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {relatedZones.map((relZone) => {
+                      const relTitle = language === 'KA' ? relZone.titleKa : relZone.titleEn;
+                      const relFloor = language === 'KA' ? relZone.floorLevelKa : relZone.floorLevel;
+                      return (
+                        <button
+                          key={relZone.id}
+                          type="button"
+                          onClick={() => onFocusZone?.(relZone)}
+                          className="group text-left p-2.5 bg-[#E8E0D1] hover:bg-[#DDD4C3] border border-[#C4B7A2] hover:border-[#965D45] transition-all flex flex-col justify-between cursor-pointer focus-visible:outline-2 focus-visible:outline-[#965D45]"
+                          aria-label={`${language === 'KA' ? 'გადასვლა' : 'Explore'}: ${relFloor} - ${relTitle}`}
+                        >
+                          <div className="flex items-center justify-between w-full mb-1">
+                            <span className="font-mono text-[9px] font-bold px-1.5 py-0.5 bg-[#262B29] text-[#E8E0D1] uppercase tracking-wider">
+                              {relFloor}
+                            </span>
+                            <span className="text-[#965D45] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs font-mono font-bold">
+                              →
+                            </span>
+                          </div>
+                          <div className="font-medium text-xs text-[#262B29] group-hover:text-[#965D45] leading-snug line-clamp-2 transition-colors">
+                            {relTitle}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </>
           )}
 

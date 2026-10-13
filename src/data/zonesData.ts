@@ -112,13 +112,13 @@ export const INTERACTIVE_ZONES: InteractiveZone[] = [
       }
     ],
     coordinates: {
-      x: 60,
-      y: 260,
-      width: 375,
-      height: 105,
+      x: 75,
+      y: 258,
+      width: 120,
+      height: 102,
     },
     markerPoint: {
-      x: 155,
+      x: 145,
       y: 310,
     },
     images: [
@@ -141,7 +141,7 @@ export const INTERACTIVE_ZONES: InteractiveZone[] = [
         isDemonstration: true
       }
     ],
-    relatedZoneIds: ['residential-apartment', 'courtyard']
+    relatedZoneIds: ['rooftop', 'courtyard', 'residential-apartment']
   },
   {
     id: 'residential-apartment',
@@ -185,7 +185,7 @@ export const INTERACTIVE_ZONES: InteractiveZone[] = [
     coordinates: {
       x: 445,
       y: 360,
-      width: 240,
+      width: 235,
       height: 100,
     },
     markerPoint: {
@@ -254,9 +254,9 @@ export const INTERACTIVE_ZONES: InteractiveZone[] = [
       }
     ],
     coordinates: {
-      x: 685,
+      x: 688,
       y: 160,
-      width: 140,
+      width: 137,
       height: 500,
     },
     markerPoint: {
@@ -327,11 +327,11 @@ export const INTERACTIVE_ZONES: InteractiveZone[] = [
     coordinates: {
       x: 180,
       y: 660,
-      width: 645,
+      width: 650,
       height: 110,
     },
     markerPoint: {
-      x: 500,
+      x: 505,
       y: 715,
     },
     images: [
@@ -398,7 +398,7 @@ export const INTERACTIVE_ZONES: InteractiveZone[] = [
     coordinates: {
       x: 10,
       y: 540,
-      width: 175,
+      width: 170,
       height: 230,
     },
     markerPoint: {
